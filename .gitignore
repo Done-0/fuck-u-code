@@ -7,6 +7,7 @@ fuck-u-code
 fuck-u-code.exe
 *.exe
 *.out
+dist
 
 # Test outputs
 *.md
