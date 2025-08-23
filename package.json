@@ -1,0 +1,29 @@
+{
+  "name": "fuck-u-code",
+  "version": "1.0.0",
+  "description": "屎山代码检测器，评估代码的”屎山等级“，并输出美观的终端报告。",
+  "main": "index.js",
+  "bin": {
+    "fuck-u-code": "./cli.js"
+  },
+  "files": [
+    "dist/*",
+    "cli.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "contributors": [
+    {
+      "name": "Done-0",
+      "url": "https://www.jank.org.cn"
+    },
+    {
+      "name": "Sunwuyuan",
+      "email": "sun@wuyuan.dev",
+      "url": "https://wuyuan.dev"
+    }
+  ],
+  "author": "Done-0",
+  "license": "MIT"
+}
