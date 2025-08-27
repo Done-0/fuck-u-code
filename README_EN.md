@@ -109,3 +109,8 @@ MIT
 ## Contributing
 
 PRs welcome — let’s improve **fuck-u-code** together 🚀
+
+## More Projects
+
+- [Xuanxue Workshop](https://bazi.site) — AI-powered fortune-telling website  
+- [Jank](https://github.com/Done-0/Jank) — Open-source blog system in Go
