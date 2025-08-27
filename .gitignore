@@ -11,6 +11,7 @@ fuck-u-code.exe
 # Test outputs
 *.md
 !README.md
+!README_EN.md
 
 # OS
 .DS_Store
