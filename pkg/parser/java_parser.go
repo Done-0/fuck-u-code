@@ -32,7 +32,7 @@ func (p *JavaParser) Parse(filePath string, content []byte) (ParseResult, error)
 
 	// 由于ANTLR解析器的复杂性，这里使用基于文本的简化分析
 	// 对于实际应用中的完整功能，需要使用完整的ANTLR生成的解析器
-	result.Functions = p.detectJavaFunctions(contentStr, lines)
+	result.Functions = p.detectJavaFunctions(lines)
 
 	return result, nil
 }
@@ -91,7 +91,7 @@ func (p *JavaParser) countCommentLines(content string) int {
 }
 
 // detectJavaFunctions 基于文本分析检测Java方法
-func (p *JavaParser) detectJavaFunctions(content string, lines []string) []Function {
+func (p *JavaParser) detectJavaFunctions(lines []string) []Function {
 	functions := make([]Function, 0)
 
 	// 简化的Java方法检测
