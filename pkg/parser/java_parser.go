@@ -139,10 +139,13 @@ func (p *JavaParser) detectJavaFunctions(content string, lines []string) []Funct
 					}
 				}
 
+				// 重新计算当前函数的代码
+				functionContent := strings.Join(lines[startLine-1:i+1], "\n")
+
 				// 估算复杂度
-				complexity := 1 + strings.Count(content, "if ") + strings.Count(content, "for ") +
-					strings.Count(content, "while ") + strings.Count(content, "catch ") +
-					strings.Count(content, "case ")
+				complexity := 1 + strings.Count(functionContent, "if ") + strings.Count(functionContent, "for ") +
+					strings.Count(functionContent, "while ") + strings.Count(functionContent, "catch ") +
+					strings.Count(functionContent, "case ")
 
 				functions = append(functions, Function{
 					Name:       currentFunc,
