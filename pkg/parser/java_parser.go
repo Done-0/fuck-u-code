@@ -94,6 +94,8 @@ func (p *JavaParser) countCommentLines(content string) int {
 func (p *JavaParser) detectJavaFunctions(content string, lines []string) []Function {
 	functions := make([]Function, 0)
 
+	// 多行注释检测
+	inComment := false
 	// 简化的Java方法检测
 	bracketLevel := 0
 	currentFunc := ""
@@ -102,13 +104,32 @@ func (p *JavaParser) detectJavaFunctions(content string, lines []string) []Funct
 
 	for i, line := range lines {
 		trimmedLine := strings.TrimSpace(line)
+		// 跳过单行注释内容
+		if strings.HasPrefix(trimmedLine, "//") ||
+			(strings.HasPrefix(trimmedLine, "/*") && strings.HasSuffix(trimmedLine, "*/")) {
+			continue
+		}
+		// 跳过多行注释内容
+		if !inComment && strings.HasPrefix(trimmedLine, "/*") {
+			inComment = true
+			continue
+		}
+		if inComment {
+			if strings.HasPrefix(trimmedLine, "*/") {
+				inComment = false
+			}
+			continue
+		}
 
 		// 检测方法开始
 		if !inMethod && (strings.Contains(trimmedLine, "public ") ||
 			strings.Contains(trimmedLine, "private ") ||
 			strings.Contains(trimmedLine, "protected ") ||
+			strings.Contains(trimmedLine, "default ") ||
 			strings.Contains(trimmedLine, "static ")) &&
 			strings.Contains(trimmedLine, "(") &&
+			!strings.Contains(trimmedLine, "=") &&
+			!strings.HasSuffix(trimmedLine, ";") &&
 			!strings.HasPrefix(trimmedLine, "//") {
 
 			// 简单提取方法名
