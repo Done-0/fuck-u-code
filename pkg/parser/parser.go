@@ -98,6 +98,8 @@ func CreateParser(language common.LanguageType) Parser {
 		return NewJavaParser()
 	case common.CPlusPlus, common.C:
 		return NewCParser()
+	case common.Rust:
+		return NewRustParser()
 	default:
 		return NewGenericParser()
 	}
