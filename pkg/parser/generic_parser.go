@@ -61,7 +61,7 @@ func (p *GenericParser) countCommentLines(content string, language common.Langua
 	lines := strings.Split(content, "\n")
 
 	switch language {
-	case common.JavaScript, common.TypeScript, common.Java, common.CPlusPlus, common.C, common.CSharp:
+	case common.JavaScript, common.TypeScript, common.Java, common.CPlusPlus, common.C, common.CSharp, common.Rust:
 		// C风格注释处理
 		commentCount = p.countCStyleComments(lines, language)
 	case common.Python:

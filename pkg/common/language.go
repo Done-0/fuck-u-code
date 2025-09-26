@@ -20,6 +20,7 @@ const (
 	CPlusPlus   LanguageType = "cpp"
 	C           LanguageType = "c"
 	CSharp      LanguageType = "csharp"
+	Rust        LanguageType = "rust"
 	Unsupported LanguageType = "unsupported"
 )
 
@@ -33,6 +34,7 @@ var supportedLanguages = map[LanguageType]bool{
 	CPlusPlus:  true,
 	C:          true,
 	CSharp:     true,
+	Rust:       true,
 }
 
 // LanguageDetector 语言检测器接口
@@ -71,7 +73,9 @@ func (d *DefaultDetector) DetectLanguage(filePath string) LanguageType {
 	case ".c", ".h":
 		return C
 	case ".cs", ".razor": // CSharp及Blazor/Razor支持
-        return CSharp
+		return CSharp
+	case ".rs":
+		return Rust
 	default:
 		return Unsupported
 	}
