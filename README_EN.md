@@ -87,6 +87,37 @@ fuck-u-code analyze --markdown --top 10 --lang en-US > report.md
 
 Markdown report includes: overall score / metrics table / problematic files / suggestions
 
+### GitHub Actions Integration
+
+Use our provided GitHub workflows for automated code quality analysis in CI/CD:
+
+```yaml
+# .github/workflows/code-quality.yml
+name: Code Quality Check
+on: [push, pull_request]
+
+jobs:
+  quality-check:
+    uses: ZhulongNT/fuck-u-code/.github/workflows/code-quality-analysis.yml@main
+    with:
+      language: 'en-US'
+      top-files: 10
+      artifact-name: 'code-quality-report'
+```
+
+Or use the GitHub Action directly:
+
+```yaml
+- name: Code Quality Analysis
+  uses: ZhulongNT/fuck-u-code@main
+  with:
+    path: './src'
+    language: 'en-US'
+    top-files: 5
+```
+
+For detailed usage instructions, see: [GitHub Workflow Documentation](GITHUB_WORKFLOW.md)
+
 ### Default Exclusions
 
 * Frontend: `node_modules`, `dist`, `build`, `*.min.js`, etc.
