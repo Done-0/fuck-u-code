@@ -1,0 +1,21 @@
+name: Example - Code Quality Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality-check:
+    uses: ./.github/workflows/code-quality-analysis.yml
+    with:
+      path: '.'
+      language: 'en-US'
+      top-files: 10
+      max-issues: 5
+      verbose: false
+      summary-only: false
+      exclude-patterns: '**/*.test.go **/*.mock.go'
+      skip-index: false
+      artifact-name: 'code-quality-report'

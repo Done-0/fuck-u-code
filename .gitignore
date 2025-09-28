@@ -12,6 +12,7 @@ fuck-u-code.exe
 *.md
 !README.md
 !README_EN.md
+!GITHUB_WORKFLOW.md
 
 # OS
 .DS_Store

@@ -86,6 +86,37 @@ fuck-u-code analyze --markdown --top 10 --lang en-US > report.md
 
 Markdown 报告包含：总体评分 / 指标表格 / 问题文件 / 改进建议
 
+### GitHub Actions 集成
+
+使用我们提供的 GitHub 工作流，在 CI/CD 中自动进行代码质量分析：
+
+```yaml
+# .github/workflows/code-quality.yml
+name: Code Quality Check
+on: [push, pull_request]
+
+jobs:
+  quality-check:
+    uses: ZhulongNT/fuck-u-code/.github/workflows/code-quality-analysis.yml@main
+    with:
+      language: 'zh-CN'
+      top-files: 10
+      artifact-name: 'code-quality-report'
+```
+
+或者使用 GitHub Action：
+
+```yaml
+- name: Code Quality Analysis
+  uses: ZhulongNT/fuck-u-code@main
+  with:
+    path: './src'
+    language: 'zh-CN'
+    top-files: 5
+```
+
+详细使用说明请参考：[GitHub 工作流文档](GITHUB_WORKFLOW.md)
+
 ### 默认排除路径
 
 * 前端: `node_modules`、`dist`、`build`、`*.min.js` 等

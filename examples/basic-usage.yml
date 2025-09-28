@@ -1,0 +1,20 @@
+# Basic GitHub Workflow Usage Example
+# Save this as .github/workflows/code-quality.yml in your repository
+
+name: Code Quality Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality:
+    uses: ZhulongNT/fuck-u-code/.github/workflows/code-quality-analysis.yml@main
+    with:
+      path: '.'
+      language: 'en-US'
+      top-files: 5
+      max-issues: 5
+      artifact-name: 'code-quality-report'

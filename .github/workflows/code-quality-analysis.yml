@@ -1,0 +1,129 @@
+name: Code Quality Analysis
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: 'Path to analyze (default: current directory)'
+        required: false
+        type: string
+        default: '.'
+      language:
+        description: 'Report language (zh-CN or en-US)'
+        required: false
+        type: string
+        default: 'en-US'
+      top-files:
+        description: 'Number of top problematic files to show'
+        required: false
+        type: number
+        default: 5
+      max-issues:
+        description: 'Maximum issues to show per file'
+        required: false
+        type: number
+        default: 5
+      verbose:
+        description: 'Enable verbose output'
+        required: false
+        type: boolean
+        default: false
+      summary-only:
+        description: 'Show only summary'
+        required: false
+        type: boolean
+        default: false
+      exclude-patterns:
+        description: 'Exclude patterns (space-separated)'
+        required: false
+        type: string
+        default: ''
+      skip-index:
+        description: 'Skip index.js/index.ts files'
+        required: false
+        type: boolean
+        default: false
+      artifact-name:
+        description: 'Name for the artifact containing the report'
+        required: false
+        type: string
+        default: 'code-quality-report'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        
+    - name: Build fuck-u-code
+      run: |
+        git clone https://github.com/ZhulongNT/fuck-u-code.git /tmp/fuck-u-code
+        cd /tmp/fuck-u-code
+        go build -o /usr/local/bin/fuck-u-code ./cmd/fuck-u-code
+        
+    - name: Run code quality analysis
+      run: |
+        # Build the command with inputs
+        CMD="fuck-u-code analyze"
+        CMD="$CMD --markdown"
+        CMD="$CMD --lang ${{ inputs.language }}"
+        CMD="$CMD --top ${{ inputs.top-files }}"
+        CMD="$CMD --issues ${{ inputs.max-issues }}"
+        
+        # Add optional flags
+        if [ "${{ inputs.verbose }}" = "true" ]; then
+          CMD="$CMD --verbose"
+        fi
+        
+        if [ "${{ inputs.summary-only }}" = "true" ]; then
+          CMD="$CMD --summary"
+        fi
+        
+        if [ "${{ inputs.skip-index }}" = "true" ]; then
+          CMD="$CMD --skipindex"
+        fi
+        
+        # Add exclude patterns if provided
+        if [ -n "${{ inputs.exclude-patterns }}" ]; then
+          for pattern in ${{ inputs.exclude-patterns }}; do
+            CMD="$CMD --exclude \"$pattern\""
+          done
+        fi
+        
+        # Add the path to analyze
+        CMD="$CMD ${{ inputs.path }}"
+        
+        # Run the analysis and save to report
+        echo "Running: $CMD"
+        eval $CMD > code-quality-report.md
+        
+        # Also create a summary for the job
+        echo "## Code Quality Analysis Results" >> $GITHUB_STEP_SUMMARY
+        cat code-quality-report.md >> $GITHUB_STEP_SUMMARY
+        
+    - name: Upload code quality report
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: code-quality-report.md
+        retention-days: 30
+        
+    - name: Display report summary
+      run: |
+        echo "📊 Code quality analysis completed!"
+        echo "📁 Report saved as artifact: ${{ inputs.artifact-name }}"
+        echo "🔍 Analyzed path: ${{ inputs.path }}"
+        echo "🌍 Language: ${{ inputs.language }}"
+        
+        # Extract key metrics from the report
+        if [ -f code-quality-report.md ]; then
+          echo "## Key Metrics:"
+          grep -E "Quality Score|Quality Level|Analyzed Files" code-quality-report.md || true
+        fi
