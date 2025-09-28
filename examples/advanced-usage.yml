@@ -1,0 +1,42 @@
+# Advanced GitHub Workflow Usage Example
+# This example shows multiple jobs for different parts of a monorepo
+
+name: Comprehensive Code Quality Analysis
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend-analysis:
+    uses: ZhulongNT/fuck-u-code/.github/workflows/code-quality-analysis.yml@main
+    with:
+      path: './backend'
+      language: 'en-US'
+      top-files: 10
+      max-issues: 8
+      verbose: true
+      exclude-patterns: '**/*.test.go **/*.mock.go vendor/**'
+      artifact-name: 'backend-quality-report'
+      
+  frontend-analysis:
+    uses: ZhulongNT/fuck-u-code/.github/workflows/code-quality-analysis.yml@main
+    with:
+      path: './frontend/src'
+      language: 'en-US'
+      top-files: 5
+      skip-index: true
+      exclude-patterns: 'node_modules/** dist/** build/** **/*.test.js **/*.spec.ts'
+      artifact-name: 'frontend-quality-report'
+      
+  full-project-summary:
+    uses: ZhulongNT/fuck-u-code/.github/workflows/code-quality-analysis.yml@main
+    with:
+      path: '.'
+      language: 'en-US'
+      summary-only: true
+      top-files: 3
+      exclude-patterns: 'node_modules/** vendor/** dist/** build/**'
+      artifact-name: 'project-summary-report'
