@@ -329,11 +329,32 @@ var zhCNMessages = map[string]string{
 	"issue.file_very_long":     "文件代码行数过多 (%d 行)，建议拆分为多个文件",
 	"issue.file_long":          "文件代码行数较多 (%d 行)，考虑是否可以优化结构",
 
+	// 函数极长问题
+	"issue.function_extremely_long": "函数 '%s'%s 极度过长 (%d 行)，必须拆分",
+	"issue.function_rather_long":    "函数 '%s'%s 较长 (%d 行)，可考虑重构",
+	// 函数过长问题
+	"issue.function_too_long": "函数 '%s'%s 过长 (%d 行)，建议拆分",
+
+	// 循环引用问题
+	"issue.possible_circular_import": "可能存在循环引用: %s 引用了包含自身名称的包 %s",
+
 	// 注释覆盖率问题
-	"issue.comment_very_low":         "代码注释率极低 (%.2f%%)，几乎没有注释",
-	"issue.comment_low":              "代码注释率较低 (%.2f%%)，建议增加注释",
-	"issue.exported_func_no_comment": "导出函数 %s 缺少文档注释",
-	"issue.exported_type_no_comment": "导出类型 %s 缺少文档注释",
+	"issue.comment_very_low":            "代码注释率极低 (%.2f%%)，几乎没有注释",
+	"issue.comment_low":                 "代码注释率较低 (%.2f%%)，建议增加注释",
+	"issue.exported_func_no_comment":    "导出函数 %s 缺少文档注释",
+	"issue.exported_type_no_comment":    "导出类型 %s 缺少文档注释",
+	"issue.ignored_possible_error":      "行 %d: 忽略了可能的错误返回值",
+	"issue.unhandled_possible_error":    "行 %d: 未处理函数可能返回的错误",
+	"issue.possible_duplicate_impl":     "可能存在重复实现: %s",
+	"issue.complexity.severe":           "函数 '%s'%s 复杂度严重过高 (%d)，必须简化",
+	"issue.complexity.high":             "函数 '%s'%s 复杂度过高 (%d)，建议简化",
+	"issue.parameters.too_many_extreme": "函数 '%s'%s 参数极多 (%d 个)，必须使用结构体封装",
+	"issue.parameters.too_many":         "函数 '%s'%s 参数过多 (%d 个)，建议使用结构体封装",
+	"issue.global_var.hard_to_track":    "全局变量 '%s' 可能导致状态难以追踪",
+
+	// 导入复杂度问题
+	"issue.imports.too_many": "导入包数量过多 (%d)，考虑拆分文件或重构",
+	"issue.imports.many":     "导入包数量较多 (%d)，建议检查是否需要全部导入",
 
 	// 详细报告
 	"verbose.basic_statistics":  "📊 基本统计:",
@@ -598,11 +619,32 @@ var enUSMessages = map[string]string{
 	"issue.file_very_long":     "File has too many lines of code (%d), recommend splitting into multiple files",
 	"issue.file_long":          "File has many lines of code (%d), consider optimizing the structure",
 
+	// Extremely long function
+	"issue.function_extremely_long": "Function '%s'%s is extremely long (%d lines), must be split",
+	"issue.function_rather_long":    "Function '%s'%s is rather long (%d lines), consider refactoring",
+	// Long function
+	"issue.function_too_long": "Function '%s'%s is too long (%d lines), consider splitting",
+
+	// Circular import issues
+	"issue.possible_circular_import": "Possible circular reference: %s imports a package containing its own name %s",
+
 	// 注释覆盖率问题
-	"issue.comment_very_low":         "Code comment ratio is extremely low (%.2f%%), almost no comments",
-	"issue.comment_low":              "Code comment ratio is low (%.2f%%), consider adding more comments",
-	"issue.exported_func_no_comment": "Exported function %s lacks documentation comment",
-	"issue.exported_type_no_comment": "Exported type %s lacks documentation comment",
+	"issue.comment_very_low":            "Code comment ratio is extremely low (%.2f%%), almost no comments",
+	"issue.comment_low":                 "Code comment ratio is low (%.2f%%), consider adding more comments",
+	"issue.exported_func_no_comment":    "Exported function %s lacks documentation comment",
+	"issue.exported_type_no_comment":    "Exported type %s lacks documentation comment",
+	"issue.ignored_possible_error":      "Line %d: possible error return value ignored",
+	"issue.unhandled_possible_error":    "Line %d: possible error from function call unhandled",
+	"issue.possible_duplicate_impl":     "Possible duplicate implementation: %s",
+	"issue.complexity.severe":           "Function '%s'%s complexity is severely high (%d), must be simplified",
+	"issue.complexity.high":             "Function '%s'%s complexity is high (%d), consider simplifying",
+	"issue.parameters.too_many_extreme": "Function '%s'%s has too many parameters (%d), must use a struct",
+	"issue.parameters.too_many":         "Function '%s'%s has many parameters (%d), consider using a struct",
+	"issue.global_var.hard_to_track":    "Global variable '%s' may make state hard to track",
+
+	// Import complexity issues
+	"issue.imports.too_many": "Too many imports (%d), consider splitting files or refactoring",
+	"issue.imports.many":     "Many imports (%d), consider reviewing whether all are needed",
 
 	// 详细报告
 	"verbose.basic_statistics":  "📊 Basic stats (brace yourself):",
@@ -810,21 +852,39 @@ var ruRuMessages = map[string]string{
 	"issue.function_medium":                    "Функция %s имеет %d строк кода, рассмотрите, можно ли упростить ее",
 	"issue.file_very_long":                     "Файл имеет слишком много строк кода (%d), рекомендуйте разделить несколько файлов",
 	"issue.file_long":                          "Файл имеет много строк кода (%d), рассмотрите возможность оптимизации структуры",
-	"issue.comment_very_low":                   "Соотношение комментариев кода чрезвычайно низкое (%.2f %%), почти без комментариев",
-	"issue.comment_low":                        "Соотношение комментариев кода низкое (%.2f %%), рассмотрите возможность добавления большего количества комментариев",
-	"issue.exported_func_no_comment":           "Экспортируемая функция %s не хватает комментариев документации",
-	"issue.exported_type_no_comment":           "Экспортированный тип %S не хватает комментариев документации",
-	"verbose.basic_statistics":                 "📊 Основная статистика (приготовьте сами):",
-	"verbose.total_files":                      "Всего файлов:",
-	"verbose.total_lines":                      "Общие строки:",
-	"verbose.total_issues":                     "Общие проблемы:",
-	"verbose.metric_details":                   "🔍 Метрические детали (сочные кусочки):",
-	"verbose.weight":                           "Масса:",
-	"verbose.description":                      "Описание:",
-	"verbose.score":                            "Счет:",
-	"verbose.all_files":                        "Все файлы кода проанализированы (без милосердия):",
-	"verbose.no_files_found":                   "🎉 Файлы не найдены для анализа! ",
-	"verbose.file_good_quality":                "Качество кода прилично, ничего слишком трагична - поддерживать его!",
-	"report.analyzing_files":                   "Файлы проанализированы",
-	"report.files":                             "файлы",
+	// Чрезмерная длина функции
+	"issue.function_extremely_long": "Функция '%s'%s чрезвычайно длинная (%d строк), необходимо разделить",
+	"issue.function_rather_long":    "Функция '%s'%s довольно длинная (%d строк), стоит рассмотреть рефакторинг",
+	// Длинная функция
+	"issue.function_too_long": "Функция '%s'%s слишком длинная (%d строк), рекомендуется разделить",
+	// Циклическая зависимость
+	"issue.possible_circular_import":    "Возможна циклическая зависимость: %s импортирует пакет, содержащий собственное имя %s",
+	"issue.comment_very_low":            "Соотношение комментариев кода чрезвычайно низкое (%.2f %%), почти без комментариев",
+	"issue.comment_low":                 "Соотношение комментариев кода низкое (%.2f %%), рассмотрите возможность добавления большего количества комментариев",
+	"issue.exported_func_no_comment":    "Экспортируемая функция %s не хватает комментариев документации",
+	"issue.exported_type_no_comment":    "Экспортированный тип %S не хватает комментариев документации",
+	"issue.ignored_possible_error":      "Строка %d: проигнорировано возможное возвращаемое значение ошибки",
+	"issue.unhandled_possible_error":    "Строка %d: возможная ошибка из вызова функции не обработана",
+	"issue.possible_duplicate_impl":     "Возможна дублирующая реализация: %s",
+	"issue.complexity.severe":           "Функция '%s'%s имеет критически высокую сложность (%d), необходимо упростить",
+	"issue.complexity.high":             "Функция '%s'%s имеет высокую сложность (%d), рекомендуется упростить",
+	"issue.parameters.too_many_extreme": "Функция '%s'%s имеет слишком много параметров (%d), необходимо использовать структуру",
+	"issue.parameters.too_many":         "Функция '%s'%s имеет много параметров (%d), рекомендуется использовать структуру",
+	"issue.global_var.hard_to_track":    "Глобальная переменная '%s' может затруднить отслеживание состояния",
+	// Сложность импортов
+	"issue.imports.too_many":    "Слишком много импортов (%d), рассмотрите разделение файлов или рефакторинг",
+	"issue.imports.many":        "Много импортов (%d), проверьте, все ли они действительно нужны",
+	"verbose.basic_statistics":  "📊 Основная статистика (приготовьте сами):",
+	"verbose.total_files":       "Всего файлов:",
+	"verbose.total_lines":       "Общие строки:",
+	"verbose.total_issues":      "Общие проблемы:",
+	"verbose.metric_details":    "🔍 Метрические детали (сочные кусочки):",
+	"verbose.weight":            "Масса:",
+	"verbose.description":       "Описание:",
+	"verbose.score":             "Счет:",
+	"verbose.all_files":         "Все файлы кода проанализированы (без милосердия):",
+	"verbose.no_files_found":    "🎉 Файлы не найдены для анализа! ",
+	"verbose.file_good_quality": "Качество кода прилично, ничего слишком трагична - поддерживать его!",
+	"report.analyzing_files":    "Файлы проанализированы",
+	"report.files":              "файлы",
 }

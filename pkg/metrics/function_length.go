@@ -79,15 +79,15 @@ func (m *FunctionLengthMetric) analyzeFunctions(file *ast.File, fileSet *token.F
 		// 检查函数长度
 		if lineCount > 120 {
 			locationInfo := m.getLocationInfo(fn, fileSet, content)
-			issues = append(issues, fmt.Sprintf("函数 '%s'%s 极度过长 (%d 行)，必须拆分", fn.Name, locationInfo, lineCount))
+			issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.function_extremely_long"), fn.Name, locationInfo, lineCount))
 			extremeLongFunctions++
 		} else if lineCount > 70 {
 			locationInfo := m.getLocationInfo(fn, fileSet, content)
-			issues = append(issues, fmt.Sprintf("函数 '%s'%s 过长 (%d 行)，建议拆分", fn.Name, locationInfo, lineCount))
+			issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.function_too_long"), fn.Name, locationInfo, lineCount))
 			veryLongFunctions++
 		} else if lineCount > 40 {
 			locationInfo := m.getLocationInfo(fn, fileSet, content)
-			issues = append(issues, fmt.Sprintf("函数 '%s'%s 较长 (%d 行)，可考虑重构", fn.Name, locationInfo, lineCount))
+			issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.function_rather_long"), fn.Name, locationInfo, lineCount))
 			longFunctions++
 		}
 
@@ -95,19 +95,19 @@ func (m *FunctionLengthMetric) analyzeFunctions(file *ast.File, fileSet *token.F
 		totalComplexity += fn.Complexity
 		if fn.Complexity > 18 {
 			locationInfo := m.getLocationInfo(fn, fileSet, content)
-			issues = append(issues, fmt.Sprintf("函数 '%s'%s 复杂度严重过高 (%d)，必须简化", fn.Name, locationInfo, fn.Complexity))
+			issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.complexity.severe"), fn.Name, locationInfo, fn.Complexity))
 		} else if fn.Complexity > 12 {
 			locationInfo := m.getLocationInfo(fn, fileSet, content)
-			issues = append(issues, fmt.Sprintf("函数 '%s'%s 复杂度过高 (%d)，建议简化", fn.Name, locationInfo, fn.Complexity))
+			issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.complexity.high"), fn.Name, locationInfo, fn.Complexity))
 		}
 
 		// 检查参数数量
 		if fn.Parameters > 8 {
 			locationInfo := m.getLocationInfo(fn, fileSet, content)
-			issues = append(issues, fmt.Sprintf("函数 '%s'%s 参数极多 (%d 个)，必须使用结构体封装", fn.Name, locationInfo, fn.Parameters))
+			issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.parameters.too_many_extreme"), fn.Name, locationInfo, fn.Parameters))
 		} else if fn.Parameters > 6 {
 			locationInfo := m.getLocationInfo(fn, fileSet, content)
-			issues = append(issues, fmt.Sprintf("函数 '%s'%s 参数过多 (%d 个)，建议使用结构体封装", fn.Name, locationInfo, fn.Parameters))
+			issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.parameters.too_many"), fn.Name, locationInfo, fn.Parameters))
 		}
 	}
 
@@ -190,7 +190,7 @@ func (m *FunctionLengthMetric) analyzeStateManagement(file *ast.File) ([]string,
 							globalVars++
 							mutableVars++
 							totalVars++
-							issues = append(issues, fmt.Sprintf("全局变量 '%s' 可能导致状态难以追踪", name.Name))
+							issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.global_var.hard_to_track"), name.Name))
 						}
 					}
 				}

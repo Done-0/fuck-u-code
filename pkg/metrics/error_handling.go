@@ -33,7 +33,7 @@ func (m *ErrorHandlingMetric) Analyze(file *ast.File, fileSet *token.FileSet) (f
 			// 检查是否忽略了错误
 			if m.isIgnoringError(node) {
 				pos := fileSet.Position(node.Pos())
-				issues = append(issues, fmt.Sprintf("行 %d: 忽略了可能的错误返回值", pos.Line))
+				issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.ignored_possible_error"), pos.Line))
 				ignoredErrors++
 			}
 
@@ -41,7 +41,7 @@ func (m *ErrorHandlingMetric) Analyze(file *ast.File, fileSet *token.FileSet) (f
 			// 检查是否直接调用了可能返回错误的函数但未处理错误
 			if m.isUnhandledErrorCall(node) {
 				pos := fileSet.Position(node.Pos())
-				issues = append(issues, fmt.Sprintf("行 %d: 未处理函数可能返回的错误", pos.Line))
+				issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.unhandled_possible_error"), pos.Line))
 				ignoredErrors++
 			}
 		}

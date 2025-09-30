@@ -67,7 +67,8 @@ func (m *CodeDuplicationMetric) findDuplicatedFunctions(similarFunctions map[str
 	for signature, functions := range similarFunctions {
 		if len(functions) > 1 && len(signature) > 10 { // 忽略太短的函数
 			duplicatedCount += len(functions) - 1
-			*issues = append(*issues, fmt.Sprintf("可能存在重复实现: %s", strings.Join(functions, ", ")))
+			//
+			*issues = append(*issues, fmt.Sprintf(m.translator.Translate("issue.possible_duplicate_impl"), strings.Join(functions, ", ")))
 		}
 	}
 
