@@ -1,4 +1,4 @@
-# fuck-u-code [![中文](https://img.shields.io/badge/文档-简体中文-blue?style=flat-square)](README.md) [![English](https://img.shields.io/badge/Docs-English-red?style=flat-square)](README_EN.md)
+# fuck-u-code [![中文](https://img.shields.io/badge/文档-简体中文-blue?style=flat-square)](README.md) [![English](https://img.shields.io/badge/Docs-English-red?style=flat-square)](README_EN.md) [![Русский](https://img.shields.io/badge/Docs-Русский-blue?style=flat-square)](README_RU.md)
 
 > [!Important]
 > 📢 记住这个命令：fuck-u-code - 让代码不再烂到发指！
@@ -57,7 +57,7 @@ fuck-u-code analyze
 | `--issues N`  | `-i` | 每文件显示 N 个问题        |
 | `--summary`   | `-s` | 只看总结，不看过程          |
 | `--markdown`  | `-m` | 输出 Markdown 格式报告   |
-| `--lang`      | `-l` | 报告语言 (zh-CN/en-US) |
+| `--lang`      | `-l` | 报告语言 (zh-CN/en-US/ru-RU) |
 | `--exclude`   | `-e` | 排除指定目录或文件          |
 | `--skipindex` | `-x` | 跳过 index.js/ts 文件  |
 
