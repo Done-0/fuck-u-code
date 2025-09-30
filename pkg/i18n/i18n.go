@@ -351,6 +351,9 @@ var zhCNMessages = map[string]string{
 	"issue.parameters.too_many_extreme": "函数 '%s'%s 参数极多 (%d 个)，必须使用结构体封装",
 	"issue.parameters.too_many":         "函数 '%s'%s 参数过多 (%d 个)，建议使用结构体封装",
 	"issue.global_var.hard_to_track":    "全局变量 '%s' 可能导致状态难以追踪",
+	"issue.pointer_param.mutable_risk":  "函数 '%s' 的指针参数 '%s' 可能导致状态被外部修改",
+	"issue.state_var.modified":          "在函数 '%s' 中修改了不应该变化的状态变量 '%s'",
+	"location.at_file_line":             " (位于 %s:%d)",
 
 	// 导入复杂度问题
 	"issue.imports.too_many": "导入包数量过多 (%d)，考虑拆分文件或重构",
@@ -641,6 +644,9 @@ var enUSMessages = map[string]string{
 	"issue.parameters.too_many_extreme": "Function '%s'%s has too many parameters (%d), must use a struct",
 	"issue.parameters.too_many":         "Function '%s'%s has many parameters (%d), consider using a struct",
 	"issue.global_var.hard_to_track":    "Global variable '%s' may make state hard to track",
+	"issue.pointer_param.mutable_risk":  "Function '%s' pointer parameter '%s' may allow external mutation",
+	"issue.state_var.modified":          "State variable '%s' should not change, but was modified in function '%s'",
+	"location.at_file_line":             " (at %s:%d)",
 
 	// Import complexity issues
 	"issue.imports.too_many": "Too many imports (%d), consider splitting files or refactoring",
@@ -871,6 +877,9 @@ var ruRuMessages = map[string]string{
 	"issue.parameters.too_many_extreme": "Функция '%s'%s имеет слишком много параметров (%d), необходимо использовать структуру",
 	"issue.parameters.too_many":         "Функция '%s'%s имеет много параметров (%d), рекомендуется использовать структуру",
 	"issue.global_var.hard_to_track":    "Глобальная переменная '%s' может затруднить отслеживание состояния",
+	"issue.pointer_param.mutable_risk":  "Указательный параметр '%s' в функции '%s' может привести к внешней модификации состояния",
+	"issue.state_var.modified":          "В функции '%s' изменена переменная состояния '%s', которая не должна меняться",
+	"location.at_file_line":             " (в %s:%d)",
 	// Сложность импортов
 	"issue.imports.too_many":    "Слишком много импортов (%d), рассмотрите разделение файлов или рефакторинг",
 	"issue.imports.many":        "Много импортов (%d), проверьте, все ли они действительно нужны",

@@ -207,7 +207,7 @@ func (m *FunctionLengthMetric) analyzeStateManagement(file *ast.File) ([]string,
 				for _, field := range node.Type.Params.List {
 					if _, ok := field.Type.(*ast.StarExpr); ok {
 						for _, name := range field.Names {
-							issues = append(issues, fmt.Sprintf("函数 '%s' 的指针参数 '%s' 可能导致状态被外部修改", node.Name.Name, name.Name))
+							issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.pointer_param.mutable_risk"), node.Name.Name, name.Name))
 							mutableVars++
 							totalVars++
 						}
@@ -222,7 +222,7 @@ func (m *FunctionLengthMetric) analyzeStateManagement(file *ast.File) ([]string,
 						for _, lhs := range assign.Lhs {
 							if ident, ok := lhs.(*ast.Ident); ok {
 								if info, exists := stateVars[ident.Name]; exists && !info.isMutable {
-									issues = append(issues, fmt.Sprintf("在函数 '%s' 中修改了不应该变化的状态变量 '%s'", node.Name.Name, ident.Name))
+									issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.state_var.modified"), node.Name.Name, ident.Name))
 								}
 							}
 						}
@@ -264,7 +264,7 @@ func (m *FunctionLengthMetric) getLocationInfo(fn parser.Function, fileSet *toke
 	if fn.Node != nil {
 		if node, ok := fn.Node.(ast.Node); ok && fileSet != nil {
 			pos := fileSet.Position(node.Pos())
-			return fmt.Sprintf(" (位于 %s:%d)", pos.Filename, pos.Line)
+			return fmt.Sprintf(m.translator.Translate("location.at_file_line"), pos.Filename, pos.Line)
 		}
 	}
 
