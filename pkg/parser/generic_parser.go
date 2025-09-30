@@ -51,6 +51,7 @@ func (p *GenericParser) SupportedLanguages() []common.LanguageType {
 		common.CPlusPlus,
 		common.C,
 		common.CSharp,
+		common.Kotlin,
 		common.Unsupported,
 	}
 }
@@ -61,7 +62,7 @@ func (p *GenericParser) countCommentLines(content string, language common.Langua
 	lines := strings.Split(content, "\n")
 
 	switch language {
-	case common.JavaScript, common.TypeScript, common.Java, common.CPlusPlus, common.C, common.CSharp, common.Rust:
+	case common.JavaScript, common.TypeScript, common.Java, common.CPlusPlus, common.C, common.CSharp, common.Rust, common.Kotlin:
 		// C风格注释处理
 		commentCount = p.countCStyleComments(lines, language)
 	case common.Python:
@@ -191,6 +192,8 @@ func (p *GenericParser) detectFunctions(content string, lines []string, language
 		return p.detectCFunctions(content, lines)
 	case common.CSharp:
 		return p.detectCSharpFunctions(content, lines)
+	case common.Kotlin:
+		return p.detectFunctionsWithPattern(content, lines, kotlinPattern, common.Kotlin)
 	default:
 		return p.detectGenericFunctions(content, lines)
 	}
@@ -203,6 +206,7 @@ var (
 	javaPattern    = regexp.MustCompile(`(?m)(public|private|protected|static|\s)+[\w\<\>\[\]]+\s+([\w]+)\s*\(([^\)]*)\)\s*(\{|throws)`)
 	cPattern       = regexp.MustCompile(`(?m)([\w\*]+\s+)+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(([^;]*)\)\s*\{`)
 	csharpPattern  = regexp.MustCompile(`(?m)^\s*(?:(?:public|private|protected|internal|static|virtual|override|abstract|sealed|async)\s+)*([a-zA-Z_][a-zA-Z0-9_<>\[\]]*(?:\?)?)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(([^)]*)\)\s*(?:\{|=>)`)
+	kotlinPattern  = regexp.MustCompile(`(?m)^\s*(?:(?:private|public|internal|protected)\s+)?(?:suspend\s+)?fun\s+(?:[A-Za-z_][A-Za-z0-9_]*\.)?([A-Za-z_][A-Za-z0-9_]*)\s*\(([^)]*)\)`)
 	genericPattern = regexp.MustCompile(`(?m)(function|def|void|int|bool|string|double|float)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(`)
 )
 
@@ -457,6 +461,11 @@ func (p *GenericParser) extractFunctionName(submatch []string, language common.L
 		// Java/Csharp和C/C++函数名在第2位
 		if len(submatch) > 2 {
 			return submatch[2]
+		}
+	case common.Kotlin:
+		// Kotlin函数名在第1位（kotlinPattern的第一个捕获组）
+		if len(submatch) > 1 {
+			return submatch[1]
 		}
 	case common.Python, common.Unsupported:
 		// Python和通用的函数名在第2位

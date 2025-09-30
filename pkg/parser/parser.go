@@ -100,6 +100,8 @@ func CreateParser(language common.LanguageType) Parser {
 		return NewCParser()
 	case common.Rust:
 		return NewRustParser()
+	case common.Kotlin:
+		return NewKotlinParser()
 	default:
 		return NewGenericParser()
 	}
