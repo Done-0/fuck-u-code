@@ -21,7 +21,7 @@ type FunctionLengthMetric struct {
 
 // NewFunctionLengthMetric 创建函数长度指标
 func NewFunctionLengthMetric() *FunctionLengthMetric {
-	translator := i18n.NewTranslator(i18n.ZhCN)
+	translator := i18n.NewTranslator(i18n.EnUS)
 	return &FunctionLengthMetric{
 		BaseMetric: NewBaseMetric(
 			i18n.FormatKey("metric", "function_length"),

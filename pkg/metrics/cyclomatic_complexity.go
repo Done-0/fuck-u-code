@@ -18,7 +18,7 @@ type CyclomaticComplexityMetric struct {
 
 // NewCyclomaticComplexityMetric 创建循环复杂度指标
 func NewCyclomaticComplexityMetric() Metric {
-	translator := i18n.NewTranslator(i18n.ZhCN) // 默认使用中文
+	translator := i18n.NewTranslator(i18n.EnUS) // 默认使用中文
 	return &CyclomaticComplexityMetric{
 		BaseMetric: NewBaseMetric(
 			i18n.FormatKey("metric", "cyclomatic_complexity"),
