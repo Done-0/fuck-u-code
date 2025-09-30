@@ -38,7 +38,7 @@ var supportedLanguages = map[LanguageType]bool{
 	CSharp:     true,
 	Rust:       true,
 	Kotlin:     true,
-	Lua:        true
+	Lua:        true,
 }
 
 // LanguageDetector 语言检测器接口
