@@ -22,6 +22,7 @@ const (
 	CSharp      LanguageType = "csharp"
 	Rust        LanguageType = "rust"
 	Kotlin      LanguageType = "kotlin"
+	Lua         LanguageType = "lua"
 	Unsupported LanguageType = "unsupported"
 )
 
@@ -37,6 +38,7 @@ var supportedLanguages = map[LanguageType]bool{
 	CSharp:     true,
 	Rust:       true,
 	Kotlin:     true,
+	Lua:        true
 }
 
 // LanguageDetector 语言检测器接口
@@ -80,6 +82,8 @@ func (d *DefaultDetector) DetectLanguage(filePath string) LanguageType {
 		return Rust
 	case ".kt", ".kts": // Kotlin文件支持
 		return Kotlin
+	case ".lua":
+		return Lua
 	default:
 		return Unsupported
 	}

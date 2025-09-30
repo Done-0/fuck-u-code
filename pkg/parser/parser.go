@@ -102,6 +102,8 @@ func CreateParser(language common.LanguageType) Parser {
 		return NewRustParser()
 	case common.Kotlin:
 		return NewKotlinParser()
+	case common.Lua:
+		return NewLuaParser()
 	default:
 		return NewGenericParser()
 	}
