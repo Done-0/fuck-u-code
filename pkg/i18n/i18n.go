@@ -359,6 +359,13 @@ var zhCNMessages = map[string]string{
 	"issue.imports.too_many": "导入包数量过多 (%d)，考虑拆分文件或重构",
 	"issue.imports.many":     "导入包数量较多 (%d)，建议检查是否需要全部导入",
 
+	// 命名规范问题
+	"issue.package_name.invalid": "包名 '%s' 不符合规范，应使用小写字母且不包含下划线",
+	"issue.func_name.invalid":    "函数名 '%s' 不符合规范",
+	"issue.type_name.invalid":    "类型名 '%s' 不符合规范",
+	"issue.var_name.invalid":     "变量名 '%s' 不符合规范",
+	"issue.const_name.invalid":   "常量名 '%s' 不符合规范",
+
 	// 详细报告
 	"verbose.basic_statistics":  "📊 基本统计:",
 	"verbose.total_files":       "总文件数:",
@@ -652,6 +659,13 @@ var enUSMessages = map[string]string{
 	"issue.imports.too_many": "Too many imports (%d), consider splitting files or refactoring",
 	"issue.imports.many":     "Many imports (%d), consider reviewing whether all are needed",
 
+	// Naming issues
+	"issue.package_name.invalid": "Package name '%s' does not follow conventions; use lowercase without underscores",
+	"issue.func_name.invalid":    "Function name '%s' does not follow conventions",
+	"issue.type_name.invalid":    "Type name '%s' does not follow conventions",
+	"issue.var_name.invalid":     "Variable name '%s' does not follow conventions",
+	"issue.const_name.invalid":   "Constant name '%s' does not follow conventions",
+
 	// 详细报告
 	"verbose.basic_statistics":  "📊 Basic stats (brace yourself):",
 	"verbose.total_files":       "Total files:",
@@ -881,19 +895,26 @@ var ruRuMessages = map[string]string{
 	"issue.state_var.modified":          "В функции '%s' изменена переменная состояния '%s', которая не должна меняться",
 	"location.at_file_line":             " (в %s:%d)",
 	// Сложность импортов
-	"issue.imports.too_many":    "Слишком много импортов (%d), рассмотрите разделение файлов или рефакторинг",
-	"issue.imports.many":        "Много импортов (%d), проверьте, все ли они действительно нужны",
-	"verbose.basic_statistics":  "📊 Основная статистика (приготовьте сами):",
-	"verbose.total_files":       "Всего файлов:",
-	"verbose.total_lines":       "Общие строки:",
-	"verbose.total_issues":      "Общие проблемы:",
-	"verbose.metric_details":    "🔍 Метрические детали (сочные кусочки):",
-	"verbose.weight":            "Масса:",
-	"verbose.description":       "Описание:",
-	"verbose.score":             "Счет:",
-	"verbose.all_files":         "Все файлы кода проанализированы (без милосердия):",
-	"verbose.no_files_found":    "🎉 Файлы не найдены для анализа! ",
-	"verbose.file_good_quality": "Качество кода прилично, ничего слишком трагична - поддерживать его!",
-	"report.analyzing_files":    "Файлы проанализированы",
-	"report.files":              "файлы",
+	"issue.imports.too_many": "Слишком много импортов (%d), рассмотрите разделение файлов или рефакторинг",
+	"issue.imports.many":     "Много импортов (%d), проверьте, все ли они действительно нужны",
+
+	// Проблемы именования
+	"issue.package_name.invalid": "Имя пакета '%s' не соответствует требованиям; используйте строчные буквы без подчёркиваний",
+	"issue.func_name.invalid":    "Имя функции '%s' не соответствует требованиям",
+	"issue.type_name.invalid":    "Имя типа '%s' не соответствует требованиям",
+	"issue.var_name.invalid":     "Имя переменной '%s' не соответствует требованиям",
+	"issue.const_name.invalid":   "Имя константы '%s' не соответствует требованиям",
+	"verbose.basic_statistics":   "📊 Основная статистика (приготовьте сами):",
+	"verbose.total_files":        "Всего файлов:",
+	"verbose.total_lines":        "Общие строки:",
+	"verbose.total_issues":       "Общие проблемы:",
+	"verbose.metric_details":     "🔍 Метрические детали (сочные кусочки):",
+	"verbose.weight":             "Масса:",
+	"verbose.description":        "Описание:",
+	"verbose.score":              "Счет:",
+	"verbose.all_files":          "Все файлы кода проанализированы (без милосердия):",
+	"verbose.no_files_found":     "🎉 Файлы не найдены для анализа! ",
+	"verbose.file_good_quality":  "Качество кода прилично, ничего слишком трагична - поддерживать его!",
+	"report.analyzing_files":     "Файлы проанализированы",
+	"report.files":               "файлы",
 }
