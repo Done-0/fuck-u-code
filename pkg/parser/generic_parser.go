@@ -51,6 +51,7 @@ func (p *GenericParser) SupportedLanguages() []common.LanguageType {
 		common.CPlusPlus,
 		common.C,
 		common.CSharp,
+		common.Lua,
 		common.Unsupported,
 	}
 }
@@ -67,6 +68,9 @@ func (p *GenericParser) countCommentLines(content string, language common.Langua
 	case common.Python:
 		// Python风格注释处理
 		commentCount = p.countPythonComments(lines)
+	case common.Lua:
+		// Lua风格注释处理
+		commentCount = p.countLuaComments(lines)
 	default:
 		// 通用注释处理
 		commentCount = p.countGenericComments(lines)
@@ -178,6 +182,52 @@ func (p *GenericParser) countGenericComments(lines []string) int {
 	return commentCount
 }
 
+// countLuaComments 计算Lua风格注释行数
+func (p *GenericParser) countLuaComments(lines []string) int {
+	commentCount := 0
+	inMultiLineComment := false
+
+	for _, line := range lines {
+		trimmedLine := strings.TrimSpace(line)
+
+		if inMultiLineComment {
+			commentCount++
+			// 检查多行注释是否结束
+			if strings.Contains(trimmedLine, "]]") {
+				inMultiLineComment = false
+			}
+			continue
+		}
+
+		// 检查单行注释
+		if strings.HasPrefix(trimmedLine, "--") {
+			commentCount++
+			// 检查是否是多行注释开始
+			if strings.Contains(trimmedLine, "--[[") {
+				inMultiLineComment = true
+				// 检查单行多行注释（在同一行结束）
+				if strings.Contains(trimmedLine, "]]") {
+					inMultiLineComment = false
+				}
+			}
+			continue
+		}
+
+		// 检查行中的多行注释开始
+		if strings.Contains(trimmedLine, "--[[") {
+			commentCount++
+			inMultiLineComment = true
+			// 检查单行多行注释
+			if strings.Contains(trimmedLine, "]]") {
+				inMultiLineComment = false
+			}
+			continue
+		}
+	}
+
+	return commentCount
+}
+
 // detectFunctions 根据语言类型检测函数
 func (p *GenericParser) detectFunctions(content string, lines []string, language common.LanguageType) []Function {
 	switch language {
@@ -191,6 +241,8 @@ func (p *GenericParser) detectFunctions(content string, lines []string, language
 		return p.detectCFunctions(content, lines)
 	case common.CSharp:
 		return p.detectCSharpFunctions(content, lines)
+	case common.Lua:
+		return p.detectLuaFunctions(content, lines)
 	default:
 		return p.detectGenericFunctions(content, lines)
 	}
@@ -203,6 +255,7 @@ var (
 	javaPattern    = regexp.MustCompile(`(?m)(public|private|protected|static|\s)+[\w\<\>\[\]]+\s+([\w]+)\s*\(([^\)]*)\)\s*(\{|throws)`)
 	cPattern       = regexp.MustCompile(`(?m)([\w\*]+\s+)+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(([^;]*)\)\s*\{`)
 	csharpPattern  = regexp.MustCompile(`(?m)^\s*(?:(?:public|private|protected|internal|static|virtual|override|abstract|sealed|async)\s+)*([a-zA-Z_][a-zA-Z0-9_<>\[\]]*(?:\?)?)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(([^)]*)\)\s*(?:\{|=>)`)
+	luaPattern     = regexp.MustCompile(`(?m)^\s*(local\s+)?function\s+([a-zA-Z_][a-zA-Z0-9_.:]*)\s*\(([^)]*)\)`)
 	genericPattern = regexp.MustCompile(`(?m)(function|def|void|int|bool|string|double|float)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(`)
 )
 
@@ -262,6 +315,11 @@ func (p *GenericParser) detectCFunctions(content string, lines []string) []Funct
 // detectGenericFunctions 通用函数检测（用于未知语言）
 func (p *GenericParser) detectGenericFunctions(content string, lines []string) []Function {
 	return p.detectFunctionsWithPattern(content, lines, genericPattern, common.Unsupported)
+}
+
+// detectLuaFunctions 检测Lua函数
+func (p *GenericParser) detectLuaFunctions(content string, lines []string) []Function {
+	return p.detectFunctionsWithPattern(content, lines, luaPattern, common.Lua)
 }
 
 // detectCSharpFunctions 检测C#方法
@@ -664,6 +722,8 @@ func (p *GenericParser) estimateComplexity(content string, startPos, lineCount i
 		keywords = []string{"if", "else", "for", "while", "do", "case", "catch", "finally", "?", "&&", "||", "switch", "foreach"}
 	case common.C, common.CPlusPlus:
 		keywords = []string{"if", "else", "for", "while", "do", "case", "switch", "catch", "?", "&&", "||", "goto"}
+	case common.Lua:
+		keywords = []string{"if", "elseif", "else", "for", "while", "repeat", "until", "and", "or", "not"}
 	default:
 		keywords = []string{"if", "else", "for", "while", "switch", "case", "try", "catch", "&&", "||"}
 	}
