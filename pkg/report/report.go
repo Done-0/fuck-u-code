@@ -60,7 +60,7 @@ type Report struct {
 func NewReport(result *analyzer.AnalysisResult) *Report {
 	return &Report{
 		result:     result,
-		translator: i18n.NewTranslator(i18n.ZhCN), // 默认使用中文
+		translator: i18n.NewTranslator(i18n.EnUS), // 默认使用中文
 	}
 }
 

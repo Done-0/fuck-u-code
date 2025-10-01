@@ -19,7 +19,7 @@ type CommentRatioMetric struct {
 
 // NewCommentRatioMetric 创建注释覆盖率指标
 func NewCommentRatioMetric() *CommentRatioMetric {
-	translator := i18n.NewTranslator(i18n.ZhCN)
+	translator := i18n.NewTranslator(i18n.EnUS)
 	return &CommentRatioMetric{
 		BaseMetric: NewBaseMetric(
 			i18n.FormatKey("metric", "comment_ratio"),

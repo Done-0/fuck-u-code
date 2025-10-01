@@ -46,9 +46,9 @@ func (m *StructureAnalysisMetric) analyzeNestingDepth(file *ast.File, maxDepth *
 			}
 
 			if depth > 5 {
-				issues = append(issues, fmt.Sprintf("函数 %s 嵌套深度过高 (%d 层)，建议重构", node.Name.Name, depth))
+				issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.high_complexity"), node.Name.Name, depth))
 			} else if depth > 3 {
-				issues = append(issues, fmt.Sprintf("函数 %s 嵌套深度较高 (%d 层)，考虑简化", node.Name.Name, depth))
+				issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.medium_complexity"), node.Name.Name, depth))
 			}
 		}
 		return true
@@ -133,7 +133,7 @@ func (m *StructureAnalysisMetric) analyzeCircularDependencies(file *ast.File) []
 		if imp.Path != nil {
 			path := strings.Trim(imp.Path.Value, "\"")
 			if strings.Contains(path, pkgName) {
-				issues = append(issues, fmt.Sprintf("可能存在循环引用: %s 引用了包含自身名称的包 %s", pkgName, path))
+				issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.possible_circular_import"), pkgName, path))
 			}
 		}
 	}
@@ -147,9 +147,9 @@ func (m *StructureAnalysisMetric) analyzeImportComplexity(file *ast.File) []stri
 	importCount := len(file.Imports)
 
 	if importCount > 20 {
-		issues = append(issues, fmt.Sprintf("导入包数量过多 (%d)，考虑拆分文件或重构", importCount))
+		issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.imports.too_many"), importCount))
 	} else if importCount > 15 {
-		issues = append(issues, fmt.Sprintf("导入包数量较多 (%d)，建议检查是否需要全部导入", importCount))
+		issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.imports.many"), importCount))
 	}
 
 	return issues

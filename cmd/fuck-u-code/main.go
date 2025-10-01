@@ -69,8 +69,8 @@ func main() {
 	// 检查是否有语言参数，提前设置语言
 	detectLanguage()
 
-	// 设置默认翻译器
-	translator = i18n.NewTranslator(i18n.ZhCN)
+	// 设置默认翻译器（默认英语）
+	translator = i18n.NewTranslator(i18n.EnUS)
 
 	// 如果检测到语言参数，提前设置语言
 	if language != "" {
@@ -124,8 +124,12 @@ func createRootCommand() *cobra.Command {
 			switch {
 			case language == "en-US" || language == "en":
 				lang = i18n.EnUS
-			default:
+			case language == "ru-RU" || language == "ru":
+				lang = i18n.RuRU
+			case language == "zh-CN" || language == "zh":
 				lang = i18n.ZhCN
+			default:
+				lang = i18n.EnUS
 			}
 
 			// 运行分析
@@ -196,8 +200,12 @@ func createAnalyzeCommand() *cobra.Command {
 			switch {
 			case langFlag == "en-US" || langFlag == "en":
 				lang = i18n.EnUS
-			default:
+			case langFlag == "ru-RU" || langFlag == "ru":
+				lang = i18n.RuRU
+			case langFlag == "zh-CN" || langFlag == "zh":
 				lang = i18n.ZhCN
+			default:
+				lang = i18n.EnUS
 			}
 
 			// 获取skipindex选项
@@ -209,7 +217,7 @@ func createAnalyzeCommand() *cobra.Command {
 	}
 
 	// 添加选项
-	analyzeCmd.Flags().StringP("lang", "l", "zh-CN", translator.Translate("cmd.lang"))
+	analyzeCmd.Flags().StringP("lang", "l", "en-US", translator.Translate("cmd.lang"))
 	analyzeCmd.Flags().BoolP("verbose", "v", false, translator.Translate("cmd.verbose"))
 	analyzeCmd.Flags().IntP("top", "t", 5, translator.Translate("cmd.top"))
 	analyzeCmd.Flags().IntP("issues", "i", 5, translator.Translate("cmd.issues"))
@@ -342,7 +350,7 @@ func detectLanguage() {
 
 // addFlags 添加命令行参数
 func addFlags(cmd *cobra.Command) {
-	cmd.PersistentFlags().StringVarP(&language, "lang", "l", "zh-CN", translator.Translate("cmd.lang"))
+	cmd.PersistentFlags().StringVarP(&language, "lang", "l", "en-US", translator.Translate("cmd.lang"))
 	cmd.Flags().BoolVarP(&verbose, "verbose", "v", false, translator.Translate("cmd.verbose"))
 	cmd.Flags().IntVarP(&topFiles, "top", "t", 5, translator.Translate("cmd.top"))
 	cmd.Flags().IntVarP(&maxIssues, "issues", "i", 5, translator.Translate("cmd.issues"))
@@ -357,8 +365,12 @@ func setLanguage(lang string) {
 	switch lang {
 	case "en", "en-US", "english":
 		translator = i18n.NewTranslator(i18n.EnUS)
-	default:
+	case "ru", "ru-RU", "russian":
+		translator = i18n.NewTranslator(i18n.RuRU)
+	case "zh", "zh-CN", "chinese":
 		translator = i18n.NewTranslator(i18n.ZhCN)
+	default:
+		translator = i18n.NewTranslator(i18n.EnUS)
 	}
 }
 

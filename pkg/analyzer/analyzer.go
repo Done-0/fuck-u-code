@@ -67,7 +67,7 @@ type DefaultAnalyzer struct {
 
 // NewAnalyzer 创建新的代码分析器
 func NewAnalyzer() Analyzer {
-	translator := i18n.NewTranslator(i18n.ZhCN)
+	translator := i18n.NewTranslator(i18n.EnUS)
 	return &DefaultAnalyzer{
 		codeAnalyzer: NewCodeAnalyzer(translator),
 		translator:   translator,
