@@ -37,10 +37,15 @@ docker build -t fuck-u-code .
 ## Использование
 
 ```bash
-# Базовый анализ
+# Базовый анализ - локальный проект
 fuck-u-code analyze /path/to/project
 # Или
 fuck-u-code /path/to/project
+
+# Анализ Git репозитория (автоматическое клонирование)
+fuck-u-code analyze https://github.com/user/repo.git
+# Или
+fuck-u-code https://github.com/user/repo
 
 # Запуск с помощью Docker
 docker run --rm -v "/path/to/project:/build" fuck-u-code analyze
@@ -48,6 +53,9 @@ docker run --rm -v "/path/to/project:/build" fuck-u-code analyze
 # По-умолчанию: анализ текущей директории
 fuck-u-code analyze
 ```
+
+> [!Tip]
+> **Поддержка прямого анализа Git репозиториев**: Инструмент автоматически клонирует репозитории во временный каталог `tmp_proj` и очищает его после анализа. Поддерживает GitHub, GitLab, Gitee, Bitbucket и другие платформы.
 
 ### Общие параметры
 

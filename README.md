@@ -36,10 +36,15 @@ docker build -t fuck-u-code .
 ## 使用方法
 
 ```bash
-# 基本分析
+# 基本分析 - 本地项目
 fuck-u-code analyze /path/to/project
 # 或
 fuck-u-code /path/to/project
+
+# 分析 Git 仓库（自动克隆）
+fuck-u-code analyze https://github.com/user/repo.git
+# 或
+fuck-u-code https://github.com/user/repo
 
 # Docker 运行
 docker run --rm -v "/path/to/project:/build" fuck-u-code analyze
@@ -47,6 +52,9 @@ docker run --rm -v "/path/to/project:/build" fuck-u-code analyze
 # 默认分析当前目录
 fuck-u-code analyze
 ```
+
+> [!Tip]
+> **支持直接分析 Git 仓库**：工具会自动克隆仓库到临时目录 `tmp_proj` 并在分析后自动清理。支持 GitHub、GitLab、Gitee、Bitbucket 等平台。
 
 ### 常用选项
 
