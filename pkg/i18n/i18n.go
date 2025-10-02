@@ -163,6 +163,11 @@ var zhCNMessages = map[string]string{
 	"cmd.skipindex":                  "跳过所有 index.js/index.ts 文件",
 	"cmd.start_analyzing":            "开始嗅探：%s",
 	"cmd.exclude_patterns":           "排除以下文件/目录模式:",
+	"cmd.git_not_installed":          "❌ 错误：未检测到 git，请先安装 git",
+	"cmd.cloning_repo":               "🔄 正在克隆仓库：%s",
+	"cmd.clone_failed":               "❌ 克隆仓库失败：%v\n💡 提示：请检查仓库链接是否有效",
+	"cmd.clone_success":              "✅ 仓库克隆成功",
+	"cmd.cleaning_temp":              "🧹 清理临时文件...",
 
 	// Cobra框架内部文本
 	"cobra.available_commands": "可用命令",
@@ -463,6 +468,11 @@ var enUSMessages = map[string]string{
 	"cmd.skipindex":                  "Skip all index.js/index.ts files",
 	"cmd.start_analyzing":            "Start analyzing: %s",
 	"cmd.exclude_patterns":           "Excluding the following file/directory patterns:",
+	"cmd.git_not_installed":          "❌ Error: git not detected, please install git first",
+	"cmd.cloning_repo":               "🔄 Cloning repository: %s",
+	"cmd.clone_failed":               "❌ Failed to clone repository: %v\n💡 Tip: Please check if the repository URL is valid",
+	"cmd.clone_success":              "✅ Repository cloned successfully",
+	"cmd.cleaning_temp":              "🧹 Cleaning temporary files...",
 
 	// Cobra框架内部文本
 	"cobra.available_commands": "Available Commands",
@@ -751,6 +761,11 @@ var ruRuMessages = map[string]string{
 	"cmd.skipindex":                            "Пропустить все файлы index.js/index.ts",
 	"cmd.start_analyzing":                      "Начать анализ: %s",
 	"cmd.exclude_patterns":                     "За исключением следующих шаблонов файла/каталогов:",
+	"cmd.git_not_installed":                    "❌ Ошибка: git не обнаружен, пожалуйста, сначала установите git",
+	"cmd.cloning_repo":                         "🔄 Клонирование репозитория: %s",
+	"cmd.clone_failed":                         "❌ Не удалось клонировать репозиторий: %v\n💡 Совет: Проверьте, действителен ли URL репозитория",
+	"cmd.clone_success":                        "✅ Репозиторий успешно клонирован",
+	"cmd.cleaning_temp":                        "🧹 Очистка временных файлов...",
 	"cobra.available_commands":                 "Доступные команды",
 	"cobra.flags":                              "Флаги",
 	"cobra.global_flags":                       "Глобальные флаги",
