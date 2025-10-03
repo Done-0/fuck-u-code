@@ -10,6 +10,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/Done-0/fuck-u-code/pkg/analyzer"
+	"github.com/Done-0/fuck-u-code/pkg/common"
 	"github.com/Done-0/fuck-u-code/pkg/i18n"
 	"github.com/Done-0/fuck-u-code/pkg/report"
 )
@@ -69,8 +70,8 @@ func main() {
 	// 检查是否有语言参数，提前设置语言
 	detectLanguage()
 
-	// 设置默认翻译器
-	translator = i18n.NewTranslator(i18n.ZhCN)
+	// 设置默认翻译器（默认英语）
+	translator = i18n.NewTranslator(i18n.EnUS)
 
 	// 如果检测到语言参数，提前设置语言
 	if language != "" {
@@ -124,8 +125,12 @@ func createRootCommand() *cobra.Command {
 			switch {
 			case language == "en-US" || language == "en":
 				lang = i18n.EnUS
-			default:
+			case language == "ru-RU" || language == "ru":
+				lang = i18n.RuRU
+			case language == "zh-CN" || language == "zh":
 				lang = i18n.ZhCN
+			default:
+				lang = i18n.EnUS
 			}
 
 			// 运行分析
@@ -196,8 +201,12 @@ func createAnalyzeCommand() *cobra.Command {
 			switch {
 			case langFlag == "en-US" || langFlag == "en":
 				lang = i18n.EnUS
-			default:
+			case langFlag == "ru-RU" || langFlag == "ru":
+				lang = i18n.RuRU
+			case langFlag == "zh-CN" || langFlag == "zh":
 				lang = i18n.ZhCN
+			default:
+				lang = i18n.EnUS
 			}
 
 			// 获取skipindex选项
@@ -209,7 +218,7 @@ func createAnalyzeCommand() *cobra.Command {
 	}
 
 	// 添加选项
-	analyzeCmd.Flags().StringP("lang", "l", "zh-CN", translator.Translate("cmd.lang"))
+	analyzeCmd.Flags().StringP("lang", "l", "en-US", translator.Translate("cmd.lang"))
 	analyzeCmd.Flags().BoolP("verbose", "v", false, translator.Translate("cmd.verbose"))
 	analyzeCmd.Flags().IntP("top", "t", 5, translator.Translate("cmd.top"))
 	analyzeCmd.Flags().IntP("issues", "i", 5, translator.Translate("cmd.issues"))
@@ -342,7 +351,7 @@ func detectLanguage() {
 
 // addFlags 添加命令行参数
 func addFlags(cmd *cobra.Command) {
-	cmd.PersistentFlags().StringVarP(&language, "lang", "l", "zh-CN", translator.Translate("cmd.lang"))
+	cmd.PersistentFlags().StringVarP(&language, "lang", "l", "en-US", translator.Translate("cmd.lang"))
 	cmd.Flags().BoolVarP(&verbose, "verbose", "v", false, translator.Translate("cmd.verbose"))
 	cmd.Flags().IntVarP(&topFiles, "top", "t", 5, translator.Translate("cmd.top"))
 	cmd.Flags().IntVarP(&maxIssues, "issues", "i", 5, translator.Translate("cmd.issues"))
@@ -357,8 +366,12 @@ func setLanguage(lang string) {
 	switch lang {
 	case "en", "en-US", "english":
 		translator = i18n.NewTranslator(i18n.EnUS)
-	default:
+	case "ru", "ru-RU", "russian":
+		translator = i18n.NewTranslator(i18n.RuRU)
+	case "zh", "zh-CN", "chinese":
 		translator = i18n.NewTranslator(i18n.ZhCN)
+	default:
+		translator = i18n.NewTranslator(i18n.EnUS)
 	}
 }
 
@@ -470,15 +483,78 @@ func updateCompletionCommand(cmd *cobra.Command) {
 	}
 }
 
+// handleGitRepository 处理 git 仓库链接
+// 如果 path 是 git URL，克隆到临时目录并返回临时目录路径；否则返回原始路径
+// 参数:
+//   - path: 原始路径（可能是本地路径或 git URL）
+//   - translator: 翻译器
+//   - markdownOutput: 是否为 markdown 输出模式
+//
+// 返回值:
+//   - tmpDir: 要分析的实际路径（git URL 时为临时目录，本地路径时为原始路径）
+//   - needCleanup: 是否需要清理临时目录
+func handleGitRepository(path string, translator i18n.Translator, markdownOutput bool) (tmpDir string, needCleanup bool) {
+	// 检查路径是否为 git 仓库链接
+	if !common.IsGitURL(path) {
+		// 不是 git URL，直接返回原始路径
+		return path, false
+	}
+
+	// 检查是否安装了 git
+	if !common.IsGitInstalled() {
+		fmt.Fprintf(os.Stderr, "%s\n", translator.Translate("cmd.git_not_installed"))
+		os.Exit(1)
+	}
+
+	// 只在非markdown模式下输出克隆信息
+	if !markdownOutput {
+		fmt.Printf(translator.Translate("cmd.cloning_repo")+"\n", path)
+	}
+
+	// 获取当前工作目录
+	cwd, err := os.Getwd()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, translator.Translate("cmd.analysis_failed"), err)
+		os.Exit(1)
+	}
+
+	// 获取临时目录路径
+	tmpDir, err = common.GetTempDir(cwd)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, translator.Translate("cmd.analysis_failed"), err)
+		os.Exit(1)
+	}
+
+	// 克隆仓库
+	if err := common.CloneGitRepo(path, tmpDir); err != nil {
+		fmt.Fprintf(os.Stderr, translator.Translate("cmd.clone_failed")+"\n", err)
+		os.Exit(1)
+	}
+
+	// 只在非markdown模式下输出成功信息
+	if !markdownOutput {
+		fmt.Printf("%s\n\n", translator.Translate("cmd.clone_success"))
+	}
+
+	return tmpDir, true
+}
+
 // runAnalysis 运行代码分析
 func runAnalysis(path string, lang i18n.Language, verbose bool, topFiles int, maxIssues int, summaryOnly bool, markdownOutput bool, excludePatterns []string, skipIndex bool) {
 	// 设置翻译器
 	translator := i18n.NewTranslator(lang)
 
+	// 记录原始路径用于显示
+	originalPath := path
+
+	// 处理 git 仓库（如果是 git URL，克隆到临时目录）
+	tmpDir, needCleanup := handleGitRepository(path, translator, markdownOutput)
+	path = tmpDir
+
 	// 只在非markdown模式下输出分析过程信息
 	if !markdownOutput {
 		// 输出开始分析信息
-		fmt.Printf("🔍 %s\n", translator.Translate("cmd.start_analyzing", path))
+		fmt.Printf("🔍 %s\n", translator.Translate("cmd.start_analyzing", originalPath))
 
 		// 如果有排除模式，输出排除模式
 		if len(excludePatterns) > 0 {
@@ -507,6 +583,10 @@ func runAnalysis(path string, lang i18n.Language, verbose bool, topFiles int, ma
 	result, err := analyzer.AnalyzeWithExcludes(path, nil, excludePatterns)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, translator.Translate("cmd.analysis_failed"), err)
+		// 清理临时目录
+		if needCleanup && tmpDir != "" {
+			common.RemoveTempDir(tmpDir)
+		}
 		os.Exit(1)
 	}
 
@@ -525,4 +605,14 @@ func runAnalysis(path string, lang i18n.Language, verbose bool, topFiles int, ma
 
 	// 生成报告
 	reportGen.GenerateConsoleReport(options)
+
+	// 清理临时目录
+	if needCleanup && tmpDir != "" {
+		if !markdownOutput {
+			fmt.Printf("\n%s\n", translator.Translate("cmd.cleaning_temp"))
+		}
+		if err := common.RemoveTempDir(tmpDir); err != nil {
+			fmt.Fprintf(os.Stderr, "⚠️  %v\n", err)
+		}
+	}
 }

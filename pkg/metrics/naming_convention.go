@@ -70,7 +70,7 @@ func (m *NamingConventionMetric) analyzeNaming(file *ast.File) (float64, []strin
 
 	// 分析包名
 	if !m.isValidPackageName(file.Name.Name) {
-		issues = append(issues, fmt.Sprintf("包名 '%s' 不符合规范，应使用小写字母且不包含下划线", file.Name.Name))
+		issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.package_name.invalid"), file.Name.Name))
 		badNames++
 	}
 	totalNames++
@@ -81,14 +81,14 @@ func (m *NamingConventionMetric) analyzeNaming(file *ast.File) (float64, []strin
 		case *ast.FuncDecl:
 			totalNames++
 			if !m.isValidFuncName(node.Name.Name) {
-				issues = append(issues, fmt.Sprintf("函数名 '%s' 不符合规范", node.Name.Name))
+				issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.func_name.invalid"), node.Name.Name))
 				badNames++
 			}
 
 		case *ast.TypeSpec:
 			totalNames++
 			if !m.isValidTypeName(node.Name.Name) {
-				issues = append(issues, fmt.Sprintf("类型名 '%s' 不符合规范", node.Name.Name))
+				issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.type_name.invalid"), node.Name.Name))
 				badNames++
 			}
 
@@ -102,13 +102,13 @@ func (m *NamingConventionMetric) analyzeNaming(file *ast.File) (float64, []strin
 				// 检查是否是常量
 				if m.isConstDecl(n) {
 					if !m.isValidConstName(name.Name) {
-						issues = append(issues, fmt.Sprintf("常量名 '%s' 不符合规范", name.Name))
+						issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.const_name.invalid"), name.Name))
 						badNames++
 					}
 				} else {
 					// 变量名检查
 					if !m.isValidVarName(name.Name) {
-						issues = append(issues, fmt.Sprintf("变量名 '%s' 不符合规范", name.Name))
+						issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.var_name.invalid"), name.Name))
 						badNames++
 					}
 				}
@@ -122,7 +122,7 @@ func (m *NamingConventionMetric) analyzeNaming(file *ast.File) (float64, []strin
 						if ident.Name != "_" {
 							totalNames++
 							if !m.isValidVarName(ident.Name) {
-								issues = append(issues, fmt.Sprintf("变量名 '%s' 不符合规范", ident.Name))
+								issues = append(issues, fmt.Sprintf(m.translator.Translate("issue.var_name.invalid"), ident.Name))
 								badNames++
 							}
 						}

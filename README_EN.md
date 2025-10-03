@@ -37,10 +37,15 @@ docker build -t fuck-u-code .
 ## Usage
 
 ```bash
-# Basic analysis
+# Basic analysis - local project
 fuck-u-code analyze /path/to/project
 # Or
 fuck-u-code /path/to/project
+
+# Analyze Git repository (auto clone)
+fuck-u-code analyze https://github.com/user/repo.git
+# Or
+fuck-u-code https://github.com/user/repo
 
 # Run with Docker
 docker run --rm -v "/path/to/project:/build" fuck-u-code analyze
@@ -48,6 +53,9 @@ docker run --rm -v "/path/to/project:/build" fuck-u-code analyze
 # Default: analyze current directory
 fuck-u-code analyze
 ```
+
+> [!Tip]
+> **Direct Git repository analysis supported**: The tool automatically clones repositories to a temporary directory `tmp_proj` and cleans up after analysis. Supports GitHub, GitLab, Gitee, Bitbucket, and more.
 
 ### Common Options
 
