@@ -1,0 +1,52 @@
+# GitHub Action Usage Example
+# This shows how to use the composite action directly in workflow steps
+
+name: Code Quality with Action
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run code quality analysis
+      id: quality
+      uses: ZhulongNT/fuck-u-code@main
+      with:
+        path: './src'
+        language: 'en-US'
+        top-files: 5
+        max-issues: 3
+        artifact-name: 'quality-report'
+        
+    - name: Check quality score
+      run: |
+        echo "Quality Score: ${{ steps.quality.outputs.quality-score }}"
+        echo "Report File: ${{ steps.quality.outputs.report-file }}"
+        
+        # Fail if quality score is too high (above 80)
+        SCORE="${{ steps.quality.outputs.quality-score }}"
+        if (( $(echo "$SCORE > 80" | bc -l) )); then
+          echo "❌ Quality gate failed! Score too high: $SCORE"
+          exit 1
+        else
+          echo "✅ Quality gate passed! Score: $SCORE"
+        fi
+        
+    - name: Upload to external service (example)
+      if: always()
+      run: |
+        # Example: Send report to external analysis service
+        # curl -X POST "https://your-analysis-service.com/api/reports" \
+        #      -H "Content-Type: text/markdown" \
+        #      -H "Authorization: Bearer ${{ secrets.ANALYSIS_TOKEN }}" \
+        #      --data-binary @${{ steps.quality.outputs.report-file }}
+        echo "Would upload report to external service"
