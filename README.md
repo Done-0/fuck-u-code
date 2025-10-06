@@ -20,8 +20,10 @@
 > * 全程本地运行，不上传代码，安全无忧
   
 ## 安装
+Forget you.......forgotten through infinity and beyond eternity forgets you!!!!!!!!!!!
 
-```bash
+```Who created this mess?????????????!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+bash
 # 方法一：Go 安装
 go install github.com/Done-0/fuck-u-code/cmd/fuck-u-code@latest
 
