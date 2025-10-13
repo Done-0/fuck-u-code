@@ -92,6 +92,8 @@ func CreateParser(language common.LanguageType) Parser {
 		return NewJavaScriptParser()
 	case common.TypeScript:
 		return NewTypeScriptParser()
+	case common.Vue:
+		return NewVueParser()
 	case common.Python:
 		return NewPythonParser()
 	case common.Java:
