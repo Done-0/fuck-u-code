@@ -116,7 +116,7 @@ Markdown report includes: overall score / metrics table / problematic files / su
 
 > 💬 Share your thoughts  
 > Leave suggestions in this issue: [#115](https://github.com/Done-0/fuck-u-code/issues/115)  
-> Join the official Discord community for discussion & collaboration: <https://discord.gg/hDKWEZmA>
+> Join the official Discord community for discussion & collaboration: <https://discord.gg/9ThNkAFGnT>
 
 ## Contributing
 
