@@ -76,6 +76,8 @@ fuck-u-code analyze
 fuck-u-code analyze --verbose
 fuck-u-code analyze --top 3
 fuck-u-code analyze --lang en-US
+fuck-u-code analyze --lang zh-CN
+fuck-u-code analyze --lang ru-RU
 fuck-u-code analyze --summary
 fuck-u-code analyze --exclude "**/test/**"
 fuck-u-code analyze --markdown > report.md
@@ -110,15 +112,27 @@ Markdown report includes: overall score / metrics table / problematic files / su
 
   Add it to `.bash_profile` / `.zshrc` etc.
 
+## Feedback
+
+> 💬 Share your thoughts  
+> Leave suggestions in this issue: [#115](https://github.com/Done-0/fuck-u-code/issues/115)  
+> Join the official Discord community for discussion & collaboration: <https://discord.gg/hDKWEZmA>
+
+## Contributing
+
+PRs welcome — let’s improve **fuck-u-code** together �
+
 ## License
 
 MIT
 
-## Contributing
+## Contact
 
-PRs welcome — let’s improve **fuck-u-code** together 🚀
+- fenderisfine@outlook.com
+- fenderisfine@gmail.com
+- WeChat: l927171598
 
 ## More Projects
 
-- [Xuanxue Workshop](https://bazi.site) — AI-powered fortune-telling website  
+- [Xuanxue Workshop](https://bazi.site) — AI-powered fortune-telling website (Independent project, considering sale, contact welcome)
 - [Jank](https://github.com/Done-0/Jank) — Open-source blog system in Go

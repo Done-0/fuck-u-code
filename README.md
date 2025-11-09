@@ -75,6 +75,8 @@ fuck-u-code analyze
 fuck-u-code analyze --verbose
 fuck-u-code analyze --top 3
 fuck-u-code analyze --lang en-US
+fuck-u-code analyze --lang zh-CN
+fuck-u-code analyze --lang ru-RU
 fuck-u-code analyze --summary
 fuck-u-code analyze --exclude "**/test/**"
 fuck-u-code analyze --markdown > report.md
@@ -109,15 +111,27 @@ Markdown 报告包含：总体评分 / 指标表格 / 问题文件 / 改进建�
 
   并写入 `.bash_profile` / `.zshrc` 等
 
-## 许可证
+## 反馈
 
-MIT
+> 💬 欢迎参与开放讨论  
+> 在此 Issue 下留言提出你的想法与建议：[#115](https://github.com/Done-0/fuck-u-code/issues/115)  
+> 加入 fuck-u-code 官方 Discord 社区参与讨论与协作：<https://discord.gg/hDKWEZmA>
 
 ## 贡献
 
 欢迎提 PR，一起优化“fuck-u-code” 🚀
 
+## 许可证
+
+MIT
+
+## 联系方式
+
+- fenderisfine@outlook.com
+- fenderisfine@gmail.com
+- WeChat: l927171598
+
 ## 安利一下
 
-- [玄学工坊](https://bazi.site) — AI 赛博算命网站  
+ - [玄学工坊](https://bazi.site) — AI 赛博算命网站（独立项目，现考虑出售，欢迎联系）
 - [Jank](https://github.com/Done-0/Jank) — Go 语言开源博客
