@@ -1,0 +1,138 @@
+name: 'Code Quality Analysis with fuck-u-code'
+description: 'Analyze code quality and generate markdown reports using fuck-u-code'
+author: 'ZhulongNT'
+
+branding:
+  icon: 'search'
+  color: 'red'
+
+inputs:
+  path:
+    description: 'Path to analyze'
+    required: false
+    default: '.'
+  language:
+    description: 'Report language (zh-CN or en-US)'
+    required: false
+    default: 'en-US'
+  top-files:
+    description: 'Number of top problematic files to show'
+    required: false
+    default: '5'
+  max-issues:
+    description: 'Maximum issues to show per file'
+    required: false
+    default: '5'
+  verbose:
+    description: 'Enable verbose output'
+    required: false
+    default: 'false'
+  summary-only:
+    description: 'Show only summary'
+    required: false
+    default: 'false'
+  exclude-patterns:
+    description: 'Exclude patterns (space-separated)'
+    required: false
+    default: ''
+  skip-index:
+    description: 'Skip index.js/index.ts files'
+    required: false
+    default: 'false'
+  upload-artifact:
+    description: 'Upload report as artifact'
+    required: false
+    default: 'true'
+  artifact-name:
+    description: 'Name for the artifact'
+    required: false
+    default: 'code-quality-report'
+
+outputs:
+  report-file:
+    description: 'Path to the generated report file'
+    value: ${{ steps.analyze.outputs.report-file }}
+  quality-score:
+    description: 'Overall quality score'
+    value: ${{ steps.analyze.outputs.quality-score }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        
+    - name: Build fuck-u-code
+      shell: bash
+      run: |
+        echo "🔧 Building fuck-u-code..."
+        cd ${{ github.action_path }}
+        go build -o /usr/local/bin/fuck-u-code ./cmd/fuck-u-code
+        echo "✅ fuck-u-code built successfully"
+        
+    - name: Run analysis
+      id: analyze
+      shell: bash
+      run: |
+        echo "🔍 Starting code quality analysis..."
+        
+        # Build the command
+        CMD="fuck-u-code analyze --markdown"
+        CMD="$CMD --lang ${{ inputs.language }}"
+        CMD="$CMD --top ${{ inputs.top-files }}"
+        CMD="$CMD --issues ${{ inputs.max-issues }}"
+        
+        # Add optional flags
+        if [ "${{ inputs.verbose }}" = "true" ]; then
+          CMD="$CMD --verbose"
+        fi
+        
+        if [ "${{ inputs.summary-only }}" = "true" ]; then
+          CMD="$CMD --summary"
+        fi
+        
+        if [ "${{ inputs.skip-index }}" = "true" ]; then
+          CMD="$CMD --skipindex"
+        fi
+        
+        # Add exclude patterns
+        if [ -n "${{ inputs.exclude-patterns }}" ]; then
+          for pattern in ${{ inputs.exclude-patterns }}; do
+            CMD="$CMD --exclude \"$pattern\""
+          done
+        fi
+        
+        # Add path
+        CMD="$CMD ${{ inputs.path }}"
+        
+        # Create output file
+        OUTPUT_FILE="code-quality-report.md"
+        
+        # Run analysis
+        echo "Running: $CMD"
+        eval $CMD > "$OUTPUT_FILE"
+        
+        # Extract quality score
+        QUALITY_SCORE=$(grep -o "Quality Score.*: [0-9]*\.[0-9]*" "$OUTPUT_FILE" | grep -o "[0-9]*\.[0-9]*" | head -1)
+        
+        # Set outputs
+        echo "report-file=$OUTPUT_FILE" >> $GITHUB_OUTPUT
+        echo "quality-score=$QUALITY_SCORE" >> $GITHUB_OUTPUT
+        
+        # Add to job summary
+        echo "## 📊 Code Quality Analysis Results" >> $GITHUB_STEP_SUMMARY
+        cat "$OUTPUT_FILE" >> $GITHUB_STEP_SUMMARY
+        
+        echo "✅ Analysis completed"
+        echo "📄 Report file: $OUTPUT_FILE"
+        echo "🎯 Quality Score: $QUALITY_SCORE"
+        
+    - name: Upload artifact
+      if: inputs.upload-artifact == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+        path: code-quality-report.md
+        retention-days: 30

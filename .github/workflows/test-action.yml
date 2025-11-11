@@ -1,0 +1,39 @@
+name: Test Code Quality Action
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Test code quality action
+      id: quality-check
+      uses: ./
+      with:
+        path: '.'
+        language: 'en-US'
+        top-files: 3
+        max-issues: 3
+        artifact-name: 'test-quality-report'
+        
+    - name: Display results
+      run: |
+        echo "📊 Quality Score: ${{ steps.quality-check.outputs.quality-score }}"
+        echo "📄 Report File: ${{ steps.quality-check.outputs.report-file }}"
+        
+        if [ -f "${{ steps.quality-check.outputs.report-file }}" ]; then
+          echo "✅ Report file exists"
+          echo "📏 Report size: $(wc -l < ${{ steps.quality-check.outputs.report-file }}) lines"
+        else
+          echo "❌ Report file not found"
+          exit 1
+        fi
