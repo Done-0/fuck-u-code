@@ -22,6 +22,7 @@ const (
 	CSharp      LanguageType = "csharp"
 	Rust        LanguageType = "rust"
 	Lua         LanguageType = "lua"
+	CUDA        LanguageType = "cuda"
 	Unsupported LanguageType = "unsupported"
 )
 
@@ -37,6 +38,7 @@ var supportedLanguages = map[LanguageType]bool{
 	CSharp:     true,
 	Rust:       true,
 	Lua:        true,
+	CUDA:       true,
 }
 
 // LanguageDetector 语言检测器接口
@@ -80,6 +82,8 @@ func (d *DefaultDetector) DetectLanguage(filePath string) LanguageType {
 		return Rust
 	case ".lua":
 		return Lua
+	case ".cu", ".cuh":
+		return CUDA
 	default:
 		return Unsupported
 	}
