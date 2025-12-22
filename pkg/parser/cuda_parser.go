@@ -207,7 +207,4 @@ func (p *CudaParser) estimateComplexity(lines []string, startLine, lineCount int
 	return complexity
 }
 
-// isAlphaNum 检查字符是否是字母、数字或下划线
-func isAlphaNum(r rune) bool {
-	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') || r == '_'
-}
+
