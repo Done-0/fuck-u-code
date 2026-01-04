@@ -15,6 +15,7 @@ const (
 	Go          LanguageType = "go"
 	JavaScript  LanguageType = "javascript"
 	TypeScript  LanguageType = "typescript"
+	Vue         LanguageType = "vue"
 	Python      LanguageType = "python"
 	Java        LanguageType = "java"
 	CPlusPlus   LanguageType = "cpp"
@@ -31,6 +32,7 @@ var supportedLanguages = map[LanguageType]bool{
 	Go:         true,
 	JavaScript: true,
 	TypeScript: true,
+	Vue:        true,
 	Python:     true,
 	Java:       true,
 	CPlusPlus:  true,
@@ -68,6 +70,8 @@ func (d *DefaultDetector) DetectLanguage(filePath string) LanguageType {
 		return JavaScript
 	case ".ts", ".tsx":
 		return TypeScript
+	case ".vue":
+		return Vue
 	case ".py":
 		return Python
 	case ".java":
