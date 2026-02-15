@@ -296,6 +296,8 @@ function mergeConfig(base: Config, override: Partial<Config>): Config {
   return {
     ...base,
     ...override,
+    exclude: override.exclude ?? base.exclude,
+    include: override.include ?? base.include,
     output: { ...base.output, ...override.output },
     metrics: {
       ...base.metrics,
