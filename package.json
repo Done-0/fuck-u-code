@@ -5,8 +5,8 @@
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "fuck-u-code": "./bin/fuck-u-code.js",
-    "fuck-u-code-mcp": "./bin/fuck-u-code-mcp.js"
+    "fuck-u-code": "bin/fuck-u-code.js",
+    "fuck-u-code-mcp": "bin/fuck-u-code-mcp.js"
   },
   "scripts": {
     "build": "tsc",
@@ -35,7 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Done-0/fuck-u-code.git"
+    "url": "git+https://github.com/Done-0/fuck-u-code.git"
   },
   "engines": {
     "node": ">=18.0.0"
