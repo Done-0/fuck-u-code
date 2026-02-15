@@ -35,6 +35,10 @@ const FUNCTION_RULES: Record<Language, (keyof typeof PATTERNS)[]> = {
   rust: ['snake_case'],
   csharp: ['PascalCase'],
   lua: ['camelCase', 'snake_case'],
+  php: ['camelCase', 'snake_case'],
+  ruby: ['snake_case'],
+  swift: ['camelCase'],
+  shell: ['snake_case'],
   unknown: ['camelCase', 'snake_case', 'PascalCase'],
 };
 

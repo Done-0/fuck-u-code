@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { spawn } from 'node:child_process';
 import { resolve } from 'node:path';
+import { VERSION } from '../../src/version.js';
 
 const SERVER_PATH = resolve(__dirname, '../../dist/mcp/server.js');
 
@@ -62,7 +63,7 @@ describe('MCP Server', () => {
     expect(parsed.id).toBe(1);
     expect(parsed.result).toBeDefined();
     expect(parsed.result.serverInfo.name).toBe('fuck-u-code');
-    expect(parsed.result.serverInfo.version).toBe('2.0.0');
+    expect(parsed.result.serverInfo.version).toBe(VERSION);
     expect(parsed.result.capabilities.tools).toBeDefined();
   });
 

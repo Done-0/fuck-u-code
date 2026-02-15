@@ -1,58 +1,52 @@
 /**
  * File length metric
  *
- * Industry thresholds (based on Clean Code, SonarQube):
- * - 1-200 lines: Excellent, focused file
- * - 201-400 lines: Good, manageable
- * - 401-800 lines: Moderate, consider splitting
- * - 800+ lines: Poor, should be split
+ * Language-specific thresholds based on official linter defaults.
+ * See src/metrics/thresholds/language-thresholds.ts for sources.
  */
 
 import type { Metric, MetricResult, MetricCategory, Severity } from '../types.js';
-import type { ParseResult } from '../../parser/types.js';
+import type { ParseResult, Language } from '../../parser/types.js';
 import { t } from '../../i18n/index.js';
-
-const THRESHOLDS = {
-  EXCELLENT: 200,
-  GOOD: 400,
-  ACCEPTABLE: 800,
-  POOR: 1500,
-} as const;
+import { getThresholds } from '../thresholds/language-thresholds.js';
 
 export class FileLengthMetric implements Metric {
   readonly name = 'file_length';
   readonly category: MetricCategory = 'size';
   readonly weight: number;
+  private readonly language: Language;
 
-  constructor(weight: number) {
+  constructor(weight: number, language: Language) {
     this.weight = weight;
+    this.language = language;
   }
 
   calculate(parseResult: ParseResult): MetricResult {
     const { totalLines, codeLines } = parseResult;
+    const thresholds = getThresholds(this.language, 'fileLength');
 
     let normalizedScore: number;
-    if (codeLines <= THRESHOLDS.EXCELLENT) {
+    if (codeLines <= thresholds.excellent) {
       normalizedScore = 100;
-    } else if (codeLines <= THRESHOLDS.GOOD) {
+    } else if (codeLines <= thresholds.good) {
       normalizedScore =
-        100 - ((codeLines - THRESHOLDS.EXCELLENT) / (THRESHOLDS.GOOD - THRESHOLDS.EXCELLENT)) * 15;
-    } else if (codeLines <= THRESHOLDS.ACCEPTABLE) {
+        100 - ((codeLines - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 15;
+    } else if (codeLines <= thresholds.acceptable) {
       normalizedScore =
-        85 - ((codeLines - THRESHOLDS.GOOD) / (THRESHOLDS.ACCEPTABLE - THRESHOLDS.GOOD)) * 35;
-    } else if (codeLines <= THRESHOLDS.POOR) {
+        85 - ((codeLines - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
+    } else if (codeLines <= thresholds.poor) {
       normalizedScore =
-        50 - ((codeLines - THRESHOLDS.ACCEPTABLE) / (THRESHOLDS.POOR - THRESHOLDS.ACCEPTABLE)) * 35;
+        50 - ((codeLines - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 35;
     } else {
-      normalizedScore = Math.max(0, 15 * Math.exp(-(codeLines - THRESHOLDS.POOR) / 500));
+      normalizedScore = Math.max(0, 15 * Math.exp(-(codeLines - thresholds.poor) / 500));
     }
 
     let severity: Severity;
-    if (codeLines <= THRESHOLDS.EXCELLENT) {
+    if (codeLines <= thresholds.excellent) {
       severity = 'info';
-    } else if (codeLines <= THRESHOLDS.GOOD) {
+    } else if (codeLines <= thresholds.good) {
       severity = 'warning';
-    } else if (codeLines <= THRESHOLDS.ACCEPTABLE) {
+    } else if (codeLines <= thresholds.acceptable) {
       severity = 'error';
     } else {
       severity = 'critical';

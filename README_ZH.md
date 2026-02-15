@@ -7,9 +7,9 @@
 
 ## 特性
 
-* **多语言支持**: Go, JavaScript, TypeScript, Python, Java, C, C++, Rust, C#, Lua
+* **多语言支持**: Go, JavaScript, TypeScript, Python, Java, C, C++, Rust, C#, Lua, PHP, Ruby, Swift, Shell（14 种语言）
 * **总体评分**: 0~100 分，越高代码质量越好
-* **屎气指数**: 单文件评分，越高越烂
+* **糟糕指数**: 单文件评分，越高越烂
 * **七维度检测**: 复杂度 / 代码量 / 注释率 / 错误处理 / 命名 / 重复度 / 结构
 * **AST 解析**: 基于 tree-sitter 的精确语法分析
 * **AI 代码审查**: 集成 OpenAI 兼容 / Anthropic / DeepSeek / Gemini / Ollama

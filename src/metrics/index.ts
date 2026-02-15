@@ -15,9 +15,10 @@ import { ErrorHandlingMetric } from './error/error-handling.js';
 import { StructureAnalysisMetric } from './structure/structure-analysis.js';
 import type { Metric } from './types.js';
 import type { RuntimeConfig } from '../config/schema.js';
+import type { Language } from '../parser/types.js';
 
 /**
- * Create all metrics with configured weights
+ * Create all metrics with configured weights and language-specific thresholds
  *
  * Weight distribution based on industry standards (SonarQube, CodeClimate, NASA, Microsoft):
  * - Complexity: 32% (3 metrics, each gets 32%/3 = 10.67%)
@@ -29,7 +30,7 @@ import type { RuntimeConfig } from '../config/schema.js';
  * - Naming: 5% (1 metric)
  * Total: 100%
  */
-export function createMetrics(config: RuntimeConfig): Metric[] {
+export function createMetrics(config: RuntimeConfig, language: Language): Metric[] {
   const weights = config.metrics.weights;
 
   const complexityWeight = weights.complexity;
@@ -41,12 +42,12 @@ export function createMetrics(config: RuntimeConfig): Metric[] {
   const sizePerMetric = sizeWeight / sizeMetricsCount;
 
   return [
-    new CyclomaticComplexityMetric(complexityPerMetric),
-    new CognitiveComplexityMetric(complexityPerMetric),
-    new NestingDepthMetric(complexityPerMetric),
-    new FunctionLengthMetric(sizePerMetric),
-    new FileLengthMetric(sizePerMetric),
-    new ParameterCountMetric(sizePerMetric),
+    new CyclomaticComplexityMetric(complexityPerMetric, language),
+    new CognitiveComplexityMetric(complexityPerMetric, language),
+    new NestingDepthMetric(complexityPerMetric, language),
+    new FunctionLengthMetric(sizePerMetric, language),
+    new FileLengthMetric(sizePerMetric, language),
+    new ParameterCountMetric(sizePerMetric, language),
     new CodeDuplicationMetric(weights.duplication),
     new StructureAnalysisMetric(weights.structure),
     new ErrorHandlingMetric(weights.error),

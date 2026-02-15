@@ -17,10 +17,11 @@ import { MarkdownOutput } from '../cli/output/markdown.js';
 import { JsonOutput } from '../cli/output/json.js';
 import { setLocale, type Locale } from '../i18n/index.js';
 import type { RuntimeConfig } from '../config/schema.js';
+import { VERSION } from '../version.js';
 
 const server = new McpServer({
   name: 'fuck-u-code',
-  version: '2.0.0',
+  version: VERSION,
 });
 
 /**

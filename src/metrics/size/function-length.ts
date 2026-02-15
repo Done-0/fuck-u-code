@@ -1,36 +1,29 @@
 /**
  * Function length metric
  *
- * Industry thresholds (based on SonarQube, real-world projects):
- * - 1-50 lines: Excellent, concise and clear
- * - 51-150 lines: Good, typical business logic
- * - 151-300 lines: Acceptable, complex but manageable
- * - 301-500 lines: Poor, consider refactoring
- * - 500+ lines: Critical, needs refactoring
+ * Language-specific thresholds based on official linter defaults.
+ * See src/metrics/thresholds/language-thresholds.ts for sources.
  */
 
 import type { Metric, MetricResult, MetricCategory, MetricLocation, Severity } from '../types.js';
-import type { ParseResult } from '../../parser/types.js';
+import type { ParseResult, Language } from '../../parser/types.js';
 import { t } from '../../i18n/index.js';
-
-const THRESHOLDS = {
-  EXCELLENT: 50,
-  GOOD: 150,
-  ACCEPTABLE: 300,
-  POOR: 500,
-} as const;
+import { getThresholds } from '../thresholds/language-thresholds.js';
 
 export class FunctionLengthMetric implements Metric {
   readonly name = 'function_length';
   readonly category: MetricCategory = 'size';
   readonly weight: number;
+  private readonly language: Language;
 
-  constructor(weight: number) {
+  constructor(weight: number, language: Language) {
     this.weight = weight;
+    this.language = language;
   }
 
   calculate(parseResult: ParseResult): MetricResult {
     const { functions, filePath } = parseResult;
+    const thresholds = getThresholds(this.language, 'functionLength');
 
     if (functions.length === 0) {
       return {
@@ -52,7 +45,7 @@ export class FunctionLengthMetric implements Metric {
       if (func.lineCount > maxLength) {
         maxLength = func.lineCount;
       }
-      if (func.lineCount > THRESHOLDS.GOOD) {
+      if (func.lineCount > thresholds.good) {
         locations.push({
           filePath,
           line: func.startLine,
@@ -65,27 +58,27 @@ export class FunctionLengthMetric implements Metric {
     const avgLength = totalLength / functions.length;
 
     let normalizedScore: number;
-    if (avgLength <= THRESHOLDS.EXCELLENT) {
+    if (avgLength <= thresholds.excellent) {
       normalizedScore = 100;
-    } else if (avgLength <= THRESHOLDS.GOOD) {
+    } else if (avgLength <= thresholds.good) {
       normalizedScore =
-        100 - ((avgLength - THRESHOLDS.EXCELLENT) / (THRESHOLDS.GOOD - THRESHOLDS.EXCELLENT)) * 15;
-    } else if (avgLength <= THRESHOLDS.ACCEPTABLE) {
+        100 - ((avgLength - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 15;
+    } else if (avgLength <= thresholds.acceptable) {
       normalizedScore =
-        85 - ((avgLength - THRESHOLDS.GOOD) / (THRESHOLDS.ACCEPTABLE - THRESHOLDS.GOOD)) * 35;
-    } else if (avgLength <= THRESHOLDS.POOR) {
+        85 - ((avgLength - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
+    } else if (avgLength <= thresholds.poor) {
       normalizedScore =
-        50 - ((avgLength - THRESHOLDS.ACCEPTABLE) / (THRESHOLDS.POOR - THRESHOLDS.ACCEPTABLE)) * 35;
+        50 - ((avgLength - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 35;
     } else {
-      normalizedScore = Math.max(0, 15 * Math.exp(-(avgLength - THRESHOLDS.POOR) / 50));
+      normalizedScore = Math.max(0, 15 * Math.exp(-(avgLength - thresholds.poor) / 50));
     }
 
     let severity: Severity;
-    if (maxLength <= THRESHOLDS.GOOD) {
+    if (maxLength <= thresholds.good) {
       severity = 'info';
-    } else if (maxLength <= THRESHOLDS.ACCEPTABLE) {
+    } else if (maxLength <= thresholds.acceptable) {
       severity = 'warning';
-    } else if (maxLength <= THRESHOLDS.POOR) {
+    } else if (maxLength <= thresholds.poor) {
       severity = 'error';
     } else {
       severity = 'critical';

@@ -1,35 +1,29 @@
 /**
  * Parameter count metric
  *
- * Industry thresholds (based on Clean Code, SonarQube):
- * - 0-3: Excellent, easy to understand and test
- * - 4-5: Good, acceptable
- * - 6-7: Moderate, consider using object parameter
- * - 8+: Poor, should be refactored
+ * Language-specific thresholds based on official linter defaults.
+ * See src/metrics/thresholds/language-thresholds.ts for sources.
  */
 
 import type { Metric, MetricResult, MetricCategory, MetricLocation, Severity } from '../types.js';
-import type { ParseResult } from '../../parser/types.js';
+import type { ParseResult, Language } from '../../parser/types.js';
 import { t } from '../../i18n/index.js';
-
-const THRESHOLDS = {
-  EXCELLENT: 3,
-  GOOD: 5,
-  ACCEPTABLE: 7,
-  POOR: 10,
-} as const;
+import { getThresholds } from '../thresholds/language-thresholds.js';
 
 export class ParameterCountMetric implements Metric {
   readonly name = 'parameter_count';
   readonly category: MetricCategory = 'size';
   readonly weight: number;
+  private readonly language: Language;
 
-  constructor(weight: number) {
+  constructor(weight: number, language: Language) {
     this.weight = weight;
+    this.language = language;
   }
 
   calculate(parseResult: ParseResult): MetricResult {
     const { functions, filePath } = parseResult;
+    const thresholds = getThresholds(this.language, 'parameterCount');
 
     if (functions.length === 0) {
       return {
@@ -51,7 +45,7 @@ export class ParameterCountMetric implements Metric {
       if (func.parameterCount > maxParams) {
         maxParams = func.parameterCount;
       }
-      if (func.parameterCount > THRESHOLDS.GOOD) {
+      if (func.parameterCount > thresholds.good) {
         locations.push({
           filePath,
           line: func.startLine,
@@ -64,27 +58,27 @@ export class ParameterCountMetric implements Metric {
     const avgParams = totalParams / functions.length;
 
     let normalizedScore: number;
-    if (maxParams <= THRESHOLDS.EXCELLENT) {
+    if (maxParams <= thresholds.excellent) {
       normalizedScore = 100;
-    } else if (maxParams <= THRESHOLDS.GOOD) {
+    } else if (maxParams <= thresholds.good) {
       normalizedScore =
-        100 - ((maxParams - THRESHOLDS.EXCELLENT) / (THRESHOLDS.GOOD - THRESHOLDS.EXCELLENT)) * 15;
-    } else if (maxParams <= THRESHOLDS.ACCEPTABLE) {
+        100 - ((maxParams - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 15;
+    } else if (maxParams <= thresholds.acceptable) {
       normalizedScore =
-        85 - ((maxParams - THRESHOLDS.GOOD) / (THRESHOLDS.ACCEPTABLE - THRESHOLDS.GOOD)) * 35;
-    } else if (maxParams <= THRESHOLDS.POOR) {
+        85 - ((maxParams - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
+    } else if (maxParams <= thresholds.poor) {
       normalizedScore =
-        50 - ((maxParams - THRESHOLDS.ACCEPTABLE) / (THRESHOLDS.POOR - THRESHOLDS.ACCEPTABLE)) * 35;
+        50 - ((maxParams - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 35;
     } else {
-      normalizedScore = Math.max(0, 15 * Math.exp(-(maxParams - THRESHOLDS.POOR) / 3));
+      normalizedScore = Math.max(0, 15 * Math.exp(-(maxParams - thresholds.poor) / 3));
     }
 
     let severity: Severity;
-    if (maxParams <= THRESHOLDS.EXCELLENT) {
+    if (maxParams <= thresholds.excellent) {
       severity = 'info';
-    } else if (maxParams <= THRESHOLDS.GOOD) {
+    } else if (maxParams <= thresholds.good) {
       severity = 'warning';
-    } else if (maxParams <= THRESHOLDS.ACCEPTABLE) {
+    } else if (maxParams <= thresholds.acceptable) {
       severity = 'error';
     } else {
       severity = 'critical';

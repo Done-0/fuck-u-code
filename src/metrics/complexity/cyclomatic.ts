@@ -1,38 +1,31 @@
 /**
  * Cyclomatic complexity metric
  *
- * Industry standard thresholds (based on SonarQube, ESLint, CodeClimate):
- * - 1-10: Low complexity, easy to test and maintain
- * - 11-20: Moderate complexity, consider refactoring
- * - 21-50: High complexity, should be refactored
- * - 50+: Very high complexity, must be refactored
+ * Language-specific thresholds based on official linter defaults.
+ * See src/metrics/thresholds/language-thresholds.ts for sources.
  *
  * Formula: CC = 1 + (if) + (loops) + (case) + (catch) + (&&/||) + (ternary)
  */
 
 import type { Metric, MetricResult, MetricCategory, MetricLocation, Severity } from '../types.js';
-import type { ParseResult } from '../../parser/types.js';
+import type { ParseResult, Language } from '../../parser/types.js';
 import { t } from '../../i18n/index.js';
-
-// Industry-standard thresholds (SonarQube defaults)
-const THRESHOLDS = {
-  EXCELLENT: 5,
-  GOOD: 10,
-  ACCEPTABLE: 20,
-  POOR: 30,
-} as const;
+import { getThresholds } from '../thresholds/language-thresholds.js';
 
 export class CyclomaticComplexityMetric implements Metric {
   readonly name = 'cyclomatic_complexity';
   readonly category: MetricCategory = 'complexity';
   readonly weight: number;
+  private readonly language: Language;
 
-  constructor(weight: number) {
+  constructor(weight: number, language: Language) {
     this.weight = weight;
+    this.language = language;
   }
 
   calculate(parseResult: ParseResult): MetricResult {
     const { functions, filePath } = parseResult;
+    const thresholds = getThresholds(this.language, 'cyclomaticComplexity');
 
     if (functions.length === 0) {
       return {
@@ -45,7 +38,6 @@ export class CyclomaticComplexityMetric implements Metric {
       };
     }
 
-    // Calculate complexity statistics
     let totalComplexity = 0;
     let maxComplexity = 0;
     const locations: MetricLocation[] = [];
@@ -55,8 +47,7 @@ export class CyclomaticComplexityMetric implements Metric {
       if (func.complexity > maxComplexity) {
         maxComplexity = func.complexity;
       }
-      // Flag functions exceeding acceptable threshold
-      if (func.complexity > THRESHOLDS.GOOD) {
+      if (func.complexity > thresholds.good) {
         locations.push({
           filePath,
           line: func.startLine,
@@ -68,37 +59,30 @@ export class CyclomaticComplexityMetric implements Metric {
 
     const avgComplexity = totalComplexity / functions.length;
 
-    // Calculate normalized score using non-linear curve
-    // Score decreases more rapidly as complexity increases
     let normalizedScore: number;
-    if (avgComplexity <= THRESHOLDS.EXCELLENT) {
+    if (avgComplexity <= thresholds.excellent) {
       normalizedScore = 100;
-    } else if (avgComplexity <= THRESHOLDS.GOOD) {
-      // Linear decrease from 100 to 80
+    } else if (avgComplexity <= thresholds.good) {
       normalizedScore =
         100 -
-        ((avgComplexity - THRESHOLDS.EXCELLENT) / (THRESHOLDS.GOOD - THRESHOLDS.EXCELLENT)) * 20;
-    } else if (avgComplexity <= THRESHOLDS.ACCEPTABLE) {
-      // Steeper decrease from 80 to 50
+        ((avgComplexity - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 20;
+    } else if (avgComplexity <= thresholds.acceptable) {
       normalizedScore =
-        80 - ((avgComplexity - THRESHOLDS.GOOD) / (THRESHOLDS.ACCEPTABLE - THRESHOLDS.GOOD)) * 30;
-    } else if (avgComplexity <= THRESHOLDS.POOR) {
-      // Even steeper decrease from 50 to 20
+        80 - ((avgComplexity - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 30;
+    } else if (avgComplexity <= thresholds.poor) {
       normalizedScore =
         50 -
-        ((avgComplexity - THRESHOLDS.ACCEPTABLE) / (THRESHOLDS.POOR - THRESHOLDS.ACCEPTABLE)) * 30;
+        ((avgComplexity - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 30;
     } else {
-      // Exponential decay for very high complexity
-      normalizedScore = Math.max(0, 20 * Math.exp(-(avgComplexity - THRESHOLDS.POOR) / 20));
+      normalizedScore = Math.max(0, 20 * Math.exp(-(avgComplexity - thresholds.poor) / 20));
     }
 
-    // Determine severity based on max complexity (worst case matters)
     let severity: Severity;
-    if (maxComplexity <= THRESHOLDS.GOOD) {
+    if (maxComplexity <= thresholds.good) {
       severity = 'info';
-    } else if (maxComplexity <= THRESHOLDS.ACCEPTABLE) {
+    } else if (maxComplexity <= thresholds.acceptable) {
       severity = 'warning';
-    } else if (maxComplexity <= THRESHOLDS.POOR) {
+    } else if (maxComplexity <= thresholds.poor) {
       severity = 'error';
     } else {
       severity = 'critical';

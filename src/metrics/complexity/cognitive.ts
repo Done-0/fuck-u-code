@@ -7,35 +7,29 @@
  * - Breaks in linear flow (continue, break, goto)
  * - Recursion
  *
- * Industry thresholds (SonarQube):
- * - 0-8: Low cognitive load
- * - 9-15: Moderate cognitive load
- * - 16-25: High cognitive load
- * - 25+: Very high cognitive load
+ * Language-specific thresholds based on official linter defaults.
+ * See src/metrics/thresholds/language-thresholds.ts for sources.
  */
 
 import type { Metric, MetricResult, MetricCategory, MetricLocation, Severity } from '../types.js';
-import type { ParseResult } from '../../parser/types.js';
+import type { ParseResult, Language } from '../../parser/types.js';
 import { t } from '../../i18n/index.js';
-
-const THRESHOLDS = {
-  EXCELLENT: 8,
-  GOOD: 15,
-  ACCEPTABLE: 25,
-  POOR: 40,
-} as const;
+import { getThresholds } from '../thresholds/language-thresholds.js';
 
 export class CognitiveComplexityMetric implements Metric {
   readonly name = 'cognitive_complexity';
   readonly category: MetricCategory = 'complexity';
   readonly weight: number;
+  private readonly language: Language;
 
-  constructor(weight: number) {
+  constructor(weight: number, language: Language) {
     this.weight = weight;
+    this.language = language;
   }
 
   calculate(parseResult: ParseResult): MetricResult {
     const { functions, filePath } = parseResult;
+    const thresholds = getThresholds(this.language, 'cognitiveComplexity');
 
     if (functions.length === 0) {
       return {
@@ -48,8 +42,6 @@ export class CognitiveComplexityMetric implements Metric {
       };
     }
 
-    // Calculate cognitive complexity for each function
-    // Cognitive = base complexity + nesting penalty (nesting depth * 2)
     let totalCognitive = 0;
     let maxCognitive = 0;
     const locations: MetricLocation[] = [];
@@ -60,7 +52,7 @@ export class CognitiveComplexityMetric implements Metric {
       if (cognitive > maxCognitive) {
         maxCognitive = cognitive;
       }
-      if (cognitive > THRESHOLDS.GOOD) {
+      if (cognitive > thresholds.good) {
         locations.push({
           filePath,
           line: func.startLine,
@@ -72,31 +64,30 @@ export class CognitiveComplexityMetric implements Metric {
 
     const avgCognitive = totalCognitive / functions.length;
 
-    // Non-linear scoring curve
     let normalizedScore: number;
-    if (avgCognitive <= THRESHOLDS.EXCELLENT) {
+    if (avgCognitive <= thresholds.excellent) {
       normalizedScore = 100;
-    } else if (avgCognitive <= THRESHOLDS.GOOD) {
+    } else if (avgCognitive <= thresholds.good) {
       normalizedScore =
         100 -
-        ((avgCognitive - THRESHOLDS.EXCELLENT) / (THRESHOLDS.GOOD - THRESHOLDS.EXCELLENT)) * 20;
-    } else if (avgCognitive <= THRESHOLDS.ACCEPTABLE) {
+        ((avgCognitive - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 20;
+    } else if (avgCognitive <= thresholds.acceptable) {
       normalizedScore =
-        80 - ((avgCognitive - THRESHOLDS.GOOD) / (THRESHOLDS.ACCEPTABLE - THRESHOLDS.GOOD)) * 35;
-    } else if (avgCognitive <= THRESHOLDS.POOR) {
+        80 - ((avgCognitive - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
+    } else if (avgCognitive <= thresholds.poor) {
       normalizedScore =
         45 -
-        ((avgCognitive - THRESHOLDS.ACCEPTABLE) / (THRESHOLDS.POOR - THRESHOLDS.ACCEPTABLE)) * 30;
+        ((avgCognitive - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 30;
     } else {
-      normalizedScore = Math.max(0, 15 * Math.exp(-(avgCognitive - THRESHOLDS.POOR) / 15));
+      normalizedScore = Math.max(0, 15 * Math.exp(-(avgCognitive - thresholds.poor) / 15));
     }
 
     let severity: Severity;
-    if (maxCognitive <= THRESHOLDS.GOOD) {
+    if (maxCognitive <= thresholds.good) {
       severity = 'info';
-    } else if (maxCognitive <= THRESHOLDS.ACCEPTABLE) {
+    } else if (maxCognitive <= thresholds.acceptable) {
       severity = 'warning';
-    } else if (maxCognitive <= THRESHOLDS.POOR) {
+    } else if (maxCognitive <= thresholds.poor) {
       severity = 'error';
     } else {
       severity = 'critical';

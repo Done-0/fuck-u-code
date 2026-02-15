@@ -7,7 +7,7 @@ A tool designed to **expose shitty code quality** with sharp but humorous feedba
 
 ## Features
 
-* **Multi-language support**: Go, JavaScript, TypeScript, Python, Java, C, C++, Rust, C#, Lua
+* **Multi-language support**: Go, JavaScript, TypeScript, Python, Java, C, C++, Rust, C#, Lua, PHP, Ruby, Swift, Shell (14 languages)
 * **Overall Score**: 0~100, higher = better code quality
 * **Shit-Gas Index**: Per-file score, higher = worse code
 * **Seven quality checks**: Complexity / Size / Comments / Error handling / Naming / Duplication / Structure

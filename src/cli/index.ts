@@ -11,8 +11,8 @@ import { createUninstallCommand } from './commands/uninstall.js';
 import { t, setLocale, type Locale } from '../i18n/index.js';
 import { loadLocaleFromConfig } from '../config/index.js';
 import { getSupportedLanguageNames } from '../parser/index.js';
+import { VERSION } from '../version.js';
 
-const VERSION = '2.0.1';
 const VALID_LOCALES = ['en', 'zh', 'ru'];
 
 export function createCLI(): Command {
@@ -32,6 +32,7 @@ ${t('cli_examples')}
   $ fuck-u-code analyze . --locale zh        # ${t('cli_example_analyze_locale')}
   $ fuck-u-code ai-review . --model gpt-4o   # ${t('cli_example_ai_review')}
   $ fuck-u-code mcp-install claude           # ${t('cli_example_mcp_install')}
+  $ fuck-u-code uninstall                    # ${t('uninstall_example')}
 
 ${t('cli_supported_languages')}
   ${getSupportedLanguageNames()}

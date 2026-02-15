@@ -26,7 +26,6 @@ export async function analyzeFilesConcurrently(
 ): Promise<FileAnalysisResult[]> {
   const concurrency = config.concurrency || 8;
   const limit = pLimit(concurrency);
-  const metrics = createMetrics(config);
 
   let completed = 0;
   const total = files.length;
@@ -34,7 +33,7 @@ export async function analyzeFilesConcurrently(
   const tasks = files.map((file) =>
     limit(async (): Promise<FileAnalysisResult | null> => {
       try {
-        const result = await analyzeFile(file, metrics, config);
+        const result = await analyzeFile(file, config);
         completed++;
         onProgress?.(completed, total);
         return result;
@@ -56,7 +55,6 @@ export async function analyzeFilesConcurrently(
  */
 async function analyzeFile(
   file: DiscoveredFile,
-  metrics: ReturnType<typeof createMetrics>,
   config: RuntimeConfig
 ): Promise<FileAnalysisResult | null> {
   // Check file size
@@ -77,6 +75,9 @@ async function analyzeFile(
 
   // Add content to parse result for metrics that need it
   parseResult.content = content;
+
+  // Create language-specific metrics
+  const metrics = createMetrics(config, parseResult.language);
 
   // Calculate metrics
   const metricResults = metrics.map((metric) => metric.calculate(parseResult));

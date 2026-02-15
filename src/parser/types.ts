@@ -14,6 +14,10 @@ export type Language =
   | 'rust'
   | 'csharp'
   | 'lua'
+  | 'php'
+  | 'ruby'
+  | 'swift'
+  | 'shell'
   | 'unknown';
 
 /** Function information */
@@ -70,6 +74,10 @@ export const LANGUAGE_DISPLAY_NAMES: Record<Exclude<Language, 'unknown'>, string
   rust: 'Rust',
   csharp: 'C#',
   lua: 'Lua',
+  php: 'PHP',
+  ruby: 'Ruby',
+  swift: 'Swift',
+  shell: 'Shell',
 };
 
 /** File extension to language mapping */
@@ -96,6 +104,12 @@ export const EXTENSION_LANGUAGE_MAP: Record<string, Language> = {
   '.rs': 'rust',
   '.cs': 'csharp',
   '.lua': 'lua',
+  '.php': 'php',
+  '.rb': 'ruby',
+  '.swift': 'swift',
+  '.sh': 'shell',
+  '.bash': 'shell',
+  '.zsh': 'shell',
 };
 
 /**

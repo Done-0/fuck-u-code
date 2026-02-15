@@ -42,7 +42,9 @@ async function removeGlobalConfig(): Promise<boolean> {
     }
     return false;
   } catch (error) {
-    throw new Error(`Failed to remove config: ${error instanceof Error ? error.message : String(error)}`);
+    throw new Error(
+      `Failed to remove config: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 
@@ -70,7 +72,9 @@ async function removeMcpFromConfig(configPath: string): Promise<boolean> {
 
     return false;
   } catch (error) {
-    throw new Error(`Failed to update ${configPath}: ${error instanceof Error ? error.message : String(error)}`);
+    throw new Error(
+      `Failed to update ${configPath}: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 }
 

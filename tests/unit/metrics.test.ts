@@ -30,7 +30,7 @@ const createMockParseResult = (overrides: Partial<ParseResult> = {}): ParseResul
 });
 
 describe('CyclomaticComplexityMetric', () => {
-  const metric = new CyclomaticComplexityMetric(0.3);
+  const metric = new CyclomaticComplexityMetric(0.3, 'typescript');
 
   it('should return high score for low complexity', () => {
     const result = metric.calculate(createMockParseResult({
@@ -63,7 +63,7 @@ describe('CyclomaticComplexityMetric', () => {
 });
 
 describe('FunctionLengthMetric', () => {
-  const metric = new FunctionLengthMetric(0.2);
+  const metric = new FunctionLengthMetric(0.2, 'typescript');
 
   it('should return high score for short functions', () => {
     const result = metric.calculate(createMockParseResult({
