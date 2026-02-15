@@ -8,6 +8,7 @@ import { createAIReviewCommand } from './commands/ai-review.js';
 import { createConfigCommand } from './commands/config.js';
 import { createMcpInstallCommand } from './commands/mcp-install.js';
 import { createUninstallCommand } from './commands/uninstall.js';
+import { createUpdateCommand } from './commands/update.js';
 import { t, setLocale, type Locale } from '../i18n/index.js';
 import { loadLocaleFromConfig } from '../config/index.js';
 import { getSupportedLanguageNames } from '../parser/index.js';
@@ -32,6 +33,7 @@ ${t('cli_examples')}
   $ fuck-u-code analyze . --locale zh        # ${t('cli_example_analyze_locale')}
   $ fuck-u-code ai-review . --model gpt-4o   # ${t('cli_example_ai_review')}
   $ fuck-u-code mcp-install claude           # ${t('cli_example_mcp_install')}
+  $ fuck-u-code update                       # ${t('cmd_update_example')}
   $ fuck-u-code uninstall                    # ${t('uninstall_example')}
 
 ${t('cli_supported_languages')}
@@ -43,6 +45,7 @@ ${t('cli_supported_languages')}
   program.addCommand(createAIReviewCommand());
   program.addCommand(createConfigCommand());
   program.addCommand(createMcpInstallCommand());
+  program.addCommand(createUpdateCommand());
   program.addCommand(createUninstallCommand());
 
   return program;

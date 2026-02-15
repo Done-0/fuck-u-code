@@ -372,5 +372,16 @@
   "uninstall_no_cursor": "Cursor 中无 MCP 配置",
   "uninstall_removed_npm": "已卸载全局 npm 包",
   "uninstall_no_npm": "未找到全局 npm 包",
-  "uninstall_complete": "✓ 卸载完成。再见！"
+  "uninstall_complete": "✓ 卸载完成。再见！",
+
+  "cmd_update_description": "更新 eff-u-code 到最新版本",
+  "cmd_update_example": "更新到最新版本",
+  "update_checking": "正在检查更新...",
+  "update_current_version": "当前版本",
+  "update_latest_version": "最新版本",
+  "update_already_latest": "已经是最新版本",
+  "update_updating": "正在更新 eff-u-code...",
+  "update_success": "更新成功！",
+  "update_updated_to": "已更新到版本",
+  "update_failed": "更新失败"
 }

@@ -371,5 +371,16 @@
   "uninstall_no_cursor": "Запись MCP в Cursor не найдена",
   "uninstall_removed_npm": "Удален глобальный npm-пакет",
   "uninstall_no_npm": "Глобальный npm-пакет не найден",
-  "uninstall_complete": "✓ Удаление завершено. До свидания!"
+  "uninstall_complete": "✓ Удаление завершено. До свидания!",
+
+  "cmd_update_description": "Обновить eff-u-code до последней версии",
+  "cmd_update_example": "Обновить до последней версии",
+  "update_checking": "Проверка обновлений...",
+  "update_current_version": "Текущая версия",
+  "update_latest_version": "Последняя версия",
+  "update_already_latest": "Уже установлена последняя версия",
+  "update_updating": "Обновление eff-u-code...",
+  "update_success": "Обновление успешно!",
+  "update_updated_to": "Обновлено до версии",
+  "update_failed": "Обновление не удалось"
 }

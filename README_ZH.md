@@ -97,6 +97,19 @@ fuck-u-code config set ai.model gpt-4o     # 设置 AI 模型
 fuck-u-code config set ai.apiKey sk-xxx    # 设置 API 密钥
 ```
 
+### 更新
+
+更新 eff-u-code 到最新版本：
+
+```bash
+fuck-u-code update    # 更新到最新版本
+```
+
+将会执行：
+- 检查当前安装的版本
+- 检查 npm 上的最新版本
+- 自动安装最新版本到全局
+
 ### 卸载
 
 移除 fuck-u-code 并清理所有本地文件：

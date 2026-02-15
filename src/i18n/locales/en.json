@@ -371,5 +371,16 @@
   "uninstall_no_cursor": "No MCP entry in Cursor",
   "uninstall_removed_npm": "Uninstalled global npm package",
   "uninstall_no_npm": "No global npm package found",
-  "uninstall_complete": "✓ Uninstall complete. Goodbye!"
+  "uninstall_complete": "✓ Uninstall complete. Goodbye!",
+
+  "cmd_update_description": "Update eff-u-code to the latest version",
+  "cmd_update_example": "Update to latest version",
+  "update_checking": "Checking for updates...",
+  "update_current_version": "Current version",
+  "update_latest_version": "Latest version",
+  "update_already_latest": "Already on the latest version",
+  "update_updating": "Updating eff-u-code...",
+  "update_success": "Update successful!",
+  "update_updated_to": "Updated to version",
+  "update_failed": "Update failed"
 }
