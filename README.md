@@ -97,6 +97,19 @@ fuck-u-code config set ai.model gpt-4o     # Set AI model
 fuck-u-code config set ai.apiKey sk-xxx    # Set API key
 ```
 
+### Uninstall
+
+Remove fuck-u-code and clean up all local files:
+
+```bash
+fuck-u-code uninstall    # Remove global config, MCP entries, and npm package
+```
+
+This will remove:
+- Global config file (`~/.fuckucoderc.json`)
+- MCP server entries (Claude Code, Cursor)
+- Global npm package (`eff-u-code`)
+
 ## Configuration File
 
 Auto-discovered from project directory upward, then falls back to global `~/.fuckucoderc.json`.

@@ -98,6 +98,19 @@ fuck-u-code config set ai.model gpt-4o     # Установить модель
 fuck-u-code config set ai.apiKey sk-xxx    # Установить API-ключ
 ```
 
+### Удаление
+
+Удалить fuck-u-code и очистить все локальные файлы:
+
+```bash
+fuck-u-code uninstall    # Удалить глобальную конфигурацию, записи MCP и npm-пакет
+```
+
+Будет удалено:
+- Глобальный файл конфигурации (`~/.fuckucoderc.json`)
+- Записи MCP-сервера (Claude Code, Cursor)
+- Глобальный npm-пакет (`eff-u-code`)
+
 ## Файл конфигурации
 
 Автоматический поиск конфигурации от директории проекта вверх, затем глобальный `~/.fuckucoderc.json`.

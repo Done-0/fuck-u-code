@@ -97,6 +97,19 @@ fuck-u-code config set ai.model gpt-4o     # 设置 AI 模型
 fuck-u-code config set ai.apiKey sk-xxx    # 设置 API 密钥
 ```
 
+### 卸载
+
+移除 fuck-u-code 并清理所有本地文件：
+
+```bash
+fuck-u-code uninstall    # 移除全局配置、MCP 配置和 npm 包
+```
+
+将删除以下内容：
+- 全局配置文件（`~/.fuckucoderc.json`）
+- MCP 服务器配置（Claude Code、Cursor）
+- 全局 npm 包（`eff-u-code`）
+
 ## 配置文件
 
 通过配置文件自动搜索，优先级：项目目录向上查找 > 全局配置 `~/.fuckucoderc.json`。

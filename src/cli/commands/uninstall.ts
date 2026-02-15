@@ -30,40 +30,65 @@ interface CleanupResult {
   claudeCode: boolean;
   cursor: boolean;
   npmPackage: boolean;
+  errors: string[];
 }
 
 async function removeGlobalConfig(): Promise<boolean> {
-  const configPath = join(homedir(), '.fuckucoderc.json');
-  if (await exists(configPath)) {
-    await unlink(configPath);
-    return true;
+  try {
+    const configPath = join(homedir(), '.fuckucoderc.json');
+    if (await exists(configPath)) {
+      await unlink(configPath);
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw new Error(`Failed to remove config: ${error instanceof Error ? error.message : String(error)}`);
   }
-  return false;
 }
 
 async function removeMcpFromConfig(configPath: string): Promise<boolean> {
-  if (!(await exists(configPath))) {
+  try {
+    if (!(await exists(configPath))) {
+      return false;
+    }
+
+    const content = await readFile(configPath, 'utf-8');
+    let config: McpConfig;
+
+    try {
+      config = JSON.parse(content) as McpConfig;
+    } catch {
+      throw new Error(`Invalid JSON in ${configPath}`);
+    }
+
+    if (config.mcpServers?.['fuck-u-code']) {
+      delete config.mcpServers['fuck-u-code'];
+
+      await writeFile(configPath, JSON.stringify(config, null, 2) + '\n', 'utf-8');
+      return true;
+    }
+
     return false;
+  } catch (error) {
+    throw new Error(`Failed to update ${configPath}: ${error instanceof Error ? error.message : String(error)}`);
   }
-
-  const content = await readFile(configPath, 'utf-8');
-  const config = JSON.parse(content) as McpConfig;
-
-  if (config.mcpServers?.['fuck-u-code']) {
-    delete config.mcpServers['fuck-u-code'];
-    await writeFile(configPath, JSON.stringify(config, null, 2) + '\n', 'utf-8');
-    return true;
-  }
-
-  return false;
 }
 
 async function uninstallNpmPackage(): Promise<boolean> {
   try {
-    await execAsync('npm uninstall -g eff-u-code');
+    const { stderr } = await execAsync('npm uninstall -g eff-u-code');
+
+    if (stderr.includes('not installed')) {
+      return false;
+    }
+
     return true;
-  } catch {
-    return false;
+  } catch (error) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    if (errorMsg.includes('not installed') || errorMsg.includes('ERR! 404')) {
+      return false;
+    }
+    throw new Error(`Failed to uninstall npm package: ${errorMsg}`);
   }
 }
 
@@ -73,21 +98,48 @@ async function performCleanup(): Promise<CleanupResult> {
     claudeCode: false,
     cursor: false,
     npmPackage: false,
+    errors: [],
   };
 
   // Remove global config
-  result.globalConfig = await removeGlobalConfig();
+  try {
+    result.globalConfig = await removeGlobalConfig();
+  } catch (error) {
+    result.errors.push(error instanceof Error ? error.message : String(error));
+  }
 
   // Remove MCP from Claude Code
-  const claudePath = join(homedir(), '.claude.json');
-  result.claudeCode = await removeMcpFromConfig(claudePath);
+  try {
+    const claudePath = join(homedir(), '.claude.json');
+    result.claudeCode = await removeMcpFromConfig(claudePath);
+  } catch (error) {
+    result.errors.push(error instanceof Error ? error.message : String(error));
+  }
 
-  // Remove MCP from Cursor
-  const cursorPath = join(process.cwd(), '.cursor', 'mcp.json');
-  result.cursor = await removeMcpFromConfig(cursorPath);
+  // Remove MCP from Cursor (try multiple possible locations)
+  try {
+    const cursorPaths = [
+      join(process.cwd(), '.cursor', 'mcp.json'),
+      join(homedir(), '.cursor', 'mcp.json'),
+    ];
+
+    for (const cursorPath of cursorPaths) {
+      const removed = await removeMcpFromConfig(cursorPath);
+      if (removed) {
+        result.cursor = true;
+        break;
+      }
+    }
+  } catch (error) {
+    result.errors.push(error instanceof Error ? error.message : String(error));
+  }
 
   // Uninstall npm package
-  result.npmPackage = await uninstallNpmPackage();
+  try {
+    result.npmPackage = await uninstallNpmPackage();
+  } catch (error) {
+    result.errors.push(error instanceof Error ? error.message : String(error));
+  }
 
   return result;
 }
@@ -155,6 +207,14 @@ ${t('cli_examples')}
           console.log(chalk.green('✓ ' + t('uninstall_removed_npm')));
         } else {
           console.log(chalk.gray('- ' + t('uninstall_no_npm')));
+        }
+
+        if (result.errors.length > 0) {
+          console.log();
+          console.log(chalk.yellow('⚠️  Some operations failed:'));
+          for (const error of result.errors) {
+            console.log(chalk.yellow('  - ' + error));
+          }
         }
 
         console.log();
