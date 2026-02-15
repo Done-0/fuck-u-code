@@ -24,7 +24,7 @@
 ## 安装
 
 ```bash
-npm install -g fuck-u-code
+npm install -g eff-u-code
 ```
 
 或源码构建：
@@ -175,7 +175,7 @@ fuck-u-code 提供 MCP (Model Context Protocol) Server，让 Claude Code、Curso
 
 ```bash
 # 全局安装
-npm install -g fuck-u-code
+npm install -g eff-u-code
 
 # 自动配置（交互式）
 fuck-u-code mcp-install
@@ -216,7 +216,7 @@ fuck-u-code mcp-install cursor
   "mcpServers": {
     "fuck-u-code": {
       "command": "npx",
-      "args": ["-y", "fuck-u-code-mcp"]
+      "args": ["-y", "eff-u-code-mcp"]
     }
   }
 }

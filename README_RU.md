@@ -25,7 +25,7 @@
 ## Установка
 
 ```bash
-npm install -g fuck-u-code
+npm install -g eff-u-code
 ```
 
 Или сборка из исходников:
@@ -178,7 +178,7 @@ fuck-u-code предоставляет MCP (Model Context Protocol) Server, по
 
 ```bash
 # Глобальная установка
-npm install -g fuck-u-code
+npm install -g eff-u-code
 
 # Автоматическая настройка (интерактивная)
 fuck-u-code mcp-install
@@ -219,7 +219,7 @@ fuck-u-code mcp-install cursor
   "mcpServers": {
     "fuck-u-code": {
       "command": "npx",
-      "args": ["-y", "fuck-u-code-mcp"]
+      "args": ["-y", "eff-u-code-mcp"]
     }
   }
 }

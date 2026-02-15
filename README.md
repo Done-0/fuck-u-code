@@ -24,7 +24,7 @@ A tool designed to **expose shitty code quality** with sharp but humorous feedba
 ## Installation
 
 ```bash
-npm install -g fuck-u-code
+npm install -g eff-u-code
 ```
 
 Or build from source:
@@ -175,7 +175,7 @@ fuck-u-code provides an MCP (Model Context Protocol) Server, allowing AI tools l
 
 ```bash
 # Global install
-npm install -g fuck-u-code
+npm install -g eff-u-code
 
 # Auto-configure (interactive)
 fuck-u-code mcp-install
@@ -216,7 +216,7 @@ fuck-u-code mcp-install cursor
   "mcpServers": {
     "fuck-u-code": {
       "command": "npx",
-      "args": ["-y", "fuck-u-code-mcp"]
+      "args": ["-y", "eff-u-code-mcp"]
     }
   }
 }
