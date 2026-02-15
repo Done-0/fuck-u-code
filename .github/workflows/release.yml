@@ -44,13 +44,15 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache: npm
 
+      - name: Sync version from release tag
+        run: npm pkg set version="${GITHUB_REF_NAME#v}"
+
       - run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Sync version from release tag
-        run: npm pkg set version="${GITHUB_REF_NAME#v}"
-
       - name: Publish to npm
         run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
