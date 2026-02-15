@@ -352,5 +352,25 @@
   "mcp_config_updated": "MCP Server 配置已更新至 {path}",
   "mcp_unknown_target": "未知目标：{target}。支持：claude, cursor",
   "mcp_install_example_claude": "配置到 Claude Code",
-  "mcp_install_example_cursor": "配置到 Cursor"
+  "mcp_install_example_cursor": "配置到 Cursor",
+
+  "cmd_uninstall_description": "从本地系统移除 fuck-u-code",
+  "uninstall_example": "清理所有本地文件",
+  "uninstall_warning": "⚠️  这将从您的系统中移除 fuck-u-code",
+  "uninstall_items": "以下内容将被删除：",
+  "uninstall_item_config": "全局配置文件 (~/.fuckucoderc.json)",
+  "uninstall_item_mcp": "MCP 服务器配置 (Claude Code, Cursor)",
+  "uninstall_item_npm": "全局 npm 包 (eff-u-code)",
+  "uninstall_confirm": "确定要继续吗？",
+  "uninstall_cancelled": "已取消卸载",
+  "uninstall_processing": "正在移除 fuck-u-code...",
+  "uninstall_removed_config": "已删除全局配置文件",
+  "uninstall_no_config": "未找到全局配置文件",
+  "uninstall_removed_claude": "已从 Claude Code 移除 MCP 配置",
+  "uninstall_no_claude": "Claude Code 中无 MCP 配置",
+  "uninstall_removed_cursor": "已从 Cursor 移除 MCP 配置",
+  "uninstall_no_cursor": "Cursor 中无 MCP 配置",
+  "uninstall_removed_npm": "已卸载全局 npm 包",
+  "uninstall_no_npm": "未找到全局 npm 包",
+  "uninstall_complete": "✓ 卸载完成。再见！"
 }

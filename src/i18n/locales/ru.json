@@ -351,5 +351,25 @@
   "mcp_config_updated": "Конфигурация MCP Server обновлена в {path}",
   "mcp_unknown_target": "Неизвестная цель: {target}. Поддерживаются: claude, cursor",
   "mcp_install_example_claude": "Настроить для Claude Code",
-  "mcp_install_example_cursor": "Настроить для Cursor"
+  "mcp_install_example_cursor": "Настроить для Cursor",
+
+  "cmd_uninstall_description": "Удалить fuck-u-code из локальной системы",
+  "uninstall_example": "Очистить все локальные файлы",
+  "uninstall_warning": "⚠️  Это удалит fuck-u-code из вашей системы",
+  "uninstall_items": "Будет удалено следующее:",
+  "uninstall_item_config": "Глобальный файл конфигурации (~/.fuckucoderc.json)",
+  "uninstall_item_mcp": "Записи MCP-сервера (Claude Code, Cursor)",
+  "uninstall_item_npm": "Глобальный npm-пакет (eff-u-code)",
+  "uninstall_confirm": "Вы уверены, что хотите продолжить?",
+  "uninstall_cancelled": "Удаление отменено",
+  "uninstall_processing": "Удаление fuck-u-code...",
+  "uninstall_removed_config": "Удален глобальный файл конфигурации",
+  "uninstall_no_config": "Глобальный файл конфигурации не найден",
+  "uninstall_removed_claude": "Удалена запись MCP из Claude Code",
+  "uninstall_no_claude": "Запись MCP в Claude Code не найдена",
+  "uninstall_removed_cursor": "Удалена запись MCP из Cursor",
+  "uninstall_no_cursor": "Запись MCP в Cursor не найдена",
+  "uninstall_removed_npm": "Удален глобальный npm-пакет",
+  "uninstall_no_npm": "Глобальный npm-пакет не найден",
+  "uninstall_complete": "✓ Удаление завершено. До свидания!"
 }

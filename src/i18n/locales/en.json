@@ -351,5 +351,25 @@
   "mcp_config_updated": "MCP Server configuration updated in {path}",
   "mcp_unknown_target": "Unknown target: {target}. Supported: claude, cursor",
   "mcp_install_example_claude": "Configure for Claude Code",
-  "mcp_install_example_cursor": "Configure for Cursor"
+  "mcp_install_example_cursor": "Configure for Cursor",
+
+  "cmd_uninstall_description": "Remove fuck-u-code from local system",
+  "uninstall_example": "Clean up all local files",
+  "uninstall_warning": "⚠️  This will remove fuck-u-code from your system",
+  "uninstall_items": "The following will be removed:",
+  "uninstall_item_config": "Global config file (~/.fuckucoderc.json)",
+  "uninstall_item_mcp": "MCP server entries (Claude Code, Cursor)",
+  "uninstall_item_npm": "Global npm package (eff-u-code)",
+  "uninstall_confirm": "Are you sure you want to proceed?",
+  "uninstall_cancelled": "Uninstall cancelled",
+  "uninstall_processing": "Removing fuck-u-code...",
+  "uninstall_removed_config": "Removed global config file",
+  "uninstall_no_config": "No global config file found",
+  "uninstall_removed_claude": "Removed MCP entry from Claude Code",
+  "uninstall_no_claude": "No MCP entry in Claude Code",
+  "uninstall_removed_cursor": "Removed MCP entry from Cursor",
+  "uninstall_no_cursor": "No MCP entry in Cursor",
+  "uninstall_removed_npm": "Uninstalled global npm package",
+  "uninstall_no_npm": "No global npm package found",
+  "uninstall_complete": "✓ Uninstall complete. Goodbye!"
 }

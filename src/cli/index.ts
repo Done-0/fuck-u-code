@@ -7,11 +7,12 @@ import { createAnalyzeCommand } from './commands/analyze.js';
 import { createAIReviewCommand } from './commands/ai-review.js';
 import { createConfigCommand } from './commands/config.js';
 import { createMcpInstallCommand } from './commands/mcp-install.js';
+import { createUninstallCommand } from './commands/uninstall.js';
 import { t, setLocale, type Locale } from '../i18n/index.js';
 import { loadLocaleFromConfig } from '../config/index.js';
 import { getSupportedLanguageNames } from '../parser/index.js';
 
-const VERSION = '2.0.0';
+const VERSION = '2.0.1';
 const VALID_LOCALES = ['en', 'zh', 'ru'];
 
 export function createCLI(): Command {
@@ -41,6 +42,7 @@ ${t('cli_supported_languages')}
   program.addCommand(createAIReviewCommand());
   program.addCommand(createConfigCommand());
   program.addCommand(createMcpInstallCommand());
+  program.addCommand(createUninstallCommand());
 
   return program;
 }
