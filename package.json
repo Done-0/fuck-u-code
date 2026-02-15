@@ -1,6 +1,6 @@
 {
   "name": "eff-u-code",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Production-grade code quality analyzer with AST parsing and AI integration",
   "type": "module",
   "main": "dist/index.js",
