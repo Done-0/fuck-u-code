@@ -14,9 +14,6 @@ export interface AnalyzerCallbacks {
   onAnalysisProgress?: (current: number, total: number) => void;
 }
 
-/**
- * Analyzer class for code quality analysis
- */
 export class Analyzer {
   private config: RuntimeConfig;
   private callbacks?: AnalyzerCallbacks;
@@ -60,11 +57,18 @@ export class Analyzer {
     // Aggregate metrics
     const aggregatedMetrics = aggregateMetrics(fileResults, this.config);
 
-    // Calculate overall score
+    // Calculate overall score weighted by code size
+    let totalWeight = 0;
+    let weightedSum = 0;
+
+    for (const file of fileResults) {
+      const weight = Math.max(1, file.parseResult.codeLines);
+      totalWeight += weight;
+      weightedSum += file.score * weight;
+    }
+
     const overallScore =
-      fileResults.length > 0
-        ? fileResults.reduce((sum, r) => sum + r.score, 0) / fileResults.length
-        : 100;
+      fileResults.length > 0 && totalWeight > 0 ? weightedSum / totalWeight : 100;
 
     return {
       projectPath: this.config.projectPath,

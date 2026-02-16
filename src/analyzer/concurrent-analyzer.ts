@@ -12,7 +12,7 @@ import { logger } from '../utils/logger.js';
 import type { DiscoveredFile } from './file-discovery.js';
 import type { FileAnalysisResult } from '../metrics/types.js';
 import type { RuntimeConfig } from '../config/schema.js';
-import type { ParseResult } from '../parser/types.js';
+import type { ParseResult, Parser } from '../parser/types.js';
 
 const MAX_FILE_SIZE_KB = 500;
 
@@ -24,7 +24,7 @@ export async function analyzeFilesConcurrently(
   config: RuntimeConfig,
   onProgress?: (current: number, total: number) => void
 ): Promise<FileAnalysisResult[]> {
-  const concurrency = config.concurrency || 8;
+  const concurrency = config.concurrency || 2;
   const limit = pLimit(concurrency);
 
   let completed = 0;
@@ -39,6 +39,9 @@ export async function analyzeFilesConcurrently(
         return result;
       } catch (error) {
         logger.warn(t('warn_analyze_failed', { file: file.relativePath, error: String(error) }));
+        if (config.verbose && error instanceof Error) {
+          console.error(error.stack);
+        }
         completed++;
         onProgress?.(completed, total);
         return null;
@@ -66,12 +69,22 @@ async function analyzeFile(
     return null;
   }
 
-  // Read file content
   const content = await readFileContent(file.absolutePath);
 
-  // Parse file
-  const parser = createParser(file.language);
-  const parseResult: ParseResult = await parser.parse(file.absolutePath, content);
+  const parser: Parser = await createParser(file.language);
+  let parseResult: ParseResult;
+
+  try {
+    parseResult = await parser.parse(file.absolutePath, content);
+  } catch (error) {
+    // If tree-sitter parsing fails, try with regex parser as fallback
+    logger.warn(
+      `Tree-sitter parsing failed for ${file.relativePath}, falling back to regex parser: ${error instanceof Error ? error.message : String(error)}`
+    );
+    const { RegexParser } = await import('../parser/regex-parser.js');
+    const fallbackParser = new RegexParser(file.language);
+    parseResult = fallbackParser.parse(file.absolutePath, content);
+  }
 
   // Add content to parse result for metrics that need it
   parseResult.content = content;

@@ -57,21 +57,40 @@ export class FunctionLengthMetric implements Metric {
 
     const avgLength = totalLength / functions.length;
 
-    let normalizedScore: number;
+    // Industry standard (SonarQube): weighted scoring considering both average and worst-case
+    let avgScore: number;
     if (avgLength <= thresholds.excellent) {
-      normalizedScore = 100;
+      avgScore = 100;
     } else if (avgLength <= thresholds.good) {
-      normalizedScore =
+      avgScore =
         100 - ((avgLength - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 15;
     } else if (avgLength <= thresholds.acceptable) {
-      normalizedScore =
+      avgScore =
         85 - ((avgLength - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
     } else if (avgLength <= thresholds.poor) {
-      normalizedScore =
+      avgScore =
         50 - ((avgLength - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 35;
     } else {
-      normalizedScore = Math.max(0, 15 * Math.exp(-(avgLength - thresholds.poor) / 50));
+      avgScore = Math.max(0, 15 * Math.exp(-(avgLength - thresholds.poor) / 50));
     }
+
+    let maxScore: number;
+    if (maxLength <= thresholds.excellent) {
+      maxScore = 100;
+    } else if (maxLength <= thresholds.good) {
+      maxScore =
+        100 - ((maxLength - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 15;
+    } else if (maxLength <= thresholds.acceptable) {
+      maxScore =
+        85 - ((maxLength - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
+    } else if (maxLength <= thresholds.poor) {
+      maxScore =
+        50 - ((maxLength - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 35;
+    } else {
+      maxScore = Math.max(0, 15 * Math.exp(-(maxLength - thresholds.poor) / 50));
+    }
+
+    const normalizedScore = avgScore * 0.5 + maxScore * 0.5;
 
     let severity: Severity;
     if (maxLength <= thresholds.good) {

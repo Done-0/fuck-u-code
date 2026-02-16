@@ -64,23 +64,44 @@ export class CognitiveComplexityMetric implements Metric {
 
     const avgCognitive = totalCognitive / functions.length;
 
-    let normalizedScore: number;
+    // weighted scoring considering both average and worst-case
+    let avgScore: number;
     if (avgCognitive <= thresholds.excellent) {
-      normalizedScore = 100;
+      avgScore = 100;
     } else if (avgCognitive <= thresholds.good) {
-      normalizedScore =
+      avgScore =
         100 -
         ((avgCognitive - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 20;
     } else if (avgCognitive <= thresholds.acceptable) {
-      normalizedScore =
+      avgScore =
         80 - ((avgCognitive - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
     } else if (avgCognitive <= thresholds.poor) {
-      normalizedScore =
+      avgScore =
         45 -
         ((avgCognitive - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 30;
     } else {
-      normalizedScore = Math.max(0, 15 * Math.exp(-(avgCognitive - thresholds.poor) / 15));
+      avgScore = Math.max(0, 15 * Math.exp(-(avgCognitive - thresholds.poor) / 15));
     }
+
+    let maxScore: number;
+    if (maxCognitive <= thresholds.excellent) {
+      maxScore = 100;
+    } else if (maxCognitive <= thresholds.good) {
+      maxScore =
+        100 -
+        ((maxCognitive - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 20;
+    } else if (maxCognitive <= thresholds.acceptable) {
+      maxScore =
+        80 - ((maxCognitive - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 35;
+    } else if (maxCognitive <= thresholds.poor) {
+      maxScore =
+        45 -
+        ((maxCognitive - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 30;
+    } else {
+      maxScore = Math.max(0, 15 * Math.exp(-(maxCognitive - thresholds.poor) / 15));
+    }
+
+    const normalizedScore = avgScore * 0.5 + maxScore * 0.5;
 
     let severity: Severity;
     if (maxCognitive <= thresholds.good) {

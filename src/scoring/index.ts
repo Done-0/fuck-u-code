@@ -5,9 +5,6 @@
 import type { MetricResult, FileAnalysisResult, AggregatedMetric } from '../metrics/types.js';
 import type { RuntimeConfig } from '../config/schema.js';
 
-/**
- * Calculate weighted score from metric results
- */
 export function calculateScore(metrics: MetricResult[], config: RuntimeConfig): number {
   if (metrics.length === 0) return 100;
 

@@ -9,7 +9,7 @@ import type { AIConfig } from '../ai/types.js';
 export const configSchema = z.object({
   exclude: z.array(z.string()).optional().default([]),
   include: z.array(z.string()).optional().default(['**/*']),
-  concurrency: z.number().min(1).max(32).optional().default(8),
+  concurrency: z.number().min(1).max(32).optional().default(2),
   verbose: z.boolean().optional().default(false),
   output: z
     .object({
@@ -68,7 +68,7 @@ export interface RuntimeConfig extends Config {
 export const DEFAULT_CONFIG: Config = {
   exclude: [],
   include: ['**/*'],
-  concurrency: 8,
+  concurrency: 2,
   verbose: false,
   output: {
     format: 'console',

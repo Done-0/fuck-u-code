@@ -59,23 +59,43 @@ export class CyclomaticComplexityMetric implements Metric {
 
     const avgComplexity = totalComplexity / functions.length;
 
-    let normalizedScore: number;
+    let avgScore: number;
     if (avgComplexity <= thresholds.excellent) {
-      normalizedScore = 100;
+      avgScore = 100;
     } else if (avgComplexity <= thresholds.good) {
-      normalizedScore =
+      avgScore =
         100 -
         ((avgComplexity - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 20;
     } else if (avgComplexity <= thresholds.acceptable) {
-      normalizedScore =
+      avgScore =
         80 - ((avgComplexity - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 30;
     } else if (avgComplexity <= thresholds.poor) {
-      normalizedScore =
+      avgScore =
         50 -
-        ((avgComplexity - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 30;
+        ((avgComplexity - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 50;
     } else {
-      normalizedScore = Math.max(0, 20 * Math.exp(-(avgComplexity - thresholds.poor) / 20));
+      avgScore = 0;
     }
+
+    let maxScore: number;
+    if (maxComplexity <= thresholds.excellent) {
+      maxScore = 100;
+    } else if (maxComplexity <= thresholds.good) {
+      maxScore =
+        100 -
+        ((maxComplexity - thresholds.excellent) / (thresholds.good - thresholds.excellent)) * 20;
+    } else if (maxComplexity <= thresholds.acceptable) {
+      maxScore =
+        80 - ((maxComplexity - thresholds.good) / (thresholds.acceptable - thresholds.good)) * 30;
+    } else if (maxComplexity <= thresholds.poor) {
+      maxScore =
+        50 -
+        ((maxComplexity - thresholds.acceptable) / (thresholds.poor - thresholds.acceptable)) * 50;
+    } else {
+      maxScore = 0;
+    }
+
+    const normalizedScore = avgScore * 0.5 + maxScore * 0.5;
 
     let severity: Severity;
     if (maxComplexity <= thresholds.good) {

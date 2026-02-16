@@ -4,7 +4,7 @@
  */
 
 import Parser from 'web-tree-sitter';
-import { resolve, dirname } from 'node:path';
+import { resolve as pathResolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Parser as IParser, ParseResult, Language, FunctionInfo, ClassInfo } from './types.js';
 
@@ -502,9 +502,8 @@ const LANG_CONFIGS: Record<string, LanguageQueryConfig> = {
   },
 };
 
-/** Resolve WASM file path */
 function resolveWasmPath(wasmFile: string): string {
-  return resolve(__dirname, '..', '..', 'node_modules', 'tree-sitter-wasms', 'out', wasmFile);
+  return pathResolve(__dirname, '..', '..', 'node_modules', 'tree-sitter-wasms', 'out', wasmFile);
 }
 
 let parserInitialized = false;
@@ -540,42 +539,64 @@ export function getLanguageConfig(language: Language): LanguageQueryConfig | nul
 export class TreeSitterParser implements IParser {
   private language: Language;
   private config: LanguageQueryConfig;
+  private parser: Parser | null = null;
+  private initialized = false;
 
   constructor(language: Language, config: LanguageQueryConfig) {
     this.language = language;
     this.config = config;
   }
 
-  async parse(filePath: string, content: string): Promise<ParseResult> {
+  async initialize(): Promise<void> {
+    if (this.initialized) return;
+
     await ensureParserInit();
-
     const tsLang = await loadLanguage(this.config.wasmFile);
-    const parser = new Parser();
-    parser.setLanguage(tsLang);
+    this.parser = new Parser();
+    this.parser.setLanguage(tsLang);
+    this.initialized = true;
+  }
 
-    const tree = parser.parse(content);
-    const rootNode = tree.rootNode;
+  async parse(filePath: string, content: string): Promise<ParseResult> {
+    if (!this.initialized || !this.parser) {
+      await this.initialize();
+    }
 
-    const functions = this.extractFunctions(rootNode);
-    const classes = this.extractClasses(rootNode);
-    const imports = this.extractImports(rootNode);
-    const { commentLines, blankLines, codeLines, totalLines } = this.countLines(rootNode, content);
+    if (!this.parser) {
+      throw new Error('Parser initialization failed');
+    }
 
-    parser.delete();
-    tree.delete();
+    try {
+      const tree = this.parser.parse(content);
+      const rootNode = tree.rootNode;
 
-    return {
-      filePath,
-      language: this.language,
-      totalLines,
-      codeLines,
-      commentLines,
-      blankLines,
-      functions,
-      classes,
-      imports,
-      errors: [],
-    };
+      const functions = this.extractFunctions(rootNode);
+      const classes = this.extractClasses(rootNode);
+      const imports = this.extractImports(rootNode);
+      const { commentLines, blankLines, codeLines, totalLines } = this.countLines(
+        rootNode,
+        content
+      );
+
+      tree.delete();
+
+      return {
+        filePath,
+        language: this.language,
+        totalLines,
+        codeLines,
+        commentLines,
+        blankLines,
+        functions,
+        classes,
+        imports,
+        errors: [],
+      };
+    } catch (error) {
+      throw new Error(
+        `Tree-sitter parse failed: ${error instanceof Error ? error.message : String(error)}`
+      );
+    }
   }
 
   supportedLanguages(): Language[] {

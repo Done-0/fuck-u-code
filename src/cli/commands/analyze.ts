@@ -161,6 +161,8 @@ async function runAnalyze(projectPath: string, options: AnalyzeOptions): Promise
         consoleOutput.render(result);
       }
     }
+
+    process.exit(0);
   } catch (error) {
     discoverySpinner.fail(t('analysisFailed'));
     state.progressBar?.fail(t('analysisFailed'));

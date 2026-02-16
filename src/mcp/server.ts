@@ -69,8 +69,8 @@ server.registerTool(
       format: z
         .enum(['console', 'markdown', 'json'])
         .optional()
-        .default('markdown')
-        .describe('Output format (MCP clients receive markdown by default)'),
+        .default('json')
+        .describe('Output format (json for full data, markdown for summary)'),
       top: z.number().optional().default(10).describe('Number of worst files to show'),
       locale: z.enum(['en', 'zh', 'ru']).optional().default('en').describe('Output language'),
     },
