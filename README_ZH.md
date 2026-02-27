@@ -277,6 +277,7 @@ MIT
 
 ## 安利一下
 
+- [Value Realization](https://github.com/Done-0/value-realization) — 产品价值发现分析 AI 技能（24小时内10万+浏览，首日100+星）
 - [FateSpiral](https://fatespiral.com/) — AI 驱动的多人 RPG，无限世界，无限剧情
 - [玄学工坊](https://destinyteller.com/) — AI 赛博算命网站
 - [Jank](https://github.com/Done-0/Jank) — Go 语言开源博客

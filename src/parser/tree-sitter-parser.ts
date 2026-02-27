@@ -913,10 +913,13 @@ export class TreeSitterParser implements IParser {
     const walk = (node: Parser.SyntaxNode): void => {
       if (typeSet.has(node.type)) {
         callback(node);
-        // For comments, continue recursing; for functions/classes, don't
+        // For comments and imports, continue recursing
+        // For functions, also continue recursing to find nested functions (e.g., arrow functions in React components)
+        // For classes, don't recurse (methods will be found separately)
         if (
           this.config.commentNodeTypes.includes(node.type) ||
-          this.config.importNodeTypes.includes(node.type)
+          this.config.importNodeTypes.includes(node.type) ||
+          this.config.functionNodeTypes.includes(node.type)
         ) {
           for (const child of node.namedChildren) walk(child);
         }

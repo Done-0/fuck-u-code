@@ -277,6 +277,7 @@ MIT
 
 ## More Projects
 
+- [Value Realization](https://github.com/Done-0/value-realization) — AI skill for analyzing product value discovery (100K+ views in 24h, 100+ stars on day 1)
 - [FateSpiral](https://fatespiral.com/) — AI-driven multiplayer RPG, infinite worlds, evolving stories
 - [DestinyTeller](https://destinyteller.com/) — AI-powered destiny reading website
 - [Jank](https://github.com/Done-0/Jank) — Open-source blog system in Go

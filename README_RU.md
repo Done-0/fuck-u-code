@@ -280,6 +280,7 @@ MIT
 
 ## Другие проекты
 
+- [Value Realization](https://github.com/Done-0/value-realization) — AI-навык для анализа ценности продукта (100K+ просмотров за 24ч, 100+ звезд в первый день)
 - [FateSpiral](https://fatespiral.com/) — AI-мультиплеерная RPG, бесконечные миры, развивающиеся истории
 - [DestinyTeller](https://destinyteller.com/) — AI-сайт предсказаний судьбы
 - [Jank](https://github.com/Done-0/Jank) — Блог-система с открытым исходным кодом на Go
