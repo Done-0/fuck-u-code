@@ -1,6 +1,6 @@
 /**
- * Git 工具函数
- * 支持克隆远程仓库到本地临时目录
+ * Git utility functions
+ * Supports cloning remote repositories to local temporary directories
  */
 
 import { exec } from 'node:child_process';
@@ -15,37 +15,37 @@ import { t } from '../i18n/index.js';
 const execAsync = promisify(exec);
 
 /**
- * Git clone 选项
+ * Git clone options
  */
 export interface GitCloneOptions {
-  /** 克隆的目标目录路径，如果不指定则创建临时目录 */
+  /** Target directory path for cloning; if not specified, a temporary directory is created */
   targetDir?: string;
-  /** git clone 附加参数 */
+  /** Additional arguments for git clone */
   extraArgs?: string[];
-  /** 是否显示详细输出 */
+  /** Whether to show verbose output */
   verbose?: boolean;
-  /** 超时时间（毫秒） */
+  /** Timeout in milliseconds */
   timeout?: number;
 }
 
 /**
- * Git clone 结果
+ * Git clone result
  */
 export interface GitCloneResult {
-  /** 克隆成功或失败 */
+  /** Whether cloning was successful */
   success: boolean;
-  /** 克隆到的本地目录路径 */
+  /** Path to the local directory where the repo was cloned */
   targetDir?: string;
-  /** 错误信息（如果失败） */
+  /** Error message if cloning failed */
   error?: string;
-  /** 是否是临时目录 */
+  /** Whether it is a temporary directory */
   isTempDir: boolean;
 }
 
 /**
- * 从 git URL 克隆仓库
- * @param gitUrl git 仓库地址（如：https://github.com/user/repo.git）
- * @param options 克隆选项
+ * Clone a repository from a git URL
+ * @param gitUrl Git repository URL (e.g., https://github.com/user/repo.git)
+ * @param options Cloning options
  * @returns GitCloneResult
  */
 export async function gitClone(
@@ -54,7 +54,7 @@ export async function gitClone(
 ): Promise<GitCloneResult> {
   const { targetDir, extraArgs = [], verbose = false, timeout = 120000 } = options;
 
-  // 确定目标目录
+  // Determine target directory
   let cloneTarget: string;
   let isTempDir: boolean;
 
@@ -62,22 +62,22 @@ export async function gitClone(
     cloneTarget = targetDir;
     isTempDir = false;
   } else {
-    // 创建临时目录
+    // Create temporary directory
     const tempBase = tmpdir();
     const uniqueId = randomUUID().slice(0, 8);
     cloneTarget = join(tempBase, `tmp_proj_${uniqueId}`);
     isTempDir = true;
   }
 
-  // 构建 git clone 命令
+  // Build git clone command
   const args = ['clone', gitUrl, cloneTarget, ...extraArgs];
   const command = `git ${args.join(' ')}`;
 
   try {
-    // 检查 git 是否可用
+    // Check if git is available
     await execAsync('git --version', { timeout: 5000 });
 
-    // 执行 git clone
+    // Execute git clone
     const { stdout, stderr } = await execAsync(command, {
       timeout,
       encoding: 'utf-8',
@@ -90,7 +90,7 @@ export async function gitClone(
       console.error(stderr);
     }
 
-    // 验证克隆结果
+    // Verify clone result
     const cloned = await exists(cloneTarget);
     if (!cloned) {
       return {
@@ -117,10 +117,10 @@ export async function gitClone(
 }
 
 /**
- * 删除临时目录
- * @param dirPath 要删除的目录路径
- * @param force 是否强制删除（忽略错误）
- * @returns 删除是否成功
+ * Remove temporary directory
+ * @param dirPath Path to the directory to be removed
+ * @param force Whether to force removal (ignore errors)
+ * @returns Whether removal was successful
  */
 export async function removeTempDir(dirPath: string, force = true): Promise<boolean> {
   try {
@@ -145,15 +145,15 @@ export async function removeTempDir(dirPath: string, force = true): Promise<bool
 }
 
 /**
- * 解析 git URL，提取仓库名称
- * @param gitUrl git 仓库地址
- * @returns 仓库名称（不含 .git 后缀）
+ * Parse git URL and extract repository name
+ * @param gitUrl Git repository URL
+ * @returns Repository name (without .git suffix)
  */
 export function parseRepoName(gitUrl: string): string {
-  // 移除末尾的 .git
+  // Remove trailing .git
   let url = gitUrl.replace(/\.git$/, '');
 
-  // 处理 SSH 格式：git@github.com:user/repo
+  // Handle SSH format: git@github.com:user/repo
   if (url.startsWith('git@')) {
     const match = url.match(/git@[^:]+:(.+)/);
     if (match && match[1]) {
@@ -161,29 +161,29 @@ export function parseRepoName(gitUrl: string): string {
     }
   }
 
-  // 获取最后一段路径
+  // Get the last segment of the path
   const parts = url.split('/');
   const repoName = parts[parts.length - 1];
   return repoName || 'unknown-repo';
 }
 
 /**
- * 验证 git URL 格式
- * @param gitUrl 待验证的 URL
- * @returns 是否是有效的 git URL
+ * Validate git URL format
+ * @param gitUrl URL to validate
+ * @returns Whether it is a valid git URL
  */
 export function isValidGitUrl(gitUrl: string): boolean {
-  // HTTPS 格式
+  // HTTPS format
   if (/^https?:\/\/.+/.test(gitUrl)) {
     return true;
   }
 
-  // SSH 格式
+  // SSH format
   if (/^git@[^:]+:.+/.test(gitUrl)) {
     return true;
   }
 
-  // 本地路径（也允许）
+  // Local path (also allowed)
   if (/^[./~]/.test(gitUrl)) {
     return true;
   }
