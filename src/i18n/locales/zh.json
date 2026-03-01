@@ -427,5 +427,26 @@
   "json_severity_info": "未检测到问题，代码质量良好",
   "json_severity_warning": "应该处理的轻微问题",
   "json_severity_error": "需要关注的重大问题",
-  "json_severity_critical": "必须修复的严重问题"
+  "json_severity_critical": "必须修复的严重问题",
+
+  "cmd_clone_analyze_description": "克隆 git 仓库并分析代码质量",
+  "cmd_clone_analyze_example": "克隆并分析远程仓库",
+  "cmd_clone_analyze_example_url": "克隆并分析指定的 git 仓库",
+  "cmd_clone_analyze_example_output": "克隆并分析，输出 Markdown 报告",
+  "cmd_clone_analyze_example_keep": "克隆并分析，保留临时目录",
+  "progress_cloning": "正在克隆仓库...",
+  "progress_clone_success": "仓库克隆成功",
+  "progress_clone_failed": "仓库克隆失败",
+  "progress_cleaning": "正在清理临时目录...",
+  "progress_clean_complete": "临时目录已清理",
+  "progress_clean_failed": "清理临时目录失败",
+  "error_git_clone_failed": "克隆 {url} 失败：{reason}",
+  "error_target_dir_not_created": "目标目录未创建",
+  "error_remove_temp_dir_failed": "删除临时目录 {path} 失败：{error}",
+  "error_invalid_git_url": "无效的 git URL: {url}",
+  "error_git_not_installed": "git 未安装或不在 PATH 中",
+  "info_temp_dir_created": "临时目录已创建：{path}",
+  "info_temp_dir_kept": "临时目录已保留：{path}",
+  "info_temp_dir_removed": "临时目录已删除：{path}",
+  "warn_git_url_not_valid": "git URL 可能无效：{url}"
 }
