@@ -426,26 +426,5 @@
   "json_severity_info": "No issues detected, code quality is good",
   "json_severity_warning": "Minor issues that should be addressed",
   "json_severity_error": "Significant issues that need attention",
-  "json_severity_critical": "Critical issues that must be fixed",
-
-  "cmd_clone_analyze_description": "Clone git repository and analyze code quality",
-  "cmd_clone_analyze_example": "Clone and analyze remote repository",
-  "cmd_clone_analyze_example_url": "Clone and analyze specified git repository",
-  "cmd_clone_analyze_example_output": "Clone and analyze, output Markdown report",
-  "cmd_clone_analyze_example_keep": "Clone and analyze, keep temp directory",
-  "progress_cloning": "Cloning repository...",
-  "progress_clone_success": "Repository cloned successfully",
-  "progress_clone_failed": "Failed to clone repository",
-  "progress_cleaning": "Cleaning up temp directory...",
-  "progress_clean_complete": "Temp directory cleaned",
-  "progress_clean_failed": "Failed to clean temp directory",
-  "error_git_clone_failed": "Failed to clone {url}: {reason}",
-  "error_target_dir_not_created": "Target directory not created",
-  "error_remove_temp_dir_failed": "Failed to remove temp directory {path}: {error}",
-  "error_invalid_git_url": "Invalid git URL: {url}",
-  "error_git_not_installed": "git is not installed or not in PATH",
-  "info_temp_dir_created": "Temp directory created: {path}",
-  "info_temp_dir_kept": "Temp directory kept: {path}",
-  "info_temp_dir_removed": "Temp directory removed: {path}",
-  "warn_git_url_not_valid": "Git URL may be invalid: {url}"
+  "json_severity_critical": "Critical issues that must be fixed"
 }
