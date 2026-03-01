@@ -426,5 +426,26 @@
   "json_severity_info": "Проблем не обнаружено, качество кода хорошее",
   "json_severity_warning": "Незначительные проблемы, которые следует устранить",
   "json_severity_error": "Значительные проблемы, требующие внимания",
-  "json_severity_critical": "Критические проблемы, которые необходимо исправить"
+  "json_severity_critical": "Критические проблемы, которые необходимо исправить",
+
+  "cmd_clone_analyze_description": "Клонировать git репозиторий и проанализировать качество кода",
+  "cmd_clone_analyze_example": "Клонировать и проанализировать удаленный репозиторий",
+  "cmd_clone_analyze_example_url": "Клонировать и проанализировать указанный git репозиторий",
+  "cmd_clone_analyze_example_output": "Клонировать и проанализировать, вывести отчёт в Markdown",
+  "cmd_clone_analyze_example_keep": "Клонировать и проанализировать, сохранить временную директорию",
+  "progress_cloning": "Клонирование репозитория...",
+  "progress_clone_success": "Репозиторий успешно клонирован",
+  "progress_clone_failed": "Не удалось клонировать репозиторий",
+  "progress_cleaning": "Очистка временной директории...",
+  "progress_clean_complete": "Временная директория очищена",
+  "progress_clean_failed": "Не удалось очистить временную директорию",
+  "error_git_clone_failed": "Не удалось клонировать {url}: {reason}",
+  "error_target_dir_not_created": "Целевая директория не создана",
+  "error_remove_temp_dir_failed": "Не удалось удалить временную директорию {path}: {error}",
+  "error_invalid_git_url": "Неверный git URL: {url}",
+  "error_git_not_installed": "git не установлен или не в PATH",
+  "info_temp_dir_created": "Временная директория создана: {path}",
+  "info_temp_dir_kept": "Временная директория сохранена: {path}",
+  "info_temp_dir_removed": "Временная директория удалена: {path}",
+  "warn_git_url_not_valid": "Git URL может быть недействительным: {url}"
 }
