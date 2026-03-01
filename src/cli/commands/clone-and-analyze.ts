@@ -1,6 +1,6 @@
 /**
  * Clone and Analyze command
- * 克隆 git 仓库并分析代码质量
+ * Clone git repository and analyze code quality
  */
 
 import { Command } from 'commander';
@@ -69,7 +69,7 @@ ${t('cli_examples')}
 }
 
 async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Promise<void> {
-  // 验证 git URL
+  // Validate git URL
   if (!isValidGitUrl(gitUrl)) {
     console.error(chalk.red(t('error_invalid_git_url', { url: gitUrl })));
     process.exit(1);
@@ -82,7 +82,7 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
   let shouldCleanup = true;
 
   try {
-    // 克隆仓库
+    // Clone repository
     cloneSpinner.start();
     const cloneResult: GitCloneResult = await gitClone(gitUrl, {
       verbose: options.verbose,
@@ -101,7 +101,7 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
       console.log(chalk.green(t('info_temp_dir_created', { path: tempDir })));
     }
 
-    // 如果用户指定保留临时目录，则不清理
+    // If the user specifies to keep the temporary directory, do not clean up
     if (options.keepTemp) {
       shouldCleanup = false;
       if (tempDir) {
@@ -111,7 +111,7 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
 
     const resolvedPath = resolve(tempDir!);
 
-    // 验证路径
+    // Validate path
     if (!(await exists(resolvedPath))) {
       console.error(chalk.red(t('error_path_not_found', { path: resolvedPath })));
       if (shouldCleanup && tempDir) {
@@ -128,7 +128,7 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
       process.exit(1);
     }
 
-    // 加载配置并分析
+    // Load configuration and analyze
     const config = await loadConfig(resolvedPath);
     const runtimeConfig = createRuntimeConfig(resolvedPath, config, {
       verbose: options.verbose,
@@ -163,7 +163,7 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
 
     state.progressBar?.succeed(t('analysisComplete'));
 
-    // 输出结果
+    // Output results
     const outputFormat = runtimeConfig.output.format;
     const outputFile = runtimeConfig.output.file;
 
@@ -212,7 +212,7 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
       }
     }
 
-    // 清理临时目录
+    // Clean up temporary directory
     if (shouldCleanup && tempDir) {
       const cleanSpinner = createSpinner(t('progress_cleaning'));
       cleanSpinner.start();
@@ -234,7 +234,7 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
     state.progressBar?.fail(t('analysisFailed'));
     console.error(chalk.red(error instanceof Error ? error.message : String(error)));
 
-    // 发生错误时也要清理临时目录
+    // Clean up temporary directory even if an error occurs
     if (shouldCleanup && tempDir) {
       await removeTempDir(tempDir);
     }
