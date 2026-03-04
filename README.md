@@ -61,6 +61,8 @@ fuck-u-code analyze . -e "**/*.test.ts"        # Exclude test files
 | `--concurrency <n>` | `-c` | Concurrent workers (default 8) |
 | `--locale <lang>` | `-l` | Language: en/zh/ru |
 
+> Tip: Options can be combined. Example: `fuck-u-code analyze . -v -l zh` (verbose output in Chinese).
+
 ### AI Code Review
 
 Requires AI provider setup (see [AI Configuration](#ai-configuration)).
@@ -85,6 +87,8 @@ fuck-u-code ai-review . -b https://your-api.com/v1 -k sk-xxx -m model # Custom e
 | `--output <file>` | `-o` | Write to file |
 | `--verbose` | `-v` | Verbose output |
 | `--locale <lang>` | `-l` | Language: en/zh/ru |
+
+> Tip: Options can be combined. Example: `fuck-u-code ai-review . -m gpt-4o -v -l zh`.
 
 ### Config Management
 
