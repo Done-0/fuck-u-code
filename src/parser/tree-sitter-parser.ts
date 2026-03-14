@@ -663,7 +663,9 @@ export class TreeSitterParser implements IParser {
 
       const startLine = node.startPosition.row + 1;
       const endLine = node.endPosition.row + 1;
-      const lineCount = endLine - startLine + 1;
+      // Use the function's "own" lines so inline callbacks do not inflate
+      // the enclosing function's size metrics in React/TSX-style code.
+      const lineCount = this.calculateOwnLineCount(node);
 
       const parameterCount = this.countParameters(node);
       const bodyNode = node.childForFieldName(this.config.functionBodyField);
@@ -684,6 +686,64 @@ export class TreeSitterParser implements IParser {
     });
 
     return functions;
+  }
+
+  /**
+   * Count only the lines that belong to this function itself.
+   *
+   * For JavaScript/TypeScript, tree-sitter also treats inline callbacks
+   * like `useEffect(() => { ... })` as nested function nodes. If we simply
+   * use the outer node's full start/end range, the callback body gets counted
+   * twice: once for the callback itself and once again for the enclosing
+   * component or function. That makes function-length metrics look much worse
+   * than the code actually is.
+   */
+  private calculateOwnLineCount(node: Parser.SyntaxNode): number {
+    const totalLineCount = node.endPosition.row - node.startPosition.row + 1;
+    const nestedRanges: Array<[number, number]> = [];
+
+    const collectNestedFunctionRanges = (current: Parser.SyntaxNode): void => {
+      for (const child of current.namedChildren) {
+        if (this.config.functionNodeTypes.includes(child.type)) {
+          // Record the nested function's full line span so we can subtract it
+          // from the enclosing function's size accounting.
+          nestedRanges.push([child.startPosition.row, child.endPosition.row]);
+          continue;
+        }
+
+        collectNestedFunctionRanges(child);
+      }
+    };
+
+    collectNestedFunctionRanges(node);
+
+    if (nestedRanges.length === 0) {
+      return totalLineCount;
+    }
+
+    // Merge overlapping or adjacent ranges before subtraction to avoid
+    // double-subtracting nested callbacks that share lines.
+    nestedRanges.sort((a, b) => a[0] - b[0]);
+
+    let excludedLineCount = 0;
+    let [rangeStart, rangeEnd] = nestedRanges[0]!;
+
+    for (let i = 1; i < nestedRanges.length; i++) {
+      const [start, end] = nestedRanges[i]!;
+      if (start <= rangeEnd + 1) {
+        rangeEnd = Math.max(rangeEnd, end);
+        continue;
+      }
+
+      excludedLineCount += rangeEnd - rangeStart + 1;
+      rangeStart = start;
+      rangeEnd = end;
+    }
+
+    excludedLineCount += rangeEnd - rangeStart + 1;
+
+    // Keep a minimum of 1 so single-expression wrappers still register as a function.
+    return Math.max(1, totalLineCount - excludedLineCount);
   }
 
   private extractFunctionName(node: Parser.SyntaxNode): string | null {
