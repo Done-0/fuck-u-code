@@ -410,6 +410,27 @@ class UserService {
       expect(result.functions[0]!.name).toBe('fetchData');
       expect(result.functions[0]!.parameterCount).toBeGreaterThanOrEqual(1);
     });
+
+    it('should exclude React hook callbacks from enclosing function length', async () => {
+      // Regression test for React components where hook callbacks are valid
+      // nested arrow functions but should not bloat the parent function size.
+      const code = `const ChatPanel = ({ messages }: { messages: string[] }) => {
+  useEffect(() => {
+    if (messages.length > 0) {
+      console.log(messages.at(-1));
+    }
+  }, [messages]);
+
+  return <div>{messages.length}</div>;
+};
+`;
+      const result = await parser.parse('chat-panel.tsx', code);
+
+      expect(result.functions).toHaveLength(1);
+      expect(result.functions[0]!.name).toBe('ChatPanel');
+      expect(result.functions[0]!.lineCount).toBe(3);
+      expect(result.functions[0]!.nestingDepth).toBe(0);
+    });
   });
 
   describe('Python parsing', () => {
