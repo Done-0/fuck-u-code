@@ -1,4 +1,4 @@
-# fuck-u-code [![中文](https://img.shields.io/badge/文档-简体中文-blue?style=flat-square)](README_ZH.md) [![English](https://img.shields.io/badge/Docs-English-red?style=flat-square)](README.md) [![Русский](https://img.shields.io/badge/Docs-Русский-blue?style=flat-square)](README_RU.md)
+# fuck-u-code [![中文](https://img.shields.io/badge/文档-简体中文-blue?style=flat-square)](README_ZH.md) [![繁體中文](https://img.shields.io/badge/文檔-繁體中文-blue?style=flat-square)](README_ZH-TW.md) [![English](https://img.shields.io/badge/Docs-English-red?style=flat-square)](README.md) [![Русский](https://img.shields.io/badge/Docs-Русский-blue?style=flat-square)](README_RU.md)
 
 > [!Important]
 > 📢 记住这个命令：fuck-u-code - 让代码不再烂到发指！
@@ -59,7 +59,7 @@ fuck-u-code analyze . -e "**/*.test.ts"        # 排除测试文件
 | `--output <file>` | `-o` | 输出到文件 |
 | `--exclude <glob>` | `-e` | 额外排除模式 |
 | `--concurrency <n>` | `-c` | 并发数（默认 8） |
-| `--locale <lang>` | `-l` | 语言: en/zh/ru |
+| `--locale <lang>` | `-l` | 语言: en/zh/ru/zh-tw |
 
 ### AI 代码审查
 
