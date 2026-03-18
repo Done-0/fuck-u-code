@@ -1,4 +1,4 @@
-# fuck-u-code [![English](https://img.shields.io/badge/Docs-English-red?style=flat-square)](README.md) [![中文](https://img.shields.io/badge/文档-简体中文-blue?style=flat-square)](README_ZH.md) [![Русский](https://img.shields.io/badge/Docs-Русский-blue?style=flat-square)](README_RU.md)
+# fuck-u-code [![English](https://img.shields.io/badge/Docs-English-red?style=flat-square)](README.md) [![繁體中文](https://img.shields.io/badge/文檔-繁體中文-blue?style=flat-square)](README_ZH-TW.md) [![中文](https://img.shields.io/badge/文档-简体中文-blue?style=flat-square)](README_ZH.md) [![Русский](https://img.shields.io/badge/Docs-Русский-blue?style=flat-square)](README_RU.md)
 
 > [!Important]
 > 📢 Remember this command: `fuck-u-code` - let bad code have nowhere to hide!
