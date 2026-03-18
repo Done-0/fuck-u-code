@@ -59,7 +59,7 @@ fuck-u-code analyze . -e "**/*.test.ts"        # 排除测试文件
 | `--output <file>` | `-o` | 输出到文件 |
 | `--exclude <glob>` | `-e` | 额外排除模式 |
 | `--concurrency <n>` | `-c` | 并发数（默认 8） |
-| `--locale <lang>` | `-l` | 语言: en/zh/ru |
+| `--locale <lang>` | `-l` | 语言: en/zh/ru/zh-tw |
 
 ### AI 代码审查
 
