@@ -60,7 +60,7 @@ fuck-u-code analyze . -e "**/*.test.ts"        # Исключить тесты
 | `--output <file>` | `-o` | Записать в файл |
 | `--exclude <glob>` | `-e` | Дополнительные шаблоны исключения |
 | `--concurrency <n>` | `-c` | Параллельные воркеры (по умолчанию 8) |
-| `--locale <lang>` | `-l` | Язык: en/zh/ru |
+| `--locale <lang>` | `-l` | Язык: en/zh/ru/zh-tw |
 
 ### AI-обзор кода
 
