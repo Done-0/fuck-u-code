@@ -5,16 +5,22 @@
 import en from './locales/en.json' with { type: 'json' };
 import zh from './locales/zh.json' with { type: 'json' };
 import ru from './locales/ru.json' with { type: 'json' };
+import zhTW from './locales/zh_TW.json' with { type: 'json' };
 
-export type Locale = 'en' | 'zh' | 'ru';
+export type Locale = 'en' | 'zh' | 'ru' | 'zh_TW';
 
 type TranslationKey = keyof typeof en;
 type Translations = Record<TranslationKey, string>;
 
+function assertTranslations<T extends Translations>(translations: T): T {
+  return translations;
+}
+
 const translations: Record<Locale, Translations> = {
-  en: en as Translations,
-  zh: zh as Translations,
-  ru: ru as Translations,
+  en: assertTranslations(en),
+  zh: assertTranslations(zh),
+  ru: assertTranslations(ru),
+  zh_TW: assertTranslations(zhTW),
 };
 
 let currentLocale: Locale = 'en';
