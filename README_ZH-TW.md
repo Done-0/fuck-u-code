@@ -1,5 +1,7 @@
 # fuck-u-code [![中文](https://img.shields.io/badge/文檔-繁體中文-blue?style=flat-square)](README_ZH-TW.md) [![English](https://img.shields.io/badge/Docs-English-red?style=flat-square)](README.md) [![Русский](https://img.shields.io/badge/Docs-Русский-blue?style=flat-square)](README_RU.md)
 
+<a href="https://trendshift.io/repositories/14999" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14999" alt="Done-0%2Ffuck-u-code | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
 > [!Important]
 > 📢 記住這個命令：fuck-u-code - 讓程式不再爛到發指！
 
