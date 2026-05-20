@@ -155,8 +155,8 @@ export function parseRepoName(gitUrl: string): string {
 
   // Handle SSH format: git@github.com:user/repo
   if (url.startsWith('git@')) {
-    const match = url.match(/git@[^:]+:(.+)/);
-    if (match && match[1]) {
+    const match = /git@[^:]+:(.+)/.exec(url);
+    if (match?.[1]) {
       url = match[1];
     }
   }

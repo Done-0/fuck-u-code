@@ -53,15 +53,15 @@ fuck-u-code analyze . -f json -o report.json   # Export JSON
 fuck-u-code analyze . -e "**/*.test.ts"        # Exclude test files
 ```
 
-| Option | Short | Description |
-| --- | --- | --- |
-| `--verbose` | `-v` | Verbose output |
-| `--top <n>` | `-t` | Top N worst files (default 10) |
-| `--format <fmt>` | `-f` | Format: console/markdown/json/html |
-| `--output <file>` | `-o` | Write to file |
-| `--exclude <glob>` | `-e` | Additional exclude patterns |
-| `--concurrency <n>` | `-c` | Concurrent workers (default 8) |
-| `--locale <lang>` | `-l` | Language: en/zh/ru/zh-tw |
+| Option              | Short | Description                        |
+| ------------------- | ----- | ---------------------------------- |
+| `--verbose`         | `-v`  | Verbose output                     |
+| `--top <n>`         | `-t`  | Top N worst files (default 10)     |
+| `--format <fmt>`    | `-f`  | Format: console/markdown/json/html |
+| `--output <file>`   | `-o`  | Write to file                      |
+| `--exclude <glob>`  | `-e`  | Additional exclude patterns        |
+| `--concurrency <n>` | `-c`  | Concurrent workers (default 8)     |
+| `--locale <lang>`   | `-l`  | Language: en/zh/ru/zh-tw           |
 
 ### AI Code Review
 
@@ -76,17 +76,17 @@ fuck-u-code ai-review . -m gpt-4o -f markdown -o review.md # Export Markdown
 fuck-u-code ai-review . -b https://your-api.com/v1 -k sk-xxx -m model # Custom endpoint
 ```
 
-| Option | Short | Description |
-| --- | --- | --- |
-| `--model <model>` | `-m` | Model name (required) |
-| `--provider <name>` | `-p` | Provider: openai/anthropic/deepseek/gemini/ollama |
-| `--base-url <url>` | `-b` | Custom API endpoint |
-| `--api-key <key>` | `-k` | API key |
-| `--top <n>` | `-t` | Review top N worst files (default 5) |
-| `--format <fmt>` | `-f` | Format: console/markdown/html |
-| `--output <file>` | `-o` | Write to file |
-| `--verbose` | `-v` | Verbose output |
-| `--locale <lang>` | `-l` | Language: en/zh/ru |
+| Option              | Short | Description                                       |
+| ------------------- | ----- | ------------------------------------------------- |
+| `--model <model>`   | `-m`  | Model name (required)                             |
+| `--provider <name>` | `-p`  | Provider: openai/anthropic/deepseek/gemini/ollama |
+| `--base-url <url>`  | `-b`  | Custom API endpoint                               |
+| `--api-key <key>`   | `-k`  | API key                                           |
+| `--top <n>`         | `-t`  | Review top N worst files (default 5)              |
+| `--format <fmt>`    | `-f`  | Format: console/markdown/html                     |
+| `--output <file>`   | `-o`  | Write to file                                     |
+| `--verbose`         | `-v`  | Verbose output                                    |
+| `--locale <lang>`   | `-l`  | Language: en/zh/ru                                |
 
 ### Config Management
 
@@ -175,13 +175,13 @@ Full example (`.fuckucoderc.json`):
 
 Supports 5 providers. Priority: CLI flags > environment variables > config file.
 
-| Provider | Environment Variables | Example |
-| --- | --- | --- |
-| OpenAI-compatible | `OPENAI_API_KEY` `OPENAI_MODEL` `OPENAI_BASE_URL` | `ai-review . -m gpt-4o` |
-| Anthropic | `ANTHROPIC_API_KEY` | `ai-review . -p anthropic -m claude-sonnet-4-5-20250929` |
-| DeepSeek | `DEEPSEEK_API_KEY` | `ai-review . -p deepseek -m deepseek-chat` |
-| Gemini | `GEMINI_API_KEY` | `ai-review . -p gemini -m gemini-pro` |
-| Ollama | `OLLAMA_HOST` (optional) | `ai-review . -p ollama -m codellama` |
+| Provider          | Environment Variables                             | Example                                                  |
+| ----------------- | ------------------------------------------------- | -------------------------------------------------------- |
+| OpenAI-compatible | `OPENAI_API_KEY` `OPENAI_MODEL` `OPENAI_BASE_URL` | `ai-review . -m gpt-4o`                                  |
+| Anthropic         | `ANTHROPIC_API_KEY`                               | `ai-review . -p anthropic -m claude-sonnet-4-5-20250929` |
+| DeepSeek          | `DEEPSEEK_API_KEY`                                | `ai-review . -p deepseek -m deepseek-chat`               |
+| Gemini            | `GEMINI_API_KEY`                                  | `ai-review . -p gemini -m gemini-pro`                    |
+| Ollama            | `OLLAMA_HOST` (optional)                          | `ai-review . -p ollama -m codellama`                     |
 
 ```bash
 # OpenAI-compatible
@@ -277,9 +277,7 @@ MIT
 - fenderisfine@gmail.com
 - WeChat: l927171598
 
-## More Projects
+## 💡 Discover More
 
-- [Value Realization](https://github.com/Done-0/value-realization) — AI skill for analyzing product value discovery (100K+ views in 24h, 100+ stars on day 1)
-- [FateSpiral](https://fatespiral.com/) — AI-driven multiplayer RPG, infinite worlds, evolving stories
-- [DestinyTeller](https://destinyteller.com/) — AI-powered destiny reading website
-- [Jank](https://github.com/Done-0/Jank) — Open-source blog system in Go
+- **[Value Realization](https://github.com/Done-0/value-realization)** — Want to build the next breakout product like `fuck-u-code`? Use this AI skill to escape the developer's "echo chamber" and accurately validate real user needs.
+- **[Hermai.ai](https://hermai.ai)** — Say goodbye to fragile web scrapers. Instantly turn any website into a clean, stable JSON API without wrestling with DOM changes and anti-scraping protections.

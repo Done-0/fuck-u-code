@@ -53,15 +53,15 @@ fuck-u-code analyze . -f json -o report.json   # 匯出 JSON
 fuck-u-code analyze . -e "**/*.test.ts"        # 排除測試檔案
 ```
 
-| 選項 | 簡寫 | 說明 |
-| --- | --- | --- |
-| `--verbose` | `-v` | 詳細輸出 |
-| `--top <n>` | `-t` | 最差前 N 個檔案（預設 10） |
-| `--format <fmt>` | `-f` | 格式: console/markdown/json/html |
-| `--output <file>` | `-o` | 輸出到檔案 |
-| `--exclude <glob>` | `-e` | 額外排除模式 |
-| `--concurrency <n>` | `-c` | 並發數（預設 8） |
-| `--locale <lang>` | `-l` | 語言: en/zh/zh-TW/ru |
+| 選項                | 簡寫 | 說明                             |
+| ------------------- | ---- | -------------------------------- |
+| `--verbose`         | `-v` | 詳細輸出                         |
+| `--top <n>`         | `-t` | 最差前 N 個檔案（預設 10）       |
+| `--format <fmt>`    | `-f` | 格式: console/markdown/json/html |
+| `--output <file>`   | `-o` | 輸出到檔案                       |
+| `--exclude <glob>`  | `-e` | 額外排除模式                     |
+| `--concurrency <n>` | `-c` | 並發數（預設 8）                 |
+| `--locale <lang>`   | `-l` | 語言: en/zh/zh-TW/ru             |
 
 ### AI 程式審查
 
@@ -76,17 +76,17 @@ fuck-u-code ai-review . -m gpt-4o -f markdown -o review.md # 匯出 Markdown
 fuck-u-code ai-review . -b https://your-api.com/v1 -k sk-xxx -m model # 自訂端點
 ```
 
-| 選項 | 簡寫 | 說明 |
-| --- | --- | --- |
-| `--model <model>` | `-m` | 模型名稱（必填） |
+| 選項                | 簡寫 | 說明                                            |
+| ------------------- | ---- | ----------------------------------------------- |
+| `--model <model>`   | `-m` | 模型名稱（必填）                                |
 | `--provider <name>` | `-p` | 服務商: openai/anthropic/deepseek/gemini/ollama |
-| `--base-url <url>` | `-b` | 自訂 API 端點 |
-| `--api-key <key>` | `-k` | API 金鑰 |
-| `--top <n>` | `-t` | 審查最差前 N 個檔案（預設 5） |
-| `--format <fmt>` | `-f` | 格式: console/markdown/html |
-| `--output <file>` | `-o` | 輸出到檔案 |
-| `--verbose` | `-v` | 詳細輸出 |
-| `--locale <lang>` | `-l` | 語言: en/zh/zh-TW/ru |
+| `--base-url <url>`  | `-b` | 自訂 API 端點                                   |
+| `--api-key <key>`   | `-k` | API 金鑰                                        |
+| `--top <n>`         | `-t` | 審查最差前 N 個檔案（預設 5）                   |
+| `--format <fmt>`    | `-f` | 格式: console/markdown/html                     |
+| `--output <file>`   | `-o` | 輸出到檔案                                      |
+| `--verbose`         | `-v` | 詳細輸出                                        |
+| `--locale <lang>`   | `-l` | 語言: en/zh/zh-TW/ru                            |
 
 ### 設定管理
 
@@ -175,13 +175,13 @@ fuck-u-code uninstall    # 移除全域設定、MCP 設定和 npm 套件
 
 支援 5 種服務商，優先級：命令列引數 > 環境變數 > 設定檔。
 
-| 服務商 | 環境變數 | 範例命令 |
-| --- | --- | --- |
-| OpenAI 相容 | `OPENAI_API_KEY` `OPENAI_MODEL` `OPENAI_BASE_URL` | `ai-review . -m gpt-4o` |
-| Anthropic | `ANTHROPIC_API_KEY` | `ai-review . -p anthropic -m claude-sonnet-4-5-20250929` |
-| DeepSeek | `DEEPSEEK_API_KEY` | `ai-review . -p deepseek -m deepseek-chat` |
-| Gemini | `GEMINI_API_KEY` | `ai-review . -p gemini -m gemini-pro` |
-| Ollama | `OLLAMA_HOST`（可選） | `ai-review . -p ollama -m codellama` |
+| 服務商      | 環境變數                                          | 範例命令                                                 |
+| ----------- | ------------------------------------------------- | -------------------------------------------------------- |
+| OpenAI 相容 | `OPENAI_API_KEY` `OPENAI_MODEL` `OPENAI_BASE_URL` | `ai-review . -m gpt-4o`                                  |
+| Anthropic   | `ANTHROPIC_API_KEY`                               | `ai-review . -p anthropic -m claude-sonnet-4-5-20250929` |
+| DeepSeek    | `DEEPSEEK_API_KEY`                                | `ai-review . -p deepseek -m deepseek-chat`               |
+| Gemini      | `GEMINI_API_KEY`                                  | `ai-review . -p gemini -m gemini-pro`                    |
+| Ollama      | `OLLAMA_HOST`（可選）                             | `ai-review . -p ollama -m codellama`                     |
 
 ```bash
 # OpenAI 相容
@@ -277,9 +277,7 @@ MIT
 - fenderisfine@gmail.com
 - WeChat: l927171598
 
-## 安利一下
+## 💡 更多探索
 
-- [Value Realization](https://github.com/Done-0/value-realization) — 產品價值發現分析 AI 技能（24小時內10萬+瀏覽，首日100+星）
-- [FateSpiral](https://fatespiral.com/) — AI 驅動的多人 RPG，無限世界，無限劇情
-- [玄學工坊](https://destinyteller.com/) — AI 賽博算命網站
-- [Jank](https://github.com/Done-0/Jank) — Go 語言開源部落格
+- **[Value Realization](https://github.com/Done-0/value-realization)** — 想要獨立開發出像 `fuck-u-code` 這樣的爆款產品？用這個 AI 技能跳出開發者的「自嗨」，精準驗證真實需求。
+- **[Hermai.ai](https://hermai.ai)** — 告別一碰就碎的爬蟲腳本。無需對抗 DOM 變更與反爬蟲，一鍵將任意網站轉化為乾淨、穩定的 JSON API。

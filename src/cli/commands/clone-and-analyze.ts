@@ -109,7 +109,10 @@ async function runCloneAnalyze(gitUrl: string, options: CloneAnalyzeOptions): Pr
       }
     }
 
-    const resolvedPath = resolve(tempDir!);
+    if (!tempDir) {
+      throw new Error('Target directory is missing after successful clone');
+    }
+    const resolvedPath = resolve(tempDir);
 
     // Validate path
     if (!(await exists(resolvedPath))) {

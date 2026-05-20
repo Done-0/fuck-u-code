@@ -53,15 +53,15 @@ fuck-u-code analyze . -f json -o report.json   # 导出 JSON
 fuck-u-code analyze . -e "**/*.test.ts"        # 排除测试文件
 ```
 
-| 选项 | 简写 | 说明 |
-| --- | --- | --- |
-| `--verbose` | `-v` | 详细输出 |
-| `--top <n>` | `-t` | 最差前 N 个文件（默认 10） |
-| `--format <fmt>` | `-f` | 格式: console/markdown/json/html |
-| `--output <file>` | `-o` | 输出到文件 |
-| `--exclude <glob>` | `-e` | 额外排除模式 |
-| `--concurrency <n>` | `-c` | 并发数（默认 8） |
-| `--locale <lang>` | `-l` | 语言: en/zh/ru/zh-tw |
+| 选项                | 简写 | 说明                             |
+| ------------------- | ---- | -------------------------------- |
+| `--verbose`         | `-v` | 详细输出                         |
+| `--top <n>`         | `-t` | 最差前 N 个文件（默认 10）       |
+| `--format <fmt>`    | `-f` | 格式: console/markdown/json/html |
+| `--output <file>`   | `-o` | 输出到文件                       |
+| `--exclude <glob>`  | `-e` | 额外排除模式                     |
+| `--concurrency <n>` | `-c` | 并发数（默认 8）                 |
+| `--locale <lang>`   | `-l` | 语言: en/zh/ru/zh-tw             |
 
 ### AI 代码审查
 
@@ -76,17 +76,17 @@ fuck-u-code ai-review . -m gpt-4o -f markdown -o review.md # 导出 Markdown
 fuck-u-code ai-review . -b https://your-api.com/v1 -k sk-xxx -m model # 自定义端点
 ```
 
-| 选项 | 简写 | 说明 |
-| --- | --- | --- |
-| `--model <model>` | `-m` | 模型名称（必填） |
+| 选项                | 简写 | 说明                                            |
+| ------------------- | ---- | ----------------------------------------------- |
+| `--model <model>`   | `-m` | 模型名称（必填）                                |
 | `--provider <name>` | `-p` | 提供商: openai/anthropic/deepseek/gemini/ollama |
-| `--base-url <url>` | `-b` | 自定义 API 端点 |
-| `--api-key <key>` | `-k` | API 密钥 |
-| `--top <n>` | `-t` | 审查最差前 N 个文件（默认 5） |
-| `--format <fmt>` | `-f` | 格式: console/markdown/html |
-| `--output <file>` | `-o` | 输出到文件 |
-| `--verbose` | `-v` | 详细输出 |
-| `--locale <lang>` | `-l` | 语言: en/zh/ru |
+| `--base-url <url>`  | `-b` | 自定义 API 端点                                 |
+| `--api-key <key>`   | `-k` | API 密钥                                        |
+| `--top <n>`         | `-t` | 审查最差前 N 个文件（默认 5）                   |
+| `--format <fmt>`    | `-f` | 格式: console/markdown/html                     |
+| `--output <file>`   | `-o` | 输出到文件                                      |
+| `--verbose`         | `-v` | 详细输出                                        |
+| `--locale <lang>`   | `-l` | 语言: en/zh/ru                                  |
 
 ### 配置管理
 
@@ -175,13 +175,13 @@ fuck-u-code uninstall    # 移除全局配置、MCP 配置和 npm 包
 
 支持 5 种提供商，优先级：命令行参数 > 环境变量 > 配置文件。
 
-| 提供商 | 环境变量 | 示例命令 |
-| --- | --- | --- |
-| OpenAI 兼容 | `OPENAI_API_KEY` `OPENAI_MODEL` `OPENAI_BASE_URL` | `ai-review . -m gpt-4o` |
-| Anthropic | `ANTHROPIC_API_KEY` | `ai-review . -p anthropic -m claude-sonnet-4-5-20250929` |
-| DeepSeek | `DEEPSEEK_API_KEY` | `ai-review . -p deepseek -m deepseek-chat` |
-| Gemini | `GEMINI_API_KEY` | `ai-review . -p gemini -m gemini-pro` |
-| Ollama | `OLLAMA_HOST`（可选） | `ai-review . -p ollama -m codellama` |
+| 提供商      | 环境变量                                          | 示例命令                                                 |
+| ----------- | ------------------------------------------------- | -------------------------------------------------------- |
+| OpenAI 兼容 | `OPENAI_API_KEY` `OPENAI_MODEL` `OPENAI_BASE_URL` | `ai-review . -m gpt-4o`                                  |
+| Anthropic   | `ANTHROPIC_API_KEY`                               | `ai-review . -p anthropic -m claude-sonnet-4-5-20250929` |
+| DeepSeek    | `DEEPSEEK_API_KEY`                                | `ai-review . -p deepseek -m deepseek-chat`               |
+| Gemini      | `GEMINI_API_KEY`                                  | `ai-review . -p gemini -m gemini-pro`                    |
+| Ollama      | `OLLAMA_HOST`（可选）                             | `ai-review . -p ollama -m codellama`                     |
 
 ```bash
 # OpenAI 兼容
@@ -277,9 +277,7 @@ MIT
 - fenderisfine@gmail.com
 - WeChat: l927171598
 
-## 安利一下
+## 💡 更多探索
 
-- [Value Realization](https://github.com/Done-0/value-realization) — 产品价值发现分析 AI 技能（24小时内10万+浏览，首日100+星）
-- [FateSpiral](https://fatespiral.com/) — AI 驱动的多人 RPG，无限世界，无限剧情
-- [玄学工坊](https://destinyteller.com/) — AI 赛博算命网站
-- [Jank](https://github.com/Done-0/Jank) — Go 语言开源博客
+- **[Value Realization](https://github.com/Done-0/value-realization)** — 想要独立开发出像 `fuck-u-code` 这样的爆款产品？用这个 AI 技能跳出开发者的“自嗨”，精准验证真实需求。
+- **[Hermai.ai](https://hermai.ai)** — 告别一碰就碎的爬虫脚本。无需对抗 DOM 变更与反爬，一键将任意网站转化为干净、稳定的 JSON API。
