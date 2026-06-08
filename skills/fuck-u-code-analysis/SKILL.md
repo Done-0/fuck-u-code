@@ -5,6 +5,22 @@ description: Use when code changes are complete and ready for quality review, be
 
 # fuck-u-code Code Quality Analysis & Review
 
+## Prerequisites
+
+Install fuck-u-code globally before using this skill:
+
+```bash
+npm install -g eff-u-code
+```
+
+Verify installation:
+
+```bash
+fuck-u-code --version
+```
+
+Requires Node.js >= 18.0.0.
+
 ## Overview
 
 Run `fuck-u-code analyze` to obtain quantitative code quality metrics across 7 dimensions (11 metrics), then interpret results and provide actionable refactoring recommendations based on the standards defined in this skill.
