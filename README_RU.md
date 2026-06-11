@@ -256,6 +256,19 @@ fuck-u-code mcp-install cursor
 - **analyze** — Анализ качества кода и генерация отчёта с оценкой
 - **ai-review** — AI-обзор файлов с наихудшими оценками
 
+## Навык для агента
+
+Репозиторий включает **навык** [`fuck-u-code-analysis`](skills/fuck-u-code-analysis/), который учит AI-агентов (Claude Code, Cursor, opencode и др.) интерпретировать результаты анализа и составлять структурированное ревью. Он **не поставляется через npm** — установите его в каталог навыков агента через `npx degit` (без клонирования и без остатков; нужен `npm install -g eff-u-code`):
+
+```bash
+# macOS / Linux
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis ~/.claude/skills/fuck-u-code-analysis
+# Windows (PowerShell)
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis "$HOME\.claude\skills\fuck-u-code-analysis"
+```
+
+Выше — для Claude Code; для opencode замените `.claude` на `.config/opencode`. Добавьте `--force`, если каталог уже существует.
+
 ## Исключение файлов
 
 Инструмент читает `.gitignore` (включая вложенные) и следует стандартным правилам gitignore. Для дополнительных исключений используйте `--exclude` или поле `exclude` в конфигурации.
@@ -280,5 +293,6 @@ MIT
 
 ## 💡 Узнать больше
 
+- **[HotDaily](https://hotdaily.top)** — Тонете в потоке технических новостей? Ежедневная подборка лучшего из Hacker News, Lobsters и не только, с LLM-резюме и ранжированием по ценности — читайте только то, что важно, за пару минут.
 - **[Value Realization](https://github.com/Done-0/value-realization)** — Хотите создать следующий хитовый продукт, как `fuck-u-code`? Используйте этот AI-навык, чтобы перестать делать то, что никому не нужно, и точно валидировать реальные потребности пользователей.
 - **[Hermai.ai](https://hermai.ai)** — Попрощайтесь с хрупкими парсерами. Превратите любой веб-сайт в чистый и стабильный JSON API в один клик, без борьбы с изменениями DOM и защитой от парсинга.

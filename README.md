@@ -255,6 +255,19 @@ fuck-u-code mcp-install cursor
 - **analyze** — Analyze code quality and generate a score report
 - **ai-review** — Run AI-powered code review on the worst-scoring files
 
+## Agent Skill
+
+This repo ships an **agent skill**, [`fuck-u-code-analysis`](skills/fuck-u-code-analysis/), that teaches AI agents (Claude Code, Cursor, opencode, etc.) to interpret the analysis output and produce a structured review. It's **not shipped via npm** — pull it into your agent's skills directory with `npx degit` (no clone, nothing left behind; requires `npm install -g eff-u-code`):
+
+```bash
+# macOS / Linux
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis ~/.claude/skills/fuck-u-code-analysis
+# Windows (PowerShell)
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis "$HOME\.claude\skills\fuck-u-code-analysis"
+```
+
+Above is for Claude Code; for opencode swap `.claude` for `.config/opencode`. Add `--force` if the target exists.
+
 ## File Exclusion
 
 The tool reads `.gitignore` files (including nested ones) and follows standard gitignore rules. For additional exclusions, use `--exclude` or the `exclude` config field.
@@ -279,5 +292,6 @@ MIT
 
 ## 💡 Discover More
 
+- **[HotDaily](https://hotdaily.top)** — Drowning in tech noise? A daily digest that curates the best of Hacker News, Lobsters and more, then LLM-summarizes and ranks every story by value — so you catch what matters in minutes.
 - **[Value Realization](https://github.com/Done-0/value-realization)** — Want to build the next breakout product like `fuck-u-code`? Use this AI skill to escape the developer's "echo chamber" and accurately validate real user needs.
 - **[Hermai.ai](https://hermai.ai)** — Say goodbye to fragile web scrapers. Instantly turn any website into a clean, stable JSON API without wrestling with DOM changes and anti-scraping protections.

@@ -255,6 +255,19 @@ fuck-u-code mcp-install cursor
 - **analyze** — 分析代码质量并生成评分报告
 - **ai-review** — 对评分最差的文件执行 AI 代码审查
 
+## Agent 技能
+
+本仓库附带 **Agent 技能** [`fuck-u-code-analysis`](skills/fuck-u-code-analysis/)，教 AI 智能体（Claude Code、Cursor、opencode 等）解读分析结果、产出结构化审查。它**不随 npm 包分发**，用 `npx degit` 拉到 agent 的 skills 目录即可（不 clone、无残留；需先 `npm install -g eff-u-code`）：
+
+```bash
+# macOS / Linux
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis ~/.claude/skills/fuck-u-code-analysis
+# Windows (PowerShell)
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis "$HOME\.claude\skills\fuck-u-code-analysis"
+```
+
+以上为 Claude Code；opencode 把 `.claude` 换成 `.config/opencode`，目标已存在时加 `--force`。
+
 ## 文件排除
 
 工具自动读取 `.gitignore`（含子目录），遵循标准 gitignore 规则。额外排除可用 `--exclude` 或配置文件的 `exclude` 字段。
@@ -279,5 +292,6 @@ MIT
 
 ## 💡 更多探索
 
+- **[HotDaily](https://hotdaily.top)** — 被技术信息流淹没？每天从 Hacker News、Lobsters 等社区精选热点，经 LLM 摘要与价值排序，让你几分钟读完真正值得关注的内容。
 - **[Value Realization](https://github.com/Done-0/value-realization)** — 想要独立开发出像 `fuck-u-code` 这样的爆款产品？用这个 AI 技能跳出开发者的“自嗨”，精准验证真实需求。
 - **[Hermai.ai](https://hermai.ai)** — 告别一碰就碎的爬虫脚本。无需对抗 DOM 变更与反爬，一键将任意网站转化为干净、稳定的 JSON API。

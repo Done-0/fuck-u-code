@@ -38,15 +38,29 @@ Then follow the skill's review standards to interpret results and write remediat
 
 ## Installation
 
-Copy the skill directory to your agent's skills path:
+Pull the skill straight into your agent's skills directory with `npx degit` — no clone, and no staging directory to clean up afterwards.
+
+**macOS / Linux**
 
 ```bash
-# opencode
-cp -r skills/fuck-u-code-analysis ~/.config/opencode/skills/
-
 # Claude Code
-cp -r skills/fuck-u-code-analysis ~/.claude/skills/
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis ~/.claude/skills/fuck-u-code-analysis
+
+# opencode
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis ~/.config/opencode/skills/fuck-u-code-analysis
 ```
+
+**Windows (PowerShell)**
+
+```powershell
+# Claude Code
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis "$HOME\.claude\skills\fuck-u-code-analysis"
+
+# opencode
+npx degit Done-0/fuck-u-code/skills/fuck-u-code-analysis "$HOME\.config\opencode\skills\fuck-u-code-analysis"
+```
+
+> Add `--force` if the target directory already exists.
 
 ## Requirements
 
