@@ -1,0 +1,71 @@
+{
+  "name": "fuck-u-code-desktop",
+  "productName": "fuck-u-code",
+  "version": "2.2.2",
+  "description": "Desktop app for the fuck-u-code code quality analyzer",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.mjs",
+  "author": "Done-0",
+  "license": "MIT",
+  "scripts": {
+    "sync-core": "node scripts/sync-core.mjs",
+    "dev": "npm run sync-core && node scripts/dev.mjs",
+    "build": "npm run sync-core && vite build",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder",
+    "preview:browser": "npm run sync-core && node scripts/preview-browser.mjs"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "cosmiconfig": "^9.0.0",
+    "glob": "^11.0.0",
+    "ignore": "^7.0.5",
+    "p-limit": "^6.0.0",
+    "tree-sitter-wasms": "^0.1.13",
+    "web-tree-sitter": "^0.24.7",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@astryxdesign/core": "0.6.5",
+    "@astryxdesign/theme-neutral": "0.6.5",
+    "@heroicons/react": "2.2.0",
+    "@phosphor-icons/react": "2.1.10",
+    "@stylexjs/stylex": "0.19.1",
+    "@vitejs/plugin-react": "6.1.2",
+    "electron": "45.2.1",
+    "electron-builder": "26.18.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "vite": "8.3.2"
+  },
+  "build": {
+    "appId": "com.done0.fuckucode",
+    "productName": "fuck-u-code",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**",
+      "core/**",
+      "out/**",
+      "package.json",
+      "build/icon.png"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.developer-tools"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Development"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
