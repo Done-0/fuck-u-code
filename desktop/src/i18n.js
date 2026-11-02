@@ -11,9 +11,9 @@ import coreZhTW from '../../src/i18n/locales/zh_TW.json';
 import coreRu from '../../src/i18n/locales/ru.json';
 
 export const LOCALE_OPTIONS = [
+  { value: 'en', label: 'English' },
   { value: 'zh', label: '简体中文' },
   { value: 'zh_TW', label: '繁體中文' },
-  { value: 'en', label: 'English' },
   { value: 'ru', label: 'Русский' },
 ];
 
@@ -80,6 +80,7 @@ const UI = {
     col_complexity: 'Complexity',
     col_nesting: 'Nesting',
     col_length: 'Length',
+    col_params: 'Params',
     file_open: 'Open',
     file_reveal: 'Show in folder',
     file_ai: 'AI review this file',
@@ -257,6 +258,7 @@ const UI = {
     col_complexity: '复杂度',
     col_nesting: '嵌套',
     col_length: '长度',
+    col_params: '参数',
     file_open: '打开',
     file_reveal: '在文件夹中显示',
     file_ai: 'AI 审查此文件',
@@ -428,6 +430,7 @@ const UI = {
     col_complexity: '複雜度',
     col_nesting: '巢狀',
     col_length: '長度',
+    col_params: '參數',
     file_open: '開啟',
     file_reveal: '在資料夾中顯示',
     file_ai: 'AI 審查此檔案',
@@ -600,6 +603,7 @@ const UI = {
     col_complexity: 'Сложность',
     col_nesting: 'Вложенность',
     col_length: 'Длина',
+    col_params: 'Парам.',
     file_open: 'Открыть',
     file_reveal: 'Показать в папке',
     file_ai: 'ИИ-ревью файла',

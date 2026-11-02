@@ -73,7 +73,12 @@ export default function App() {
     <I18nContext.Provider value={t}>
       <Theme theme={neutralTheme} mode={settings.theme}>
         <div className="app" {...drop.handlers}>
-          <TitleBar title={windowTitle(nav.view, project)} theme={settings.theme} />
+          <TitleBar
+            title={windowTitle(nav.view, project)}
+            theme={settings.theme}
+            locale={settings.locale}
+            onLocaleChange={(next) => prefs.saveSettings({ locale: next })}
+          />
           <div className="app-body">
             <AppShell
               height="fill"

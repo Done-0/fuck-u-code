@@ -12,7 +12,7 @@ async function call(channel, ...args) {
     // Only when the main process predates this preload (an app left running across an update).
     if (String(error.message).includes('No handler registered')) {
       throw new Error(
-        `应用需要重启才能使用这个功能 / Restart the app to finish updating (${channel})`
+        `Restart the app to finish updating / 应用需要重启才能使用这个功能 (${channel})`
       );
     }
     throw error;

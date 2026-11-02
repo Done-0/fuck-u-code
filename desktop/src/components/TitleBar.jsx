@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Emoji } from './Emoji.jsx';
+import { LanguageToggle } from './LanguageToggle.jsx';
 
 function toHex(color) {
   const parts = color.match(/\d+(\.\d+)?/g);
@@ -14,7 +15,7 @@ function toHex(color) {
  * Draggable title bar. The window has no native frame, so this strip carries
  * the drag region and keeps the OS window controls in the same colors.
  */
-export function TitleBar({ title, theme }) {
+export function TitleBar({ title, theme, locale, onLocaleChange }) {
   const ref = useRef(null);
   const platform = window.fuc.platform;
 
@@ -45,6 +46,8 @@ export function TitleBar({ title, theme }) {
           <span className="titlebar-title">{title}</span>
         </>
       )}
+      <span className="titlebar-spacer" />
+      <LanguageToggle locale={locale} onChange={onLocaleChange} />
     </header>
   );
 }

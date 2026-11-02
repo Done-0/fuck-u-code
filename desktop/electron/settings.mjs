@@ -8,7 +8,10 @@ import { app, safeStorage } from 'electron';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-const LOCALES = ['zh', 'zh_TW', 'en', 'ru'];
+const LOCALES = ['en', 'zh', 'zh_TW', 'ru'];
+const DEFAULT_LOCALE = 'en';
+// Version 1 stored a locale guessed from the OS; version 2 only stores one the user picked.
+const SETTINGS_VERSION = 2;
 const THEMES = ['system', 'light', 'dark'];
 const MAX_RECENT = 12;
 
@@ -16,14 +19,6 @@ let cache = null;
 
 function settingsPath() {
   return join(app.getPath('userData'), 'settings.json');
-}
-
-function systemLocale() {
-  const locale = app.getLocale().toLowerCase();
-  if (locale === 'zh-tw' || locale === 'zh-hk') return 'zh_TW';
-  if (locale.startsWith('zh')) return 'zh';
-  if (locale.startsWith('ru')) return 'ru';
-  return 'en';
 }
 
 function clampConcurrency(value) {
@@ -45,8 +40,11 @@ async function load() {
     // First launch or unreadable file: start from defaults.
   }
 
+  const hasChosenLocale = stored.settingsVersion === SETTINGS_VERSION;
   cache = {
-    locale: LOCALES.includes(stored.locale) ? stored.locale : systemLocale(),
+    settingsVersion: SETTINGS_VERSION,
+    // English unless the user switched language themselves.
+    locale: hasChosenLocale && LOCALES.includes(stored.locale) ? stored.locale : DEFAULT_LOCALE,
     theme: THEMES.includes(stored.theme) ? stored.theme : 'system',
     concurrency: clampConcurrency(stored.concurrency ?? 8),
     exclude: cleanStrings(stored.exclude),

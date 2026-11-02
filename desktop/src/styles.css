@@ -81,6 +81,50 @@ body {
   padding-inline: 84px 16px; /* traffic lights */
 }
 
+.titlebar-spacer {
+  flex: 1;
+}
+
+/* EN / 中文 switch: a compact pill that stays clickable inside the drag region. */
+.lang-toggle {
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  border-radius: var(--radius-full);
+  background: var(--track);
+  -webkit-app-region: no-drag;
+}
+
+.lang-toggle-option {
+  all: unset;
+  min-width: 34px;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+
+.lang-toggle-option:hover {
+  color: var(--color-text-primary);
+}
+
+.lang-toggle-option.is-active {
+  background: var(--color-background-card);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-low);
+}
+
+.lang-toggle-option:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
 .titlebar-brand {
   font-weight: var(--font-weight-semibold);
 }

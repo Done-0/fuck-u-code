@@ -6,7 +6,7 @@
 
 export function installBrowserBridge() {
   let settings = {
-    locale: 'zh',
+    locale: 'en',
     theme: 'system',
     concurrency: 8,
     exclude: [],

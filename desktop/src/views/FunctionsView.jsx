@@ -90,7 +90,7 @@ export function FunctionsView({ report, onOpenFile }) {
       {
         key: 'complexity',
         header: t('col_complexity'),
-        width: pixel(104),
+        width: pixel(120),
         align: 'center',
         sortable: true,
         renderCell: (row) => <span className="complexity-pill">{row.complexity}</span>,
@@ -105,7 +105,7 @@ export function FunctionsView({ report, onOpenFile }) {
       { key: 'length', header: t('col_length'), width: pixel(88), align: 'center', sortable: true },
       {
         key: 'params',
-        header: t('metric_parameter_count'),
+        header: t('col_params'),
         width: pixel(112),
         align: 'center',
         sortable: true,
