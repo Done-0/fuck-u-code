@@ -4,9 +4,12 @@
  */
 
 import Parser from 'web-tree-sitter';
+import { createRequire } from 'node:module';
 import { resolve as pathResolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Parser as IParser, ParseResult, Language, FunctionInfo, ClassInfo } from './types.js';
+
+const require = createRequire(import.meta.url);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -503,7 +506,15 @@ const LANG_CONFIGS: Record<string, LanguageQueryConfig> = {
 };
 
 function resolveWasmPath(wasmFile: string): string {
-  return pathResolve(__dirname, '..', '..', 'node_modules', 'tree-sitter-wasms', 'out', wasmFile);
+  // Package managers that hoist dependencies (npm, and therefore npx) install
+  // tree-sitter-wasms next to this package instead of inside its own
+  // node_modules, so the nested path alone is not enough: ask the module
+  // resolver first, then fall back to the layout pnpm produces.
+  try {
+    return require.resolve(`tree-sitter-wasms/out/${wasmFile}`);
+  } catch {
+    return pathResolve(__dirname, '..', '..', 'node_modules', 'tree-sitter-wasms', 'out', wasmFile);
+  }
 }
 
 let parserInitialized = false;
