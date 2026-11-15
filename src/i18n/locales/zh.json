@@ -13,7 +13,6 @@
   "skippedFiles": "跳过了 {count} 个文件",
   "analysisTime": "分析耗时 {time}ms",
   "noFilesFound": "未找到可分析的文件",
-
   "report_title": "屎山代码分析报告",
   "report_overall_score": "总体评分: {score} / 100",
   "report_level": "屎山等级: {level}",
@@ -24,14 +23,12 @@
   "report_more_issues": "...还有 {count} 个问题实在太屎，列不完了",
   "report_score_calc": "评分计算",
   "report_no_issues": "恭喜！没有特别多问题的文件！",
-
   "overallScore": "糟糕指数",
   "worstFiles": "最屎代码排行榜",
   "metricsSummary": "指标摘要",
   "file": "文件",
   "score": "评分",
   "issues": "问题",
-
   "complexity": "复杂度",
   "size": "代码量",
   "duplication": "重复度",
@@ -39,7 +36,6 @@
   "naming": "命名",
   "structure": "结构",
   "error": "错误处理",
-
   "level_clean": "清新可人",
   "level_clean_desc": "代码洁净，令人赏心悦目",
   "level_mild": "偶有异味",
@@ -62,7 +58,6 @@
   "level_worst_desc": "历代工程师共创的遗产，无法维护",
   "level_ultimate": "终极屎王",
   "level_ultimate_desc": "写的时候热血澎湃，改的时候亲妈都不认",
-
   "score_comment_0": "如沐春风，仿佛被天使亲吻过",
   "score_comment_10": "清新宜人，初闻像早晨的露珠",
   "score_comment_20": "略带清香，偶尔飘过一丝酸爽",
@@ -73,7 +68,6 @@
   "score_comment_70": "生化危机，接手前请立好遗嘱",
   "score_comment_80": "核废料现场，需穿防护服维护",
   "score_comment_90": "厄难级毒瘤，看一眼减寿十年",
-
   "metric_cyclomatic_complexity": "循环复杂度",
   "metric_cognitive_complexity": "认知复杂度",
   "metric_nesting_depth": "嵌套深度",
@@ -85,27 +79,21 @@
   "metric_error_handling": "错误处理",
   "metric_code_duplication": "代码重复",
   "metric_structure_analysis": "结构分析",
-
   "metric_complexity_good": "结构清晰，不绕弯子，赞",
   "metric_complexity_medium": "绕来绕去，跟你脑子一样乱",
   "metric_complexity_bad": "函数像迷宫，维护像打副本",
-
   "metric_length_good": "短小精悍，一目了然",
   "metric_length_medium": "有点长了，考虑拆分一下",
   "metric_length_bad": "又臭又长，看完眼睛都瞎了",
-
   "metric_comment_good": "注释不错，能靠它活下来",
   "metric_comment_medium": "注释稀薄，读者全靠脑补",
   "metric_comment_bad": "没有注释，靠缘分理解吧",
-
   "metric_naming_good": "命名清晰，程序员的文明之光",
   "metric_naming_medium": "命名还行，有些得猜",
   "metric_naming_bad": "变量名像键盘砸出来的：x, y, z, tmp, xxx",
-
   "metric_structure_good": "结构优美，不容易看岔",
   "metric_structure_medium": "结构还行，但有点混乱",
   "metric_structure_bad": "层层嵌套，套娃结构，看完眼花",
-
   "issue_category_complexity": "复杂度问题",
   "issue_category_comment": "注释问题",
   "issue_category_naming": "命名问题",
@@ -113,16 +101,13 @@
   "issue_category_duplication": "重复问题",
   "issue_category_error": "错误处理问题",
   "issue_category_other": "其他问题",
-
   "advice_good": "继续保持，你是编码界的一股清流，代码洁癖者的骄傲",
   "advice_moderate": "这代码像个叛逆期的青少年，需要适当管教才能成才",
   "advice_bad": "删库跑路是唯一出路，或者封印它，等下辈子再维护",
-
   "severity_info": "信息",
   "severity_warning": "警告",
   "severity_error": "错误",
   "severity_critical": "严重",
-
   "detail_no_functions": "未发现函数",
   "detail_structure_issues": "{count} 个结构问题",
   "detail_duplication": "{percent}% 重复 ({duplicates}/{total})",
@@ -140,17 +125,14 @@
   "issue_unhandled_error": "未处理的易出错调用",
   "detail_no_code_lines": "无代码行",
   "detail_avg_max": "平均: {avg}, 最大: {max}",
-  "detail_avg_lines_max_lines"
-  : "平均: {avg} 行, 最大: {max} 行",
+  "detail_avg_lines_max_lines": "平均: {avg} 行, 最大: {max} 行",
   "detail_ratio": "{ratio}% ({comments}/{code})",
   "detail_violations": "发现 {count} 个违规",
   "detail_no_violations": "无命名违规",
-
   "threshold_excellent": "优秀 (≤{value})",
   "threshold_good": "良好 ({min}-{max})",
   "threshold_acceptable": "可接受 ({min}-{max})",
   "threshold_poor": "较差 (>{value})",
-
   "verbose_basic_statistics": "基本统计",
   "verbose_total_files": "总文件数",
   "verbose_total_lines": "总代码行",
@@ -167,7 +149,6 @@
   "verbose_col_nesting": "嵌套",
   "verbose_col_params": "参数",
   "verbose_col_docstring": "注释",
-
   "ai_review_title": "AI 代码审查",
   "ai_api_key_required": "需要 API 密钥。使用 --api-key 或设置环境变量。",
   "ai_model_required": "需要指定模型。使用 --model 指定模型。",
@@ -203,7 +184,6 @@
   "ai_review_request_3": "如有安全隐患请指出",
   "ai_review_request_4": "提高可维护性的建议",
   "ai_review_focus": "重点关注严重程度最高的问题和复杂度最高的函数。",
-
   "ai_prompt_role": "你是一名资深代码审查工程师。分析提供的静态分析指标和源代码，输出精准、可执行的代码审查报告。",
   "ai_prompt_output_rules": "使用结构清晰的 Markdown 格式输出审查报告。合理使用标题、列表、代码围栏和行内代码。每条建议必须具体可执行，禁止模糊的客套话。",
   "ai_prompt_metrics_title": "指标定义",
@@ -232,7 +212,6 @@
   "ai_prompt_quality_evidence": "所有结论必须基于提供的指标数据。",
   "ai_prompt_quality_concise": "禁止客套话、重复内容、无信息量的描述。",
   "ai_prompt_quality_syntax": "代码示例必须使用目标语言的实际语法。",
-
   "ai_prompt_system": "你是一个风趣幽默的代码审查专家。请分析提供的代码质量指标，并以轻松有趣的方式提供可操作的反馈。",
   "ai_prompt_instruction_1": "简洁具体，但要有趣味性",
   "ai_prompt_instruction_2": "关注最重要的问题（最\"臭\"的部分）",
@@ -245,17 +224,14 @@
   "ai_prompt_security": "安全问题",
   "ai_prompt_security_clear": "一切安全！这个代码库没有安全隐患。",
   "ai_prompt_word_limit": "回复控制在500字以内。要有帮助性，但也要有趣！",
-
   "warn_analyze_failed": "分析文件失败 {file}: {error}",
   "warn_config_validation_failed": "配置验证失败: {error}",
   "warn_config_load_failed": "加载配置失败: {error}",
   "warn_no_model_specified": "{provider}_API_KEY 已设置但未指定模型。使用 --model 或设置 {provider}_MODEL",
   "error_fatal": "致命错误: {error}",
-
   "progress_discovering": "正在扫描文件...",
   "progress_discovered": "发现 {count} 个待分析文件",
   "progress_analyzing": "正在分析",
-
   "warn_file_too_large": "跳过大文件 ({size}KB): {file}",
   "warn_file_read_error": "读取文件失败: {file}",
   "warn_parse_error": "解析文件失败: {file}",
@@ -264,21 +240,17 @@
   "warn_all_files_excluded": "所有文件都被 .gitignore 或排除模式过滤",
   "info_skipped_binary": "跳过二进制文件: {file}",
   "info_analysis_summary": "已分析 {analyzed} 个文件，跳过 {skipped} 个文件",
-
   "error_path_not_found": "路径不存在: {path}",
   "error_not_a_directory": "不是目录: {path}",
-
   "config_current": "当前配置：",
   "config_created": "配置文件已创建: {path}",
   "config_already_exists": "配置文件已存在: {path}",
   "config_unknown_action": "未知操作: {action}。请使用 'show' 或 'init'。",
   "config_init_success": "配置初始化成功",
-
   "html_skipped": "已跳过",
   "html_time": "耗时",
   "html_status": "状态",
   "html_lang": "zh",
-
   "output_table_of_contents": "目录",
   "output_statistics": "统计信息",
   "output_metric": "指标",
@@ -288,7 +260,6 @@
   "output_status": "状态",
   "output_issues": "问题",
   "output_generated_by": "由 {tool} 生成",
-
   "cli_description": "基于 AST 解析和 AI 集成的生产级代码质量分析工具",
   "cli_examples": "示例：",
   "cli_example_analyze_cwd": "分析当前目录",
@@ -298,7 +269,6 @@
   "cli_example_ai_review": "AI 代码审查",
   "cli_example_mcp_install": "为 AI 工具配置 MCP Server",
   "cli_supported_languages": "支持的语言：",
-
   "cmd_analyze_description": "分析项目代码质量",
   "cmd_analyze_example_cwd": "分析当前目录",
   "cmd_analyze_example_dir": "分析指定目录",
@@ -307,10 +277,8 @@
   "cmd_analyze_example_html": "保存 HTML 报告",
   "cmd_analyze_example_exclude": "排除测试文件",
   "cmd_analyze_example_locale": "使用中文输出",
-
   "cmd_ai_review_description": "AI 代码审查",
   "cmd_ai_review_env_header": "环境变量：",
-
   "cmd_config_description": "查看或初始化配置",
   "cmd_config_example_show": "查看当前配置",
   "cmd_config_example_init": "创建 .fuckucoderc.json",
@@ -320,15 +288,12 @@
   "cmd_config_example_set_base_url": "设置自定义 API 端点",
   "cmd_config_example_set_model": "设置默认模型",
   "cmd_config_example_set_provider": "设置 AI 提供商",
-
   "config_set_success": "配置已更新: {key} = {value}",
   "config_set_invalid_key": "无效的配置键: {key}",
   "config_set_value_required": "'config set' 需要提供值",
   "config_set_key_required": "'config set' 需要提供键",
-
   "ai_review_output_title": "AI 代码审查报告",
   "cmd_ai_review_format_help": "输出格式：console、markdown、html（默认：console）",
-
   "output_html_requires_file": "HTML 格式需要 -o <file> 指定输出文件，已回退到终端格式输出。",
   "verbose_project_overview": "项目概览",
   "verbose_total_code_lines": "总代码行数",
@@ -343,7 +308,6 @@
   "verbose_per_file_metrics": "各文件指标评分",
   "verbose_top_worst_functions": "最差函数 Top 10",
   "verbose_col_file": "文件",
-
   "cmd_mcp_install_description": "为 AI 工具安装 MCP Server 配置",
   "mcp_install_target_prompt": "选择目标 AI 工具：",
   "mcp_installed": "已为 {target} 配置 MCP Server",
@@ -353,7 +317,6 @@
   "mcp_unknown_target": "未知目标：{target}。支持：claude, cursor",
   "mcp_install_example_claude": "配置到 Claude Code",
   "mcp_install_example_cursor": "配置到 Cursor",
-
   "cmd_uninstall_description": "从本地系统移除 fuck-u-code",
   "uninstall_example": "清理所有本地文件",
   "uninstall_warning": "⚠️  这将从您的系统中移除 fuck-u-code",
@@ -373,7 +336,6 @@
   "uninstall_removed_npm": "已卸载全局 npm 包",
   "uninstall_no_npm": "未找到全局 npm 包",
   "uninstall_complete": "✓ 卸载完成。再见！",
-
   "cmd_update_description": "更新 eff-u-code 到最新版本",
   "cmd_update_example": "更新到最新版本",
   "update_checking": "正在检查更新...",
@@ -384,7 +346,6 @@
   "update_success": "更新成功！",
   "update_updated_to": "已更新到版本",
   "update_failed": "更新失败",
-
   "json_schema_description": "JSON 格式的代码质量分析报告",
   "json_field_projectPath": "被分析项目的绝对路径",
   "json_field_overallScore": "总体质量评分（0-100，越高越好）",
@@ -428,7 +389,6 @@
   "json_severity_warning": "应该处理的轻微问题",
   "json_severity_error": "需要关注的重大问题",
   "json_severity_critical": "必须修复的严重问题",
-
   "cmd_clone_analyze_description": "克隆 git 仓库并分析代码质量",
   "cmd_clone_analyze_example": "克隆并分析远程仓库",
   "cmd_clone_analyze_example_url": "克隆并分析指定的 git 仓库",
@@ -448,5 +408,6 @@
   "info_temp_dir_created": "临时目录已创建：{path}",
   "info_temp_dir_kept": "临时目录已保留：{path}",
   "info_temp_dir_removed": "临时目录已删除：{path}",
-  "warn_git_url_not_valid": "git URL 可能无效：{url}"
+  "warn_git_url_not_valid": "git URL 可能无效：{url}",
+  "warn_parser_fallback": "解析降级为正则：{languages} —— 这些语言的分数不可信（嵌套函数的长度会被高估）。"
 }

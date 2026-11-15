@@ -13,7 +13,6 @@
   "skippedFiles": "略過了 {count} 個檔案",
   "analysisTime": "分析耗時 {time}ms",
   "noFilesFound": "未找到可分析的檔案",
-
   "report_title": "屎山程式分析報告",
   "report_overall_score": "整體評分: {score} / 100",
   "report_level": "屎山等級: {level}",
@@ -24,14 +23,12 @@
   "report_more_issues": "...還有 {count} 個問題實在太屎，列不完了",
   "report_score_calc": "評分計算",
   "report_no_issues": "恭喜！沒有特別多問題的檔案！",
-
   "overallScore": "糟糕指數",
   "worstFiles": "最屎程式排行榜",
   "metricsSummary": "指標摘要",
   "file": "檔案",
   "score": "評分",
   "issues": "問題",
-
   "complexity": "複雜度",
   "size": "程式量",
   "duplication": "重複度",
@@ -39,7 +36,6 @@
   "naming": "命名",
   "structure": "結構",
   "error": "錯誤處理",
-
   "level_clean": "清新可人",
   "level_clean_desc": "程式潔淨，令人賞心悅目",
   "level_mild": "偶有異味",
@@ -62,7 +58,6 @@
   "level_worst_desc": "歷代工程師共創的遺產，無法維護",
   "level_ultimate": "終極屎王",
   "level_ultimate_desc": "寫的時候熱血澎湃，改的時候親媽都不認",
-
   "score_comment_0": "如沐春風，彷彿被天使親吻過",
   "score_comment_10": "清新宜人，初聞像早晨的露珠",
   "score_comment_20": "略帶清香，偶爾飄過一絲酸爽",
@@ -73,7 +68,6 @@
   "score_comment_70": "生化危機，接手前請立好遺囑",
   "score_comment_80": "核廢料現場，需穿防護衣維護",
   "score_comment_90": "厄難級毒瘤，看一眼減壽十年",
-
   "metric_cyclomatic_complexity": "循環複雜度",
   "metric_cognitive_complexity": "認知複雜度",
   "metric_nesting_depth": "巢狀深度",
@@ -85,27 +79,21 @@
   "metric_error_handling": "錯誤處理",
   "metric_code_duplication": "程式重複",
   "metric_structure_analysis": "結構分析",
-
   "metric_complexity_good": "結構清晰，不彎彎繞繞，贊",
   "metric_complexity_medium": "繞來繞去，跟你腦袋一樣亂",
   "metric_complexity_bad": "函式像迷宮，維護像打副本",
-
   "metric_length_good": "短小精悍，一目了然",
   "metric_length_medium": "有點長了，考慮拆分一下",
   "metric_length_bad": "又臭又長，看完眼睛都瞎了",
-
   "metric_comment_good": "註解不錯，能靠它活下來",
   "metric_comment_medium": "註解稀薄，讀者全靠腦補",
   "metric_comment_bad": "沒有註解，靠緣分理解吧",
-
   "metric_naming_good": "命名清晰，程式設計師的文明之光",
   "metric_naming_medium": "命名還行，有些得猜",
   "metric_naming_bad": "變數名像鍵盤砸出來的：x, y, z, tmp, xxx",
-
   "metric_structure_good": "結構優美，不容易看岔",
   "metric_structure_medium": "結構還行，但有點混亂",
   "metric_structure_bad": "層層巢狀，套娃結構，看完眼花",
-
   "issue_category_complexity": "複雜度問題",
   "issue_category_comment": "註解問題",
   "issue_category_naming": "命名問題",
@@ -113,16 +101,13 @@
   "issue_category_duplication": "重複問題",
   "issue_category_error": "錯誤處理問題",
   "issue_category_other": "其他問題",
-
   "advice_good": "繼續保持，你是編碼界的一股清流，程式潔癖者的驕傲",
   "advice_moderate": "這程式像個叛逆期的青少年，需要適當管教才能成才",
   "advice_bad": "刪庫跑路是唯一出路，或是封印它，等下辈子再維護",
-
   "severity_info": "資訊",
   "severity_warning": "警告",
   "severity_error": "錯誤",
   "severity_critical": "嚴重",
-
   "detail_no_functions": "未發現函式",
   "detail_structure_issues": "{count} 個結構問題",
   "detail_duplication": "{percent}% 重複 ({duplicates}/{total})",
@@ -144,12 +129,10 @@
   "detail_ratio": "{ratio}% ({comments}/{code})",
   "detail_violations": "發現 {count} 個違規",
   "detail_no_violations": "無命名違規",
-
   "threshold_excellent": "優秀 (≤{value})",
   "threshold_good": "良好 ({min}-{max})",
   "threshold_acceptable": "可接受 ({min}-{max})",
   "threshold_poor": "較差 (>{value})",
-
   "verbose_basic_statistics": "基本統計",
   "verbose_total_files": "總檔案數",
   "verbose_total_lines": "總程式行",
@@ -166,7 +149,6 @@
   "verbose_col_nesting": "巢狀",
   "verbose_col_params": "參數",
   "verbose_col_docstring": "註解",
-
   "ai_review_title": "AI 程式審查",
   "ai_api_key_required": "需要 API 金鑰。使用 --api-key 或設定環境變數。",
   "ai_model_required": "需要指定模型。使用 --model 指定。",
@@ -202,7 +184,6 @@
   "ai_review_request_3": "如有安全隱患請指出",
   "ai_review_request_4": "提升可維護性的建議",
   "ai_review_focus": "重點關注嚴重程度最高的問題與複雜度最高的函式。",
-
   "ai_prompt_role": "你是一名資深程式審查工程師。分析提供的靜態分析指標與原始程式，輸出精準、可執行的程式審查報告。",
   "ai_prompt_output_rules": "使用結構清晰的 Markdown 格式輸出審查報告。合理使用標題、列表、程式區塊與行內程式。每條建議必須具體可執行，禁止模糊的客套話。",
   "ai_prompt_metrics_title": "指標定義",
@@ -231,7 +212,6 @@
   "ai_prompt_quality_evidence": "所有結論必須基於提供的指標數據。",
   "ai_prompt_quality_concise": "禁止客套話、重複內容、無資訊量的描述。",
   "ai_prompt_quality_syntax": "程式範例必須使用目標語言的實際語法。",
-
   "ai_prompt_system": "你是一個風趣幽默的程式審查專家。請分析提供的程式品質指標，並以輕鬆有趣的方式提供可操作的回饋。",
   "ai_prompt_instruction_1": "簡潔具體，但要有趣味性",
   "ai_prompt_instruction_2": "關注最重要的問題（最「臭」的部分）",
@@ -244,17 +224,14 @@
   "ai_prompt_security": "安全問題",
   "ai_prompt_security_clear": "一切安全！這個程式庫沒有安全隱患。",
   "ai_prompt_word_limit": "回覆控制在500字以內。要有幫助性，但也要有趣！",
-
   "warn_analyze_failed": "分析檔案失敗 {file}: {error}",
   "warn_config_validation_failed": "設定驗證失敗: {error}",
   "warn_config_load_failed": "載入設定失敗: {error}",
   "warn_no_model_specified": "{provider}_API_KEY 已設定但未指定模型。使用 --model 或設定 {provider}_MODEL",
   "error_fatal": "致命錯誤: {error}",
-
   "progress_discovering": "正在掃描檔案...",
   "progress_discovered": "發現 {count} 個待分析檔案",
   "progress_analyzing": "正在分析",
-
   "warn_file_too_large": "略過大檔案 ({size}KB): {file}",
   "warn_file_read_error": "讀取檔案失敗: {file}",
   "warn_parse_error": "解析檔案失敗: {file}",
@@ -263,21 +240,17 @@
   "warn_all_files_excluded": "所有檔案都被 .gitignore 或排除模式過濾",
   "info_skipped_binary": "略過二進位檔案: {file}",
   "info_analysis_summary": "已分析 {analyzed} 個檔案，略過 {skipped} 個檔案",
-
   "error_path_not_found": "路徑不存在: {path}",
   "error_not_a_directory": "不是目錄: {path}",
-
   "config_current": "目前設定：",
   "config_created": "設定檔已建立: {path}",
   "config_already_exists": "設定檔已存在: {path}",
   "config_unknown_action": "未知操作: {action}。請使用 'show' 或 'init'。",
   "config_init_success": "設定初始化成功",
-
   "html_skipped": "已略過",
   "html_time": "耗時",
   "html_status": "狀態",
   "html_lang": "zh-TW",
-
   "output_table_of_contents": "目錄",
   "output_statistics": "統計資訊",
   "output_metric": "指標",
@@ -287,7 +260,6 @@
   "output_status": "狀態",
   "output_issues": "問題",
   "output_generated_by": "由 {tool} 產生",
-
   "cli_description": "基於 AST 解析與 AI 整合的生產級程式品質分析工具",
   "cli_examples": "範例：",
   "cli_example_analyze_cwd": "分析目前目錄",
@@ -297,7 +269,6 @@
   "cli_example_ai_review": "AI 程式審查",
   "cli_example_mcp_install": "為 AI 工具設定 MCP Server",
   "cli_supported_languages": "支援的語言：",
-
   "cmd_analyze_description": "分析專案程式品質",
   "cmd_analyze_example_cwd": "分析目前目錄",
   "cmd_analyze_example_dir": "分析指定目錄",
@@ -306,10 +277,8 @@
   "cmd_analyze_example_html": "儲存 HTML 報告",
   "cmd_analyze_example_exclude": "排除測試檔案",
   "cmd_analyze_example_locale": "使用繁體中文輸出",
-
   "cmd_ai_review_description": "AI 程式審查",
   "cmd_ai_review_env_header": "環境變數：",
-
   "cmd_config_description": "檢視或初始化設定",
   "cmd_config_example_show": "檢視目前設定",
   "cmd_config_example_init": "建立 .fuckucoderc.json",
@@ -319,15 +288,12 @@
   "cmd_config_example_set_base_url": "設定自訂 API 端點",
   "cmd_config_example_set_model": "設定預設模型",
   "cmd_config_example_set_provider": "設定 AI 服務商",
-
   "config_set_success": "設定已更新: {key} = {value}",
   "config_set_invalid_key": "無效的設定鍵: {key}",
   "config_set_value_required": "'config set' 需要提供數值",
   "config_set_key_required": "'config set' 需要提供鍵",
-
   "ai_review_output_title": "AI 程式審查報告",
   "cmd_ai_review_format_help": "輸出格式：console、markdown、html（預設：console）",
-
   "output_html_requires_file": "HTML 格式需要 -o <file> 指定輸出檔案，已退回終端機格式輸出。",
   "verbose_project_overview": "專案概覽",
   "verbose_total_code_lines": "總程式行數",
@@ -342,7 +308,6 @@
   "verbose_per_file_metrics": "各檔案指標評分",
   "verbose_top_worst_functions": "最差函式 Top 10",
   "verbose_col_file": "檔案",
-
   "cmd_mcp_install_description": "為 AI 工具安裝 MCP Server 設定",
   "mcp_install_target_prompt": "選擇目標 AI 工具：",
   "mcp_installed": "已為 {target} 設定 MCP Server",
@@ -352,7 +317,6 @@
   "mcp_unknown_target": "未知目標：{target}。支援：claude, cursor",
   "mcp_install_example_claude": "設定到 Claude Code",
   "mcp_install_example_cursor": "設定到 Cursor",
-
   "cmd_uninstall_description": "從本機系統移除 fuck-u-code",
   "uninstall_example": "清理所有本機檔案",
   "uninstall_warning": "⚠️  這將從您的系統中移除 fuck-u-code",
@@ -372,7 +336,6 @@
   "uninstall_removed_npm": "已移除全域 npm 套件",
   "uninstall_no_npm": "未找到全域 npm 套件",
   "uninstall_complete": "✓ 移除完成。再見！",
-
   "cmd_update_description": "更新 eff-u-code 至最新版本",
   "cmd_update_example": "更新至最新版本",
   "update_checking": "正在檢查更新...",
@@ -383,7 +346,6 @@
   "update_success": "更新成功！",
   "update_updated_to": "已更新至版本",
   "update_failed": "更新失敗",
-
   "json_schema_description": "JSON 格式的程式品質分析報告",
   "json_field_projectPath": "被分析專案的絕對路徑",
   "json_field_overallScore": "整體品質評分（0-100，越高越好）",
@@ -427,7 +389,6 @@
   "json_severity_warning": "應該處理的輕微問題",
   "json_severity_error": "需要關注的重大問題",
   "json_severity_critical": "必須修復的嚴重問題",
-
   "cmd_clone_analyze_description": "複製 git 儲存庫並分析程式品質",
   "cmd_clone_analyze_example": "複製並分析遠端儲存庫",
   "cmd_clone_analyze_example_url": "複製並分析指定的 git 儲存庫",
@@ -447,5 +408,6 @@
   "info_temp_dir_created": "暫存目錄已建立：{path}",
   "info_temp_dir_kept": "暫存目錄已保留：{path}",
   "info_temp_dir_removed": "暫存目錄已刪除：{path}",
-  "warn_git_url_not_valid": "git URL 可能無效：{url}"
+  "warn_git_url_not_valid": "git URL 可能無效：{url}",
+  "warn_parser_fallback": "解析降級為正則：{languages} —— 這些語言的分數不可信（嵌套函數的長度會被高估）。"
 }

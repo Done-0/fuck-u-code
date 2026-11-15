@@ -14,6 +14,13 @@ const parserCache = new Map<Language, Parser>();
 /** Initialization promise cache to prevent concurrent WASM loading */
 const initPromises = new Map<Language, Promise<Parser>>();
 
+/** 退回正则解析的语言；报告里用来提醒「这些数字别信」。 */
+const fallbackLanguages = new Set<Language>();
+
+export function getFallbackLanguages(): Language[] {
+  return [...fallbackLanguages];
+}
+
 export function createParser(language: Language): Promise<Parser> {
   const cached = parserCache.get(language);
   if (cached) {
@@ -34,8 +41,16 @@ export function createParser(language: Language): Promise<Parser> {
         parserCache.set(language, parser);
         return parser;
       } catch (err: unknown) {
+        // The regex parser cannot see scopes, so a function nested inside another
+        // one has its end pinned to the end of the enclosing scope and every
+        // metric that depends on function length becomes an overestimate.
+        // Say so plainly: silently wrong numbers are worse than a loud warning.
+        fallbackLanguages.add(language);
         logger.warn(
-          `Tree-sitter init failed for ${language}, falling back to regex parser: ${err}`
+          `Tree-sitter grammar for ${language} could not be loaded, falling back to the ` +
+            `regex parser: ${err instanceof Error ? err.message : String(err)}\n` +
+            `  Scores for this language are unreliable (nested functions are over-reported). ` +
+            `Check that the tree-sitter-wasms package is installed and resolvable.`
         );
       }
 

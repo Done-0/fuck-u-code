@@ -10,6 +10,7 @@ import { renderAnalysisResult } from '../output/render-analysis.js';
 import { createSpinner, ProgressBar } from '../../utils/progress.js';
 import { exists, isDirectory } from '../../utils/fs.js';
 import { t } from '../../i18n/index.js';
+import { getFallbackLanguages } from '../../parser/index.js';
 import chalk from 'chalk';
 
 interface AnalyzeOptions {
@@ -111,6 +112,13 @@ async function runAnalyze(projectPath: string, options: AnalyzeOptions): Promise
     state.progressBar?.succeed(t('analysisComplete'));
 
     await renderAnalysisResult(result, runtimeConfig);
+
+    const fallbackLanguages = getFallbackLanguages();
+    if (fallbackLanguages.length > 0) {
+      console.error(
+        chalk.yellow(t('warn_parser_fallback', { languages: fallbackLanguages.join(', ') }))
+      );
+    }
 
     process.exit(0);
   } catch (error) {

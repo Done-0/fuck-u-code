@@ -13,7 +13,6 @@
   "skippedFiles": "{count} files skipped",
   "analysisTime": "Analysis completed in {time}ms",
   "noFilesFound": "No files found to analyze",
-
   "report_title": "Code Quality Analysis Report",
   "report_overall_score": "Overall Score: {score} / 100",
   "report_level": "Quality Level: {level}",
@@ -24,14 +23,12 @@
   "report_more_issues": "...and {count} more issues too smelly to list",
   "report_score_calc": "Score Calculation",
   "report_no_issues": "Congratulations! No problematic files found!",
-
   "overallScore": "Issue Score",
   "worstFiles": "Problem Files Ranking",
   "metricsSummary": "Metrics Summary",
   "file": "File",
   "score": "Score",
   "issues": "Issues",
-
   "complexity": "Complexity",
   "size": "Size",
   "duplication": "Duplication",
@@ -39,7 +36,6 @@
   "naming": "Naming",
   "structure": "Structure",
   "error": "Error Handling",
-
   "level_clean": "Fresh as spring breeze",
   "level_clean_desc": "Code so clean, it's a joy to read—like a spa day for your eyes",
   "level_mild": "A whiff of trouble",
@@ -62,7 +58,6 @@
   "level_worst_desc": "Legacy mess, built by generations, impossible to maintain",
   "level_ultimate": "Ultimate King of Mess",
   "level_ultimate_desc": "So wild your own mother would disown you for writing it",
-
   "score_comment_0": "Like a spring breeze, code kissed by angels—heals your soul",
   "score_comment_10": "Fresh and pleasant, like morning dew—almost makes you want to refactor for fun",
   "score_comment_20": "A hint of fragrance, sometimes a whiff of funk—still safe to touch",
@@ -73,7 +68,6 @@
   "score_comment_70": "Biohazard zone, write your will before taking over—may luck be with you",
   "score_comment_80": "Nuclear waste site, bring a hazmat suit—every edit is a gamble",
   "score_comment_90": "Disaster level tumor, every glance shortens your life by ten years—run while you can",
-
   "metric_cyclomatic_complexity": "Cyclomatic Complexity",
   "metric_cognitive_complexity": "Cognitive Complexity",
   "metric_nesting_depth": "Nesting Depth",
@@ -85,27 +79,21 @@
   "metric_error_handling": "Error Handling",
   "metric_code_duplication": "Code Duplication",
   "metric_structure_analysis": "Structure Analysis",
-
   "metric_complexity_good": "Clear structure, no unnecessary complexity, great!",
   "metric_complexity_medium": "Winding logic, like a maze for your brain",
   "metric_complexity_bad": "Functions like labyrinths, maintenance like a dungeon raid",
-
   "metric_length_good": "Short and sweet, easy to understand",
   "metric_length_medium": "Getting long, consider splitting",
   "metric_length_bad": "Long and smelly, eyes bleeding after reading",
-
   "metric_comment_good": "Good comments, they'll help you survive",
   "metric_comment_medium": "Sparse comments, readers need imagination",
   "metric_comment_bad": "No comments, understanding depends on luck",
-
   "metric_naming_good": "Clear naming, the light of programmer civilization",
   "metric_naming_medium": "Naming is okay, some guesswork needed",
   "metric_naming_bad": "Variable names look like keyboard smashes: x, y, z, tmp, xxx",
-
   "metric_structure_good": "Beautiful structure, easy to follow",
   "metric_structure_medium": "Structure is okay, but somewhat confusing",
   "metric_structure_bad": "Nested like Russian dolls, dizzying to read",
-
   "issue_category_complexity": "Complexity Issues",
   "issue_category_comment": "Comment Issues",
   "issue_category_naming": "Naming Issues",
@@ -113,16 +101,13 @@
   "issue_category_duplication": "Duplication Issues",
   "issue_category_error": "Error Handling Issues",
   "issue_category_other": "Other Issues",
-
   "advice_good": "Keep going, you're the clean freak of the coding world, a true code hygiene champion",
   "advice_moderate": "This code is like a rebellious teenager, needs some tough love to become useful",
   "advice_bad": "Delete the repo and run, or seal it for the next generation to suffer",
-
   "severity_info": "Info",
   "severity_warning": "Warning",
   "severity_error": "Error",
   "severity_critical": "Critical",
-
   "detail_no_functions": "No functions found",
   "detail_structure_issues": "{count} structure issues",
   "detail_duplication": "{percent}% duplication ({duplicates}/{total})",
@@ -144,12 +129,10 @@
   "detail_ratio": "{ratio}% ({comments}/{code})",
   "detail_violations": "{count} violations found",
   "detail_no_violations": "No naming violations",
-
   "threshold_excellent": "Excellent (≤{value})",
   "threshold_good": "Good ({min}-{max})",
   "threshold_acceptable": "Acceptable ({min}-{max})",
   "threshold_poor": "Poor (>{value})",
-
   "verbose_basic_statistics": "Basic Statistics",
   "verbose_total_files": "Total Files",
   "verbose_total_lines": "Total Lines",
@@ -166,7 +149,6 @@
   "verbose_col_nesting": "Nesting",
   "verbose_col_params": "Params",
   "verbose_col_docstring": "Doc",
-
   "ai_review_title": "AI Code Review",
   "ai_api_key_required": "API key required. Use --api-key or set environment variable.",
   "ai_model_required": "Model required. Use --model to specify the model.",
@@ -202,7 +184,6 @@
   "ai_review_request_3": "Security concerns if any patterns indicate vulnerabilities",
   "ai_review_request_4": "Recommendations for improving maintainability",
   "ai_review_focus": "Focus on the issues with highest severity and functions with highest complexity.",
-
   "ai_prompt_role": "You are a senior code reviewer. Analyze the provided static analysis metrics and source code, then produce a precise, actionable code review report.",
   "ai_prompt_output_rules": "Output your review in well-structured Markdown. Use headings, bullet lists, code fences, and inline code as appropriate. Every suggestion must be specific and actionable — no vague advice, no pleasantries.",
   "ai_prompt_metrics_title": "Metrics Definition",
@@ -231,7 +212,6 @@
   "ai_prompt_quality_evidence": "All conclusions must be based on the provided metric data.",
   "ai_prompt_quality_concise": "No pleasantries, no repetition, no filler text.",
   "ai_prompt_quality_syntax": "Code examples must use the actual syntax of the target language.",
-
   "ai_prompt_system": "You are a witty code reviewer with a playful personality. Analyze the provided code quality metrics and provide actionable feedback with a touch of humor.",
   "ai_prompt_instruction_1": "Be concise and specific, but entertaining",
   "ai_prompt_instruction_2": "Focus on the most impactful issues (the \"smelliest\" parts)",
@@ -244,17 +224,14 @@
   "ai_prompt_security": "Security Concerns",
   "ai_prompt_security_clear": "All clear! No security skeletons in this closet.",
   "ai_prompt_word_limit": "Keep your response under 500 words. Be helpful but have fun with it!",
-
   "warn_analyze_failed": "Failed to analyze {file}: {error}",
   "warn_config_validation_failed": "Config validation failed: {error}",
   "warn_config_load_failed": "Failed to load config: {error}",
   "warn_no_model_specified": "{provider}_API_KEY set but no model specified. Use --model or set {provider}_MODEL",
   "error_fatal": "Fatal error: {error}",
-
   "progress_discovering": "Discovering files...",
   "progress_discovered": "Found {count} files to analyze",
   "progress_analyzing": "Analyzing",
-
   "warn_file_too_large": "Skipping large file ({size}KB): {file}",
   "warn_file_read_error": "Failed to read file: {file}",
   "warn_parse_error": "Failed to parse file: {file}",
@@ -263,21 +240,17 @@
   "warn_all_files_excluded": "All files were excluded by .gitignore or exclude patterns",
   "info_skipped_binary": "Skipped binary file: {file}",
   "info_analysis_summary": "Analyzed {analyzed} files, skipped {skipped} files",
-
   "error_path_not_found": "Path not found: {path}",
   "error_not_a_directory": "Not a directory: {path}",
-
   "config_current": "Current Configuration:",
   "config_created": "Configuration file created: {path}",
   "config_already_exists": "Configuration file already exists: {path}",
   "config_unknown_action": "Unknown action: {action}. Use 'show' or 'init'.",
   "config_init_success": "Configuration initialized successfully",
-
   "html_skipped": "Skipped",
   "html_time": "Time",
   "html_status": "Status",
   "html_lang": "en",
-
   "output_table_of_contents": "Table of Contents",
   "output_statistics": "Statistics",
   "output_metric": "Metric",
@@ -287,7 +260,6 @@
   "output_status": "Status",
   "output_issues": "Issues",
   "output_generated_by": "Generated by {tool}",
-
   "cli_description": "Production-grade code quality analyzer with AST parsing and AI integration",
   "cli_examples": "Examples:",
   "cli_example_analyze_cwd": "Analyze current directory",
@@ -297,7 +269,6 @@
   "cli_example_ai_review": "AI-powered code review",
   "cli_example_mcp_install": "Configure MCP Server for AI tools",
   "cli_supported_languages": "Supported Languages:",
-
   "cmd_analyze_description": "Analyze code quality of a project",
   "cmd_analyze_example_cwd": "Analyze current directory",
   "cmd_analyze_example_dir": "Analyze specific directory",
@@ -306,10 +277,8 @@
   "cmd_analyze_example_html": "Save HTML report",
   "cmd_analyze_example_exclude": "Exclude test files",
   "cmd_analyze_example_locale": "Use Chinese output",
-
   "cmd_ai_review_description": "AI-powered code review",
   "cmd_ai_review_env_header": "Environment Variables:",
-
   "cmd_config_description": "Show or initialize configuration",
   "cmd_config_example_show": "Show current config",
   "cmd_config_example_init": "Create .fuckucoderc.json",
@@ -319,15 +288,12 @@
   "cmd_config_example_set_base_url": "Set custom API endpoint",
   "cmd_config_example_set_model": "Set default model",
   "cmd_config_example_set_provider": "Set AI provider",
-
   "config_set_success": "Config updated: {key} = {value}",
   "config_set_invalid_key": "Invalid config key: {key}",
   "config_set_value_required": "Value is required for 'config set'",
   "config_set_key_required": "Key is required for 'config set'",
-
   "ai_review_output_title": "AI Code Review Report",
   "cmd_ai_review_format_help": "Output format: console, markdown, html (default: console)",
-
   "output_html_requires_file": "HTML format requires -o <file> to write output. Falling back to console format.",
   "verbose_project_overview": "Project Overview",
   "verbose_total_code_lines": "Total Code Lines",
@@ -342,7 +308,6 @@
   "verbose_per_file_metrics": "Per-File Metric Scores",
   "verbose_top_worst_functions": "Top 10 Worst Functions",
   "verbose_col_file": "File",
-
   "cmd_mcp_install_description": "Install MCP Server configuration for AI tools",
   "mcp_install_target_prompt": "Select target AI tool:",
   "mcp_installed": "MCP Server configured for {target}",
@@ -352,7 +317,6 @@
   "mcp_unknown_target": "Unknown target: {target}. Supported: claude, cursor",
   "mcp_install_example_claude": "Configure for Claude Code",
   "mcp_install_example_cursor": "Configure for Cursor",
-
   "cmd_uninstall_description": "Remove fuck-u-code from local system",
   "uninstall_example": "Clean up all local files",
   "uninstall_warning": "⚠️  This will remove fuck-u-code from your system",
@@ -372,7 +336,6 @@
   "uninstall_removed_npm": "Uninstalled global npm package",
   "uninstall_no_npm": "No global npm package found",
   "uninstall_complete": "✓ Uninstall complete. Goodbye!",
-
   "cmd_update_description": "Update eff-u-code to the latest version",
   "cmd_update_example": "Update to latest version",
   "update_checking": "Checking for updates...",
@@ -383,7 +346,6 @@
   "update_success": "Update successful!",
   "update_updated_to": "Updated to version",
   "update_failed": "Update failed",
-
   "json_schema_description": "Code quality analysis report in JSON format",
   "json_field_projectPath": "Absolute path to the analyzed project",
   "json_field_overallScore": "Overall quality score (0-100, higher is better)",
@@ -427,7 +389,6 @@
   "json_severity_warning": "Minor issues that should be addressed",
   "json_severity_error": "Significant issues that need attention",
   "json_severity_critical": "Critical issues that must be fixed",
-
   "cmd_clone_analyze_description": "Clone git repository and analyze code quality",
   "cmd_clone_analyze_example": "Clone and analyze remote repository",
   "cmd_clone_analyze_example_url": "Clone and analyze specified git repository",
@@ -447,5 +408,6 @@
   "info_temp_dir_created": "Temp directory created: {path}",
   "info_temp_dir_kept": "Temp directory kept: {path}",
   "info_temp_dir_removed": "Temp directory removed: {path}",
-  "warn_git_url_not_valid": "Git URL may be invalid: {url}"
+  "warn_git_url_not_valid": "Git URL may be invalid: {url}",
+  "warn_parser_fallback": "Parser fallback: {languages} — scores for these languages are unreliable (nested functions are over-reported)."
 }

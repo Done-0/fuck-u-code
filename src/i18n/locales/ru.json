@@ -13,7 +13,6 @@
   "skippedFiles": "Пропущено {count} файлов",
   "analysisTime": "Анализ завершен за {time}мс",
   "noFilesFound": "Файлы для анализа не найдены",
-
   "report_title": "Отчет об анализе качества кода",
   "report_overall_score": "Общая оценка: {score} / 100",
   "report_level": "Уровень качества: {level}",
@@ -24,14 +23,12 @@
   "report_more_issues": "...и ещё {count} проблем слишком вонючих, чтобы перечислять",
   "report_score_calc": "Расчет оценки",
   "report_no_issues": "Поздравляем! Проблемных файлов не найдено!",
-
   "overallScore": "Индекс вони",
   "worstFiles": "Рейтинг проблемных файлов",
   "metricsSummary": "Сводка метрик",
   "file": "Файл",
   "score": "Оценка",
   "issues": "Проблемы",
-
   "complexity": "Сложность",
   "size": "Размер",
   "duplication": "Дублирование",
@@ -39,7 +36,6 @@
   "naming": "Именование",
   "structure": "Структура",
   "error": "Обработка ошибок",
-
   "level_clean": "Свежий как весенний ветерок",
   "level_clean_desc": "Код такой чистый, что читать его — одно удовольствие, как спа для глаз",
   "level_mild": "Лёгкий душок",
@@ -62,7 +58,6 @@
   "level_worst_desc": "Унаследованный бардак, созданный поколениями, невозможно поддерживать",
   "level_ultimate": "Абсолютный Король Бардака",
   "level_ultimate_desc": "Настолько дикий, что родная мать отречётся от вас за это",
-
   "score_comment_0": "Как весенний ветерок, код поцелованный ангелами — исцеляет душу",
   "score_comment_10": "Свежий и приятный, как утренняя роса — почти хочется рефакторить ради удовольствия",
   "score_comment_20": "Намёк на аромат, иногда запашок — всё ещё безопасно трогать",
@@ -73,7 +68,6 @@
   "score_comment_70": "Зона биологической опасности, напишите завещание перед тем как брать — удачи вам",
   "score_comment_80": "Площадка ядерных отходов, берите костюм химзащиты — каждое редактирование — это азартная игра",
   "score_comment_90": "Опухоль уровня катастрофы, каждый взгляд сокращает жизнь на десять лет — бегите пока можете",
-
   "metric_cyclomatic_complexity": "Цикломатическая сложность",
   "metric_cognitive_complexity": "Когнитивная сложность",
   "metric_nesting_depth": "Глубина вложенности",
@@ -85,27 +79,21 @@
   "metric_error_handling": "Обработка ошибок",
   "metric_code_duplication": "Дублирование кода",
   "metric_structure_analysis": "Анализ структуры",
-
   "metric_complexity_good": "Чёткая структура, никакой лишней сложности, отлично!",
   "metric_complexity_medium": "Извилистая логика, как лабиринт для мозга",
   "metric_complexity_bad": "Функции как лабиринты, поддержка как рейд в подземелье",
-
   "metric_length_good": "Коротко и ясно, легко понять",
   "metric_length_medium": "Становится длинным, подумайте о разделении",
   "metric_length_bad": "Длинный и вонючий, глаза кровоточат после чтения",
-
   "metric_comment_good": "Хорошие комментарии, они помогут выжить",
   "metric_comment_medium": "Редкие комментарии, читателям нужно воображение",
   "metric_comment_bad": "Нет комментариев, понимание зависит от удачи",
-
   "metric_naming_good": "Чёткое именование, свет цивилизации программистов",
   "metric_naming_medium": "Именование нормальное, нужны догадки",
   "metric_naming_bad": "Имена переменных как удары по клавиатуре: x, y, z, tmp, xxx",
-
   "metric_structure_good": "Красивая структура, легко следовать",
   "metric_structure_medium": "Структура нормальная, но немного запутанная",
   "metric_structure_bad": "Вложенность как матрёшки, голова кружится от чтения",
-
   "issue_category_complexity": "Проблемы сложности",
   "issue_category_comment": "Проблемы комментариев",
   "issue_category_naming": "Проблемы именования",
@@ -113,16 +101,13 @@
   "issue_category_duplication": "Проблемы дублирования",
   "issue_category_error": "Проблемы обработки ошибок",
   "issue_category_other": "Другие проблемы",
-
   "advice_good": "Продолжайте, вы чистюля мира кодинга, настоящий чемпион гигиены кода",
   "advice_moderate": "Этот код как бунтующий подросток, нужна жёсткая любовь чтобы стать полезным",
   "advice_bad": "Удалите репо и бегите, или запечатайте для следующего поколения страдать",
-
   "severity_info": "Информация",
   "severity_warning": "Предупреждение",
   "severity_error": "Ошибка",
   "severity_critical": "Критично",
-
   "detail_no_functions": "Функции не найдены",
   "detail_structure_issues": "{count} проблем структуры",
   "detail_duplication": "{percent}% дублирования ({duplicates}/{total})",
@@ -144,12 +129,10 @@
   "detail_ratio": "{ratio}% ({comments}/{code})",
   "detail_violations": "Найдено {count} нарушений",
   "detail_no_violations": "Нарушений именования нет",
-
   "threshold_excellent": "Отлично (≤{value})",
   "threshold_good": "Хорошо ({min}-{max})",
   "threshold_acceptable": "Приемлемо ({min}-{max})",
   "threshold_poor": "Плохо (>{value})",
-
   "verbose_basic_statistics": "Базовая статистика",
   "verbose_total_files": "Всего файлов",
   "verbose_total_lines": "Всего строк",
@@ -166,7 +149,6 @@
   "verbose_col_params": "Параметры",
   "verbose_col_docstring": "Комм",
   "verbose_metric_details": "Детали",
-
   "ai_review_title": "AI Обзор кода",
   "ai_api_key_required": "Требуется API ключ. Используйте --api-key или установите переменную окружения.",
   "ai_model_required": "Требуется модель. Используйте --model для указания модели.",
@@ -202,7 +184,6 @@
   "ai_review_request_3": "Проблемы безопасности, если есть",
   "ai_review_request_4": "Рекомендации по улучшению поддерживаемости",
   "ai_review_focus": "Сосредоточьтесь на проблемах с наивысшей серьёзностью и функциях с наивысшей сложностью.",
-
   "ai_prompt_role": "Вы опытный инженер по ревью кода. Проанализируйте предоставленные метрики статического анализа и исходный код, затем создайте точный, практический отчёт по ревью кода.",
   "ai_prompt_output_rules": "Выводите ревью в хорошо структурированном Markdown. Используйте заголовки, списки, блоки кода и инлайн-код по необходимости. Каждое предложение должно быть конкретным и исполняемым — никаких расплывчатых советов и любезностей.",
   "ai_prompt_metrics_title": "Определение метрик",
@@ -231,7 +212,6 @@
   "ai_prompt_quality_evidence": "Все выводы должны основываться на предоставленных данных метрик.",
   "ai_prompt_quality_concise": "Без любезностей, повторений и описаний с нулевой информацией.",
   "ai_prompt_quality_syntax": "Примеры кода должны использовать фактический синтаксис целевого языка.",
-
   "ai_prompt_system": "Вы остроумный ревьюер кода с игривым характером. Проанализируйте предоставленные метрики качества кода и дайте практические рекомендации с долей юмора.",
   "ai_prompt_instruction_1": "Быть кратким и конкретным, но развлекательным",
   "ai_prompt_instruction_2": "Фокусироваться на самых важных проблемах (самых \"вонючих\" частях)",
@@ -244,17 +224,14 @@
   "ai_prompt_security": "Проблемы безопасности",
   "ai_prompt_security_clear": "Всё чисто! Никаких скелетов в шкафу.",
   "ai_prompt_word_limit": "Ответ до 500 слов. Будьте полезны, но веселитесь!",
-
   "warn_analyze_failed": "Не удалось проанализировать {file}: {error}",
   "warn_config_validation_failed": "Ошибка валидации конфигурации: {error}",
   "warn_config_load_failed": "Не удалось загрузить конфигурацию: {error}",
   "warn_no_model_specified": "{provider}_API_KEY установлен, но модель не указана. Используйте --model или установите {provider}_MODEL",
   "error_fatal": "Фатальная ошибка: {error}",
-
   "progress_discovering": "Поиск файлов...",
   "progress_discovered": "Найдено {count} файлов для анализа",
   "progress_analyzing": "Анализ",
-
   "warn_file_too_large": "Пропуск большого файла ({size}КБ): {file}",
   "warn_file_read_error": "Не удалось прочитать файл: {file}",
   "warn_parse_error": "Не удалось разобрать файл: {file}",
@@ -263,21 +240,17 @@
   "warn_all_files_excluded": "Все файлы исключены .gitignore или шаблонами исключения",
   "info_skipped_binary": "Пропущен бинарный файл: {file}",
   "info_analysis_summary": "Проанализировано {analyzed} файлов, пропущено {skipped} файлов",
-
   "error_path_not_found": "Путь не найден: {path}",
   "error_not_a_directory": "Не является директорией: {path}",
-
   "config_current": "Текущая конфигурация:",
   "config_created": "Файл конфигурации создан: {path}",
   "config_already_exists": "Файл конфигурации уже существует: {path}",
   "config_unknown_action": "Неизвестное действие: {action}. Используйте 'show' или 'init'.",
   "config_init_success": "Конфигурация успешно инициализирована",
-
   "html_skipped": "Пропущено",
   "html_time": "Время",
   "html_status": "Статус",
   "html_lang": "ru",
-
   "output_table_of_contents": "Содержание",
   "output_statistics": "Статистика",
   "output_metric": "Метрика",
@@ -287,7 +260,6 @@
   "output_status": "Статус",
   "output_issues": "Проблемы",
   "output_generated_by": "Создано с помощью {tool}",
-
   "cli_description": "Анализатор качества кода с AST-парсингом и интеграцией ИИ",
   "cli_examples": "Примеры:",
   "cli_example_analyze_cwd": "Анализ текущей директории",
@@ -297,7 +269,6 @@
   "cli_example_ai_review": "Обзор кода с помощью ИИ",
   "cli_example_mcp_install": "Настроить MCP Server для AI-инструментов",
   "cli_supported_languages": "Поддерживаемые языки:",
-
   "cmd_analyze_description": "Анализ качества кода проекта",
   "cmd_analyze_example_cwd": "Анализ текущей директории",
   "cmd_analyze_example_dir": "Анализ указанной директории",
@@ -306,10 +277,8 @@
   "cmd_analyze_example_html": "Сохранить отчёт в HTML",
   "cmd_analyze_example_exclude": "Исключить тестовые файлы",
   "cmd_analyze_example_locale": "Использовать китайский вывод",
-
   "cmd_ai_review_description": "Обзор кода с помощью ИИ",
   "cmd_ai_review_env_header": "Переменные окружения:",
-
   "cmd_config_description": "Просмотр или инициализация конфигурации",
   "cmd_config_example_show": "Показать текущую конфигурацию",
   "cmd_config_example_init": "Создать .fuckucoderc.json",
@@ -319,15 +288,12 @@
   "cmd_config_example_set_base_url": "Установить пользовательский API-эндпоинт",
   "cmd_config_example_set_model": "Установить модель по умолчанию",
   "cmd_config_example_set_provider": "Установить AI-провайдера",
-
   "config_set_success": "Конфигурация обновлена: {key} = {value}",
   "config_set_invalid_key": "Недопустимый ключ конфигурации: {key}",
   "config_set_value_required": "'config set' требует значение",
   "config_set_key_required": "'config set' требует ключ",
-
   "ai_review_output_title": "Отчёт AI-обзора кода",
   "cmd_ai_review_format_help": "Формат вывода: console, markdown, html (по умолчанию: console)",
-
   "output_html_requires_file": "Формат HTML требует -o <file> для записи. Переключение на консольный формат.",
   "verbose_project_overview": "Обзор проекта",
   "verbose_total_code_lines": "Всего строк кода",
@@ -342,7 +308,6 @@
   "verbose_per_file_metrics": "Метрики по файлам",
   "verbose_top_worst_functions": "Топ-10 худших функций",
   "verbose_col_file": "Файл",
-
   "cmd_mcp_install_description": "Установить конфигурацию MCP Server для AI-инструментов",
   "mcp_install_target_prompt": "Выберите целевой AI-инструмент:",
   "mcp_installed": "MCP Server настроен для {target}",
@@ -352,7 +317,6 @@
   "mcp_unknown_target": "Неизвестная цель: {target}. Поддерживаются: claude, cursor",
   "mcp_install_example_claude": "Настроить для Claude Code",
   "mcp_install_example_cursor": "Настроить для Cursor",
-
   "cmd_uninstall_description": "Удалить fuck-u-code из локальной системы",
   "uninstall_example": "Очистить все локальные файлы",
   "uninstall_warning": "⚠️  Это удалит fuck-u-code из вашей системы",
@@ -372,7 +336,6 @@
   "uninstall_removed_npm": "Удален глобальный npm-пакет",
   "uninstall_no_npm": "Глобальный npm-пакет не найден",
   "uninstall_complete": "✓ Удаление завершено. До свидания!",
-
   "cmd_update_description": "Обновить eff-u-code до последней версии",
   "cmd_update_example": "Обновить до последней версии",
   "update_checking": "Проверка обновлений...",
@@ -383,7 +346,6 @@
   "update_success": "Обновление успешно!",
   "update_updated_to": "Обновлено до версии",
   "update_failed": "Обновление не удалось",
-
   "json_schema_description": "Отчет об анализе качества кода в формате JSON",
   "json_field_projectPath": "Абсолютный путь к анализируемому проекту",
   "json_field_overallScore": "Общая оценка качества (0-100, чем выше, тем лучше)",
@@ -427,7 +389,6 @@
   "json_severity_warning": "Незначительные проблемы, которые следует устранить",
   "json_severity_error": "Значительные проблемы, требующие внимания",
   "json_severity_critical": "Критические проблемы, которые необходимо исправить",
-
   "cmd_clone_analyze_description": "Клонировать git репозиторий и проанализировать качество кода",
   "cmd_clone_analyze_example": "Клонировать и проанализировать удаленный репозиторий",
   "cmd_clone_analyze_example_url": "Клонировать и проанализировать указанный git репозиторий",
@@ -447,5 +408,6 @@
   "info_temp_dir_created": "Временная директория создана: {path}",
   "info_temp_dir_kept": "Временная директория сохранена: {path}",
   "info_temp_dir_removed": "Временная директория удалена: {path}",
-  "warn_git_url_not_valid": "Git URL может быть недействительным: {url}"
+  "warn_git_url_not_valid": "Git URL может быть недействительным: {url}",
+  "warn_parser_fallback": "Откат к regex-парсеру: {languages} — оценки для этих языков ненадёжны (вложенные функции завышаются)."
 }
